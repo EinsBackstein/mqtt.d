@@ -1,13 +1,16 @@
+import {heroui} from '@heroui/theme';
 /**@type {import('tailwindcss').Config} */
 import * as color from 'tailwindcss/colors';
 const colors1 = color.default;
 module.exports = {
   darkMode: 'class',
+  plugins: [heroui()],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@heroui/theme/dist/components/(button|ripple|spinner).js"
   ],
   theme: {
     fontFamily: {
