@@ -7,7 +7,7 @@ const Temperatur = () => {
   return (
     <div className="flex flex-row items-center justify-center w-[450px] h-[180px] bg-secondary rounded-4xl ring-1 ring-success/20 shadow-md shadow-success/30 p-4">
       <div className="flex flex-col w-full h-full pt-4">
-        <div className='flex flex-row items-end gap-4 pb-2'>
+        <div className="flex flex-row items-end gap-4 pb-2">
           <h1 className="text-xl text-left font-semibold text-white">
             🌡️ Temperatur
           </h1>
@@ -18,10 +18,10 @@ const Temperatur = () => {
         <p className="text-sm text-white/25 italic">@ 2025-04-01 23:11:42</p>
       </div>
       <div>
-        <Button isIconOnly className='text-2xl'>
+        <Button isIconOnly className=" rounded-4xl text-2xl">
           <p>⚙️</p>
         </Button>
-        <Button isIconOnly className='text-2xl'>
+        <Button isIconOnly className="rounded-md text-2xl">
           <p>🔄️</p>
         </Button>
       </div>

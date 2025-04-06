@@ -9,7 +9,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`flex sticky mr-4 items-center h-screen top-0 flex-col overflow-hidden 
+      className={`flex sticky mr-4 top-0 items-center h-screen flex-col overflow-hidden 
       duration-200 ease-in-out transition-all ${
         expanded ? 'w-50 text-left' : 'w-12'
       } bg-neutral-900 text-white`}
