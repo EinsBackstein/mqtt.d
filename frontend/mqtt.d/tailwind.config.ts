@@ -10,7 +10,7 @@ module.exports = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@heroui/theme/dist/components/(button|ripple|spinner).js"
+    "./node_modules/@heroui/theme/dist/components/(button|divider|ripple|spinner).js"
   ],
   theme: {
     fontFamily: {

@@ -1,19 +1,19 @@
-import Pressure from "@/components/static/airpressure";
-import CO2 from "@/components/static/co2";
-import Humidity from "@/components/static/humidity";
-import Brightness from "@/components/static/lightlevel";
-import Temperatur from "@/components/static/temp";
+import AdvancedTemp from '@/components/static/advancedTemp'
+import Alert from '@/components/static/alert'
+import Trend from '@/components/static/trend'
+import React from 'react'
 
-
-export default function Home() {
+const page = () => {
   return (
-    <div className="flex flex-col gap-5 pt-5">
-      <h1>Home</h1>
-      <Temperatur />
-      <CO2 />
-      <Humidity />
-      <Brightness />
-      <Pressure />
+    <div>
+      <h1 className='text-3xl mt-14 ml-10'>Hallo, Julian!</h1>
+      <div className='grid grid-cols-12 grid-rows-8 ml-10 mt-5 gap-4'>
+        <Alert />
+        <AdvancedTemp />
+        <Trend />
+      </div>
     </div>
-  );
+  )
 }
+
+export default page
