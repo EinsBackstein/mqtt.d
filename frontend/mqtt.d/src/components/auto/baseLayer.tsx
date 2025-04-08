@@ -59,10 +59,10 @@ const BaseLayer = ({icon,heading, id, value, lastValue, timeStamp, statusColor}:
         <p className="text-sm text-white/25 italic">{timeStamp}</p>
       </div>
       <div>
-        <Button isIconOnly className=" rounded-4xl text-2xl">
+        <Button isIconOnly className=" rounded-4xl text-2xl p-1">
           <Settings />
         </Button>
-        <Button isIconOnly className="rounded-md text-2xl">
+        <Button isIconOnly className=" rounded-4xl p-1 text-2xl">
           <RefreshCcw />
         </Button>
       </div>
