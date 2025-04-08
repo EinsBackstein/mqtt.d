@@ -7,8 +7,8 @@ const page = () => {
   return (
     <div>
       <h1 className='text-3xl mt-14 ml-10'>Hallo, Julian!</h1>
-      <div className='grid grid-cols-12 grid-rows-8 ml-10 mt-5 gap-4'>
-        <Alert />
+      <div className=''>
+        {/* <div><Alert /></div> */}
         <AdvancedTemp />
         <Trend />
       </div>

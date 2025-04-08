@@ -11,12 +11,12 @@ import { Settings } from 'lucide-react'
 
 
 const icon = <Settings/>;
-const titleTest = "asdf";
+const titleTest = "Test-Display";
 const idTest = "testid1";
 const valueTest = 23.5;
-const lastValueTest = 22;
+const lastValueTest = 26;
 const timeStampTest = "2023-10-01 12:00:00";
-const statusColorTest = "success";
+const statusColorTest = "danger";
 
 export default function Home() {
   return (

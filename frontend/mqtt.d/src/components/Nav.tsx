@@ -4,22 +4,36 @@ import { useState } from 'react';
 import { House, LayoutDashboard, Star, MonitorSpeaker, HousePlus, Info, Bell, Settings2, UserRound } from 'lucide-react';
 
 import Link from 'next/link';
+import { Button } from '@heroui/button';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
+  const router = useRouter();
+
+  const handleContainerClick = () => {
+    setExpanded(!expanded);
+  };
+
+  const stopPropagation = (event: React.MouseEvent) => {
+    event.stopPropagation();
+  };
 
   return (
     <div
-      className={`flex sticky mr-4 top-0 items-center h-screen flex-col overflow-hidden 
+      className={`flex sticky mr-4 top-0 items-center h-screen flex-col 
       duration-200 ease-in-out transition-all ${
         expanded ? 'w-50 text-left' : 'w-12'
       } bg-neutral-900 text-white`}
-      onClick={() => setExpanded(!expanded)}
+      onClick={handleContainerClick}
     >
-      <div className='flex flex-col items-center w-full'>
+      <div className='flex flex-col items-center w-full' onClick={stopPropagation}>
         <button
-          onClick={() => setExpanded(!expanded)}
-          className="p-4 focus:outline-none relative"
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push('/');
+          }}
+          className="p-4 focus:outline-none relative hover:"
         >
           <span
             className={`absolute top-1/2 left-1/2 transform -translate-x-3/4 -translate-y-1/3 text-left w-20 transition-opacity duration-200 ${
@@ -37,7 +51,10 @@ export default function Navbar() {
           </span>
         </button>
         <button
-          onClick={() => setExpanded(!expanded)}
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push('/showcase');
+          }}
           className="p-4 focus:outline-none relative"
         >
           <span
@@ -56,7 +73,10 @@ export default function Navbar() {
           </span>
         </button>
         <button
-          onClick={() => setExpanded(!expanded)}
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push('/favourites');
+          }}
           className="p-4 focus:outline-none relative"
         >
           <span
@@ -75,7 +95,10 @@ export default function Navbar() {
           </span>
         </button>
         <button
-          onClick={() => setExpanded(!expanded)}
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push('/devices');
+          }}
           className="p-4 focus:outline-none relative"
         >
           <span
@@ -94,7 +117,10 @@ export default function Navbar() {
           </span>
         </button>
         <button
-          onClick={() => setExpanded(!expanded)}
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push('/rooms');
+          }}
           className="p-4 focus:outline-none relative"
         >
           <span
@@ -118,6 +144,7 @@ export default function Navbar() {
         className={`mt-auto mb-4 px-2.5 py-2 hover:bg-neutral-800 duration-300 ease-initial transition-all w-full ${
           expanded ? '' : ''
         }`}
+        onClick={stopPropagation}
       >
         <div className="relative w-full">
           <Link id="user" href={'/?info=true'}>
@@ -148,7 +175,7 @@ export default function Navbar() {
                 expanded ? 'opacity-100 ' : 'opacity-0'
               }`}
             >
-              <Bell /> Notifications
+              <Bell/> Notifications
             </span>
           </Link>
           <div
@@ -200,11 +227,14 @@ export default function Navbar() {
               expanded ? 'opacity-0' : 'opacity-100'
             }`}
           >
-            <Link id="user" href={'/?user=true'}>
+            <button id="user" onClick={() => {
+            
+            router.push('/');
+          }}>
               <div className="rounded-4xl bg-primary p-2 flex items-center justify-center">
                 <UserRound />
               </div>
-            </Link>
+            </button>
           </div>
         </div>
       </div>
