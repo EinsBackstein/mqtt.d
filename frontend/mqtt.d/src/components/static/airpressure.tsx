@@ -14,7 +14,7 @@ const Pressure = () => {
           <p className="text-xs text-left text-white/20">ID: #MayBeeF1</p>
         </div>
         <p className="text-3xl text-white/40 font-bold pb-0.5">Hoch</p>
-        <p className="text-sm text-white/35"> > 1035 hPa </p>
+        <p className="text-sm text-white/35"> {">"} 1035 hPa </p>
         <p className="text-sm text-white/25 italic">@ 2025-04-01 23:11:42</p>
       </div>
       <div>
