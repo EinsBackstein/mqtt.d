@@ -1,0 +1,24 @@
+services:
+  hivemq:
+    image: hivemq/hivemq4  # Official HiveMQ Community Edition image
+    container_name: mqttdbroker
+    restart: unless-stopped
+    # Ports
+    ports:
+      - "1883:1883"  # MQTT protocol (default port)
+      - "8080:8080"  # Web UI (optional, default port)
+      - "8883:8883"  # MQTT over SSL (optional, default port)
+      - "8000:8000" # Websocket
+    volumes:
+      - hivemq-data:/opt/hivemq/data   # data (sessions, persistent messages)&#8203;:contentReference[oaicite:6]{index=6}
+      - hivemq-logs:/opt/hivemq/log    # log files (persist logs outside container)
+      - hivemq-conf:/opt/hivemq/conf   # configuration files (config.xml, etc)&#8203;:contentReference[oaicite:7]{index=7}
+    # JVM and HiveMQ environment variables
+    environment:
+      - "JAVA_OPTS=-Xms256m -Xmx1g"   # adjust JVM heap (set max heap)&#8203;:contentReference[oaicite:8]{index=8}
+      - "HIVEMQ_LOG_LEVEL=INFO"       # optional: set log verbosity (DEBUG, INFO, etc)
+
+volumes:
+  hivemq-data:
+  hivemq-logs:
+  hivemq-conf:
