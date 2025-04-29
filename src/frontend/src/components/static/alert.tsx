@@ -4,7 +4,7 @@ import React from 'react';
 
 const Alert = () => {
   return (
-    <div className="flex flex-col max-w-[750px] h-[175px]  bg-secondary rounded-4xl ring-1 ring-white/20 shadow-md shadow-white/30 p-4">
+    <div className="flex flex-col max-w-[750px] max-h-[300px]  bg-secondary rounded-4xl ring-1 ring-white/20 shadow-md overflow-hidden shadow-white/30 p-4">
       <h1 className="m-2 flex flex-row  items-center  text-3xl text-left font-semibold text-white">
         <OctagonAlert
           width={50}
@@ -28,12 +28,12 @@ const Alert = () => {
           </div>
         </div>
         <Divider
-          className="h-full w-0.5 m-2 bg-amber-50 rounded-4xl"
+          className="h-[75%] w-0.5 m-2 bg-amber-50 rounded-4xl"
           orientation="vertical"
         />
         <div className="px-2">
           <div className="text-xl">Neuester Alert</div>
-          <div className='bg-caution/30 max-w-100 py-1 pr-4 pl-2 rounded-2xl flex flex-row gap-2 items-center'>
+          <div className='bg-caution/30 max-w-100 py-1 pr-4 pl-2 rounded-2xl flex flex-row gap-2 items-center mb-6'>
           <CircleAlert
               width={32}
               height={32}

@@ -4,7 +4,7 @@ import { MoveRight, RefreshCcw, Settings, TrendingDown, TrendingUp } from 'lucid
 
 const CO2 = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center w-[80%] bg-secondary rounded-4xl max-h-60 ring-1 ring-danger/20 shadow-md shadow-danger/30 p-4">
+    <div className="flex flex-col md:flex-row items-center justify-center w-[100%] bg-secondary rounded-4xl max-h-60 ring-1 ring-danger/20 shadow-md shadow-danger/30 p-4">
       <div className="flex flex-col w-full h-full pt-4">
         <div className="flex flex-row items-end gap-4 pb-2">
           <h1 className="text-lg md:text-xl text-left font-semibold text-white">

@@ -21,15 +21,13 @@ const data = [
 ];
 
 const LineChartComponent = () => {
-  console.log('LineChartComponent wird gerendert'); // Protokoll für Debugging
-
   return (
     <div className="p-4 bg-secondary max-w-full h-auto rounded-4xl ring-1 ring-success/20 shadow-md shadow-success/30">
       {/* Titel der Komponente */}
       <h2 className="text-2xl font-bold mb-4 text-white">Temperatur-Trend</h2>
 
       {/* Responsiver Container für das Diagramm */}
-      <ResponsiveContainer width="100%" height={200}>
+      <ResponsiveContainer width="100%" height={500}>
         {/* Hauptdiagramm-Komponente */}
         <LineChart
           data={data} // Übergabe der Daten

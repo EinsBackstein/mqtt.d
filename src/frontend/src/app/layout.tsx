@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen flex overflow-x-hidden gap-4`}
       >
-        <div className="relative top-0 self-start"><Nav /></div>
+        <div className="sticky top-0 self-start"><Nav /></div>
         <div className="relative flex-grow overflow-x-auto">{children}</div>
       </body>
     </html>
