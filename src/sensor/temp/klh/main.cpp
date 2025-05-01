@@ -19,11 +19,15 @@
 
 #include "hw_settings.h"        // WiFi settings see hw_settings.template
 
+
 //const char* ssid     = "xxxxxxx";     hw_settings.h
 //const char* password = "yyyyyyy";
 
 #define Version_SW "ESP8266-AZ-D1-0.92"
 #define Version_HW "ESP8266-AZ-D1-BR-0.9"
+
+
+
 
 const int LED = 5;              // IO5 = D1 (AZ)!!!
 const int oneWireBus = 4;       // IO4 for OneWire devices           
@@ -36,7 +40,7 @@ String client_MAC = "";
 
 OneWire OW_ds(oneWireBus);          // OneWire Datastructure
 DallasTemperature ow_sensors(&OW_ds);  // Dallas Sensor Data
-char *str_temp0 = "17";       // = ow_sensors.getTempCByIndex(0);
+const char *str_temp0 = "17";       // = ow_sensors.getTempCByIndex(0);
 
 // non blocking Timer - millis() function returns unsigned long
 unsigned long start_time;       // settings for non blocking timer
@@ -45,7 +49,7 @@ unsigned long current_time;     // millis()
 
 // MQTT Broker
 
-// const char *mqtt_broker = "10.4.0.106";   // Local Broker on Pi2
+const char *mqtt_broker = "10.0.0.197";   // Local Broker on Pi2
 const char  *sensor_topic = "sensors/esp32/esp8266-01";
 const char *room_topic = "home/DG/elab/light_01";
 const char *mqtt_username = "esp32";
@@ -85,7 +89,7 @@ DynamicJsonDocument odoc(400);
 
 void callback(char *topic, unsigned char *payload, unsigned int length) 
 {
-  StaticJsonDocument<400> odoc; 
+  DynamicJsonDocument odoc(400); 
   String messageTemp;
   String output;
   if (timeClient.isTimeSet()) NTP_time = timeClient.getFormattedTime();
@@ -149,10 +153,9 @@ void callback(char *topic, unsigned char *payload, unsigned int length)
 
 //////////////////////////   S E T U P   ////////////////////////////
 void setup() {
-  
   pinMode(LED,OUTPUT);                        //  Testing LED
   digitalWrite(LED, HIGH);
-  Serial.begin(115200);     // Serial connection for debugging
+  Serial.begin(9600);     // Serial connection for debugging
   Serial.println();
 
 // Searching for One-Wire Sensors connected at GPIO "oneWireBUS" 
@@ -257,7 +260,7 @@ void setup() {
  ///////////////////// Connecting to WiFi ///////////////////////////
     Serial.print(ESC_YEL);
     Serial.print("\nConnecting to:        ");
-    Serial.println(wifi_ssid); 
+    Serial.println(String(wifi_ssid)); 
     // WiFi.setHostname(hostname.c_str());
     WiFi.mode(WIFI_STA);
     WiFi.begin(wifi_ssid, wifi_password);

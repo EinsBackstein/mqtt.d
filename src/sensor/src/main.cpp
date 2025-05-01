@@ -1,20 +1,16 @@
+#include "env.h"
+
+#include <Arduino.h>
+#include "Wire.h"
 #include <ESP8266WiFi.h>
-#include <PubSubClient.h>
-#include <OneWire.h>
-#include <DallasTemperature.h>
+#include <ESP8266Ping.h>
+#include <PubSubClient.h>       // MQTT
+#include <ArduinoJson.h>        // https://github.com/bblanchon/ArduinoJson.git
+#include <NTPClient.h>          // https://github.com/taranais/NTPClient
+#include <WiFiUdp.h>
+#include <OneWire.h>            // OneWire bus for Sensors
+#include <DallasTemperature.h>  // read Dallas Temp. Sensors
 
-// WLAN-Zugangsdaten – bitte anpassen!
-const char* ssid     = "pandora-n";
-const char* password = "aron2000";
-
-// MQTT-Server-Konfiguration für HiveMQ (öffentlicher Broker)
-const char* mqttServer = "172.27.11.101";
-const int   mqttPort   = 1883;
-const char* mqttTopic  = "sensor/data";
-
-// WLAN und MQTT Client
-WiFiClient espClient;
-PubSubClient mqttClient(espClient);
 
 // Definition der Pins für die Sensoren
 #define SENSOR_PIN   A0     // Analoger Pin für den Lichtsensor
@@ -24,23 +20,110 @@ PubSubClient mqttClient(espClient);
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
-// Timer für das periodische Senden
-unsigned long lastMsgTime = 0;
+// WIFI & MQTT
+WiFiClient espClient;
+PubSubClient mqttClient(espClient);
 
-void reconnectMQTT() {
-  // Versuche, bis zur erfolgreichen Verbindung zum MQTT-Broker ...
+String sensorTypes[2] = {
+  "Licht",
+  "Temperatur",
+};
+
+const char *clientType = "ESP8266";
+String clientId = String(random(0xffff), HEX);  // Corrected clientId initialization
+
+String sensor_topic = "sensors/";  // Changed to String for easy concatenation
+
+// Timestamp
+unsigned long lastMsgTime = 0;
+const unsigned long lastMsgInterval = 10000; // 10s
+
+bool forceUpdate = false;
+String command_topic = "sensors/" + String(clientType) + "/" + clientId + "/forceUpdate";
+
+JsonDocument odoc;  // Using JsonDocument to avoid deprecation warnings
+
+// WIFI Connection Function
+void connectWifi() {
+  Serial.print("Verbinde mit WLAN ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.println("WLAN verbunden | IP-Adresse: ");
+  Serial.println(WiFi.localIP());
+}
+
+void connectMqtt() {
+  Serial.print("Verbinde mit MQTT Broker ");
+  mqttClient.setServer(mqttServer, mqttPort);
+
   while (!mqttClient.connected()) {
-    Serial.print("Verbinde mit MQTT-Broker ");
-    String clientId = "ESP8266Client-";
-    clientId += String(random(0xffff), HEX);
     if (mqttClient.connect(clientId.c_str())) {
       Serial.println("verbunden");
-      // Hier könntest du unter Umständen auch noch subscriben.
     } else {
       Serial.print("Verbindung fehlgeschlagen, rc=");
       Serial.print(mqttClient.state());
       Serial.println(" -> Erneuter Versuch in 5 Sekunden");
       delay(5000);
+    }
+  }
+
+  Serial.println("Verbindungstest: ");
+
+  if (Ping.ping(mqttServer, 4)) {
+    Serial.println("Ping erfolgreich!");
+  } else {
+    Serial.println("Ping fehlgeschlagen!");
+  }
+}
+
+void subscribeMqtt() {
+  for (int i = 0; i < 2; i++) {  // Fixed loop condition
+    String topic = sensor_topic + sensorTypes[i];
+    mqttClient.subscribe(topic.c_str());
+  }
+  mqttClient.subscribe("sensors/#");
+  mqttClient.subscribe("home/#");
+  mqttClient.subscribe(command_topic.c_str()); // Subscribe to command topic
+}
+
+void publishMqtt(const char *topic, const char *event, const char *data_type, const char *data_value) {
+  JsonDocument odoc;  // Using JsonDocument
+  String jsonString;
+  odoc["event"] = event;
+  odoc["topic"] = topic;
+  odoc["clientType"] = clientType;
+  odoc["clientId"] = clientId;
+  odoc["dataType"] = data_type;
+  odoc["dataValue"] = data_value;
+  odoc["WIFI SSID"] = WiFi.SSID();
+
+  serializeJsonPretty(odoc, Serial);   // generate & print JSON to Serial
+  Serial.println("");
+
+  serializeJson(odoc, jsonString);     // generate JSON to String
+
+  mqttClient.publish(topic, jsonString.c_str()); // publish JSON to MQTT Broker
+}
+
+void callbackMqtt(char* topic, byte* payload, unsigned int length){
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.println("]");
+
+  String message;
+  for (int i = 0; i < length; i++) {
+    message += (char)payload[i];
+  }
+
+  if (String(topic) == command_topic) {
+    if (message == "UPDATE") {
+      forceUpdate = true;
+      Serial.println("Force update triggered via MQTT Broker");
     }
   }
 }
@@ -49,61 +132,49 @@ void setup() {
   Serial.begin(9600);
   delay(10);
 
-  // Sensoren starten
+  Serial.println("Starte Sensoren...");
   sensors.begin();
 
-  // Mit dem WLAN verbinden
-  Serial.print("Verbinde mit WLAN ");
-  Serial.println(ssid);
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  WiFi.localIP();
-  Serial.println();
-  Serial.println("WLAN verbunden");
-  Serial.print("IP-Adresse: ");
-  Serial.println(WiFi.localIP());
+  connectWifi();  // Removed duplicate call
+  sensor_topic = sensor_topic + clientType + "/" + clientId + "/";
 
-  // MQTT-Server einstellen (HiveMQ)
-  mqttClient.setServer(mqttServer, mqttPort);
-
-  // Mit dem MQTT-Broker verbinden
-  reconnectMQTT();
+  mqttClient.setCallback(callbackMqtt);  // Add this before connectMqtt()
+  connectMqtt();
+  subscribeMqtt();  // Subscribe to MQTT topics
 }
 
 void loop() {
-  // Prüfe, ob die MQTT-Verbindung aktiv ist
   if (!mqttClient.connected()) {
-    reconnectMQTT();
+    connectMqtt();
+    subscribeMqtt();
   }
   mqttClient.loop();
 
-  // Alle 1000 ms werden Sensorwerte ausgelesen und publiziert
-  if (millis() - lastMsgTime > 1000) {
-    lastMsgTime = millis();
+  bool shouldUpdate = forceUpdate || (millis() - lastMsgTime >= lastMsgInterval);
 
-    // Temperatur aus dem DS18B20 anfordern und lesen
+  if (millis() - lastMsgTime >= lastMsgInterval || forceUpdate) {
+    lastMsgTime = millis();
+    
+    // Lichtsensor
+    int lightValue = analogRead(SENSOR_PIN);
+    publishMqtt(
+      (sensor_topic + sensorTypes[0]).c_str(),
+      forceUpdate ? "Command-Triggered Update" : "Regular Data Upload",
+      sensorTypes[0].c_str(),
+      String(lightValue).c_str()
+    );
+    
+    // Temperatursensor
     sensors.requestTemperatures();
     float temperature = sensors.getTempCByIndex(0);
+    publishMqtt(
+      (sensor_topic + sensorTypes[1]).c_str(),
+      forceUpdate ? "Command-Triggered Update" : "Regular Data Upload",
+      sensorTypes[1].c_str(),
+      String(temperature).c_str()
+    );
 
-    // Lichtsensorwert über den analogen Eingang lesen 
-    int lightValue = analogRead(SENSOR_PIN);
-
-    // Erstelle einen JSON-String z.B. {"temperature":23.45,"light":512}
-    String jsonPayload = "{";
-    jsonPayload += "\"temperature\":";
-    jsonPayload += temperature;
-    jsonPayload += ",\"light\":";
-    jsonPayload += lightValue;
-    jsonPayload += "}";
-
-    // Ausgabe im Serial-Monitor
-    Serial.print("Sende Nachricht: ");
-    Serial.println(jsonPayload);
-
-    // Veröffentliche die JSON-Daten zum angegebenen Topic
-    mqttClient.publish(mqttTopic, jsonPayload.c_str());
+    forceUpdate = false;
   }
 }
+
