@@ -13,16 +13,16 @@ import React from 'react';
 
 const page = () => {
   return (
-    <main className='overflow-y-hidden'>
+    <main className='bg-primary'>
     <div>
-      <div className="flex flex-col gap-8 md:gap-6 p-8 md:p-6 bg-background">
+      <div className="flex flex-col gap-8 md:gap-6 p-8 md:p-6 bg-neutral">
         <div className="flex flex-col gap-4 md:gap-6">
           <h1 className="text-4xl font-bold text-white">Dashboard</h1>
           <p className="text-xl text-white/50">Willkommen zurück, Julian!</p>
         </div>
      </div>
     </div>
-    <div className="h-max p-4 md:p-6 bg-background">
+    <div className="h-max p-4 md:p-6 bg-neutral">
       {/* Main Grid Container */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-6 lg:gap-4 max-w-screen-2xl mx-auto h-full">
         

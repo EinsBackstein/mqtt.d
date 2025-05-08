@@ -141,13 +141,24 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`mt-auto mb-4 px-2.5 py-2 hover:bg-neutral-800 duration-300 flex flex-col ease-initial transition-all w-full ${
+        className={`mt-auto mb-4 px-2.5 py-2 duration-300 flex flex-col ease-initial transition-all w-full ${
           expanded ? '' : ''
         }`}
         onClick={stopPropagation}
       >
         <div className="relative flex w-full py-2">
-          <Button id="info_lg" onPress={() => { router.push(`${pathName}/?info=true`) }}>
+          <div
+            className={`flex justify-center items-center transition-opacity duration-200 ${
+              expanded ? 'hidden opacity-0' : 'opacity-100'
+            }`}
+          >
+            <Button id="info_sm" onPress={() => { router.push(`${pathName}/?info=true`) }}>
+              <span className="rounded-4xl cursor-pointer flex items-center justify-center">
+                <Info />
+              </span>
+            </Button>
+          </div>
+          <Button id="info_lg" onPress={() => { router.push(`${pathName}/?info=true`) }} className='hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer '>
             <span
               className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
                 expanded ? 'opacity-100' : 'hidden opacity-0 p-0'
@@ -156,20 +167,20 @@ export default function Navbar() {
               <Info /> Help/Info
             </span>
           </Button>
+        </div>
+        <div className="relative flex w-full  py-2">
           <div
             className={`flex justify-center items-center transition-opacity duration-200 ${
               expanded ? 'hidden opacity-0' : 'opacity-100'
             }`}
           >
-            <Button id="info_sm" onPress={() => { router.push(`${pathName}/?info=true`) }}>
-              <span className="rounded-4xl bg-primary flex items-center justify-center">
-                <Info />
+            <Button id="notify_sm" onPress={() => { router.push(`${pathName}/?notifications=true`) }}>
+              <span className="rounded-4xl cursor-pointer flex items-center justify-center">
+                <Bell />
               </span>
             </Button>
           </div>
-        </div>
-        <div className="relative flex w-full  py-2">
-          <Button id="notify_lg" onPress={() => { router.push(`${pathName}/?notifications=true`) }}>
+          <Button id="notify_lg" onPress={() => { router.push(`${pathName}/?notifications=true`) }} className='hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer '>
             <span
               className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
                 expanded ? 'opacity-100' : 'hidden opacity-0'
@@ -178,42 +189,42 @@ export default function Navbar() {
               <Bell /> Notifications
             </span>
           </Button>
+        </div>
+        <div className="relative flex w-full py-2">
           <div
             className={`flex justify-center items-center transition-opacity duration-200 ${
               expanded ? 'hidden opacity-0' : 'opacity-100'
             }`}
           >
-            <Button id="notify_sm" onPress={() => { router.push(`${pathName}/?notifications=true`) }}>
-              <span className="rounded-4xl bg-primary flex items-center justify-center">
-                <Bell />
+            <Button id="settings_sm" onPress={() => { router.push(`${pathName}/?settings=true`) }}>
+              <span className="rounded-4xl cursor-pointer flex items-center justify-center">
+                <Settings2 />
               </span>
             </Button>
           </div>
-        </div>
-        <div className="relative flex w-full py-2">
-          <Button id="settings_big" onPress={() => { router.push(`${pathName}/?settings=true`) }}>
+          <Button id="settings_big" onPress={() => { router.push(`${pathName}/?settings=true`) }} className='hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer '>
             <span
-              className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
+              className={`flex items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
                 expanded ? 'opacity-100' : 'hidden opacity-0'
               }`}
             >
               <Settings2 /> Settings
             </span>
           </Button>
+        </div>
+        <div className="flex w-full py-2">
           <div
             className={`flex justify-center items-center transition-opacity duration-200 ${
               expanded ? 'hidden opacity-0' : 'opacity-100'
             }`}
           >
-            <Button id="Settings_sm" onPress={() => { router.push(`${pathName}/?settings=true`) }}>
-              <span className="rounded-4xl bg-primary flex items-center justify-center">
-                <Settings2 />
+            <Button id="user_small" onPress={() => { router.push(`${pathName}/?user=true`) }}>
+              <span className="rounded-4xl flex items-center cursor-pointer justify-center">
+                <UserRound />
               </span>
             </Button>
           </div>
-        </div>
-        <div className="flex w-full py-2">
-          <Button id="user_big" onPress={() => { router.push(`${pathName}/?user=true`) }}>
+          <Button id="user_big" onPress={() => { router.push(`${pathName}/?user=true`) }} className='hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer '>
             <span
               className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
                 expanded ? 'opacity-100' : 'hidden opacity-0'
@@ -222,17 +233,6 @@ export default function Navbar() {
               <UserRound /> User
             </span>
           </Button>
-          <div
-            className={`flex justify-center items-center transition-opacity duration-200 ${
-              expanded ? 'hidden opacity-0' : 'opacity-100'
-            }`}
-          >
-            <Button id="user_small" onPress={() => { router.push(`${pathName}/?user=true`) }}>
-              <span className="rounded-4xl bg-primary flex items-center justify-center">
-                <UserRound />
-              </span>
-            </Button>
-          </div>
         </div>
       </div>
     </div>

@@ -15,9 +15,11 @@ import {
 const data = [
   { name: '20-04-2025@14:05', value: 24 },
   { name: '20-04-2025@15:10', value: 22 },
+  { name: '20-04-2025@16:15', value: 23 },
   { name: '20-04-2025@16:20', value: 26 },
   { name: '20-04-2025@17:30', value: 25 },
   { name: '20-04-2025@18:40', value: 18 },
+
 ];
 
 const LineChartComponent = () => {
