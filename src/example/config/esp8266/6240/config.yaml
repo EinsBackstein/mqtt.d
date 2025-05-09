@@ -1,0 +1,69 @@
+# Example configuration file for ESP8266 device
+---
+sensor:
+  id: "6240" # 4 bytes long Hexadecimal string for the sensor ID
+  type: "esp8266" # esp8266 or esp32
+  name: "sensor1"
+  description: "sensor1 description"
+  location:
+    room: "room1"
+    floor: "floor1"
+    description: "room1 description"
+  interval: 10 # in seconds
+  data:
+    temperature:
+      type: "temperature"
+      name: "fridge temperature"
+      description: "fridge temperature description"
+      unit: "C"
+      options:
+        too_low:
+          value: <0
+          color: "#006FEE"
+          alert:
+            send: true
+            critical: true
+            message: "Temperature too low"
+        low:
+          value: 0-10
+          color: "#00bfff"
+          alert:
+            send: true
+            critical: false
+            message: "Temperature low"
+        normal:
+          value: 10-20
+          color: "#00FF00"
+          alert:
+            send: false
+        high:
+          value: 20-30
+          color: "#FFA500"
+          alert:
+            send: true
+            critical: false
+            message: "Temperature high"
+        too_high:
+          value: >30
+          color: "#FF0000"
+          alert:
+            send: true
+            critical: true
+            message: "Temperature too high"
+    light:
+      type: "light"
+  storage:
+   - type: temperature
+     data: temperature_data.json
+   - type: light
+     data: light_data.json
+  network:
+    ssid: "MQTT.d"
+    ip: 192.168.1.149
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+  broker:
+    host: "http://mqttbroker"
+    hostname: "mqttbroker"
+    ip: 192.168.1.100
+    port: 1883
