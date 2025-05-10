@@ -30,7 +30,7 @@ import {
 } from '@/components/ui/input-otp';
 import { useEffect, useState } from 'react';
 import { Combobox, ComboboxOptions } from '@/components/combobox';
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from '@/components/ui/checkbox';
 
 const sensorDataOptions = [
   'Temperatur',
@@ -63,29 +63,48 @@ const baseSchema = z.object({
   sensorData: z.array(z.enum([...sensorDataOptions])),
 });
 
-
-const configurationSchema = z.discriminatedUnion("dataType", [
+const configurationSchema = z.discriminatedUnion('dataType', [
   z.object({
-    dataType: z.literal("Temperatur"),
-    unit: z.enum(["°C", "°F", "K"]),
-    name: z.string().min(1, "Anzeigename ist erforderlich"),
+    dataType: z.literal('Temperatur'),
+    unit: z.enum(['°C', '°F', 'K']),
+    name: z.string().min(1, 'Anzeigename ist erforderlich'),
     beschreibung: z.string().optional(),
-    grenzwerte: z.array(
-      z.object({
-        value: z.number(),
-        color: z.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, "Ungültige Hex-Farbe"),
-        alert: z.object({
-          send: z.boolean().default(true),
-          critical: z.boolean().default(false),
-          message: z.string().min(5, "Mindestens 5 Zeichen erforderlich")
+    grenzwerte: z
+      .array(
+        z.object({
+          value: z.number(),
+          color: z
+            .string()
+            .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
+          alert: z.object({
+            send: z.boolean().default(true),
+            critical: z.boolean().default(false),
+            message: z.string().min(5, 'Mindestens 5 Zeichen erforderlich'),
+          }),
         })
-      })
-    ).optional(),
+      )
+      .optional(),
   }),
   z.object({
     dataType: z.literal('Luftfeuchtigkeit'),
-    precision: z.enum(['high', 'medium', 'low']),
-    messintervall: z.number().min(1),
+    unit: z.enum(['g/m³', '%']),
+    name: z.string().min(1, 'Anzeigename ist erforderlich'),
+    beschreibung: z.string().optional(),
+    grenzwerte: z
+      .array(
+        z.object({
+          value: z.number(),
+          color: z
+            .string()
+            .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
+          alert: z.object({
+            send: z.boolean().default(true),
+            critical: z.boolean().default(false),
+            message: z.string().min(5, 'Mindestens 5 Zeichen erforderlich'),
+          }),
+        })
+      )
+      .optional(),
   }),
   z.object({
     dataType: z.literal('Luftdruck'),
@@ -168,207 +187,424 @@ export function SensorForm() {
   ) => {
     switch (dataType) {
       case 'Temperatur':
-  return (
-    <div className="space-y-4 p-4 border rounded-lg">
-      <h3 className="font-medium">Temperatur Konfiguration</h3>
-      <div className="space-y-4">
-        {/* Existing unit field */}
-        <FormField
-          control={form.control as any}
-          name={`configurations.${index}.name`}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Anzeigename"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        return (
+          <div className="space-y-4 p-4 border rounded-lg">
+            <h3 className="font-medium">Temperatur Konfiguration</h3>
+            <div className="space-y-4">
+              {/* Existing unit field */}
 
-        {/* Description field */}
-        <FormField
-          control={form.control}
-          name={`configurations.${index}.beschreibung`}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Beschreibung</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Optionale Beschreibung"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.unit`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Einheit</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value as string | undefined}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Einheit wählen" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {['°C', '°F', 'K'].map((unit) => (
+                          <SelectItem key={unit} value={unit}>
+                            {unit}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-        {/* Thresholds section */}
-        <div className="space-y-4">
-          <FormLabel>Grenzwerte</FormLabel>
-          {form.watch(`configurations.${index}.grenzwerte`)?.map((_, thresholdIndex) => (
-            <div key={thresholdIndex} className="space-y-2 border p-4 rounded-lg">
-              <div className="flex justify-between items-center">
-                <h4 className="text-sm font-medium">Grenzwert #{thresholdIndex + 1}</h4>
+              <FormField
+                control={form.control as any}
+                name={`configurations.${index}.name`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Anzeigename" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Description field */}
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.beschreibung`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Beschreibung</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Optionale Beschreibung" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Thresholds section */}
+              <div className="space-y-4">
+                <FormLabel>Grenzwerte</FormLabel>
+                {form
+                  .watch(`configurations.${index}.grenzwerte`)
+                  ?.map((_, thresholdIndex) => (
+                    <div
+                      key={thresholdIndex}
+                      className="space-y-2 border p-4 rounded-lg"
+                    >
+                      <div className="flex justify-between items-center">
+                        <h4 className="text-sm font-medium">
+                          Grenzwert #{thresholdIndex + 1}
+                        </h4>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            const current = form.getValues(
+                              `configurations.${index}.grenzwerte`
+                            );
+                            form.setValue(
+                              `configurations.${index}.grenzwerte`,
+                              current?.filter((_, i) => i !== thresholdIndex)
+                            );
+                          }}
+                        >
+                          Entfernen
+                        </Button>
+                      </div>
+
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.value`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Wert</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="number"
+                                {...field}
+                                onChange={(e) =>
+                                  field.onChange(Number(e.target.value))
+                                }
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.color`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Farbe</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="color"
+                                {...field}
+                                className="w-20 h-10"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.send`}
+                        render={({ field }) => (
+                          <FormItem className="flex items-center gap-4">
+                            <FormLabel>Alert senden:</FormLabel>
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.critical`}
+                        render={({ field }) => (
+                          <FormItem className="flex items-center gap-4">
+                            <FormLabel>Kritischer Alarm:</FormLabel>
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.message`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Nachricht</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Alarmnachricht eingeben"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  ))}
+
                 <Button
                   type="button"
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => {
-                    const current = form.getValues(`configurations.${index}.grenzwerte`);
-                    form.setValue(
-                      `configurations.${index}.grenzwerte`,
-                      current?.filter((_, i) => i !== thresholdIndex)
-                    );
+                    const current =
+                      form.getValues(`configurations.${index}.grenzwerte`) ||
+                      [];
+                    form.setValue(`configurations.${index}.grenzwerte`, [
+                      ...current,
+                      {
+                        value: 0,
+                        color: '#CF2430',
+                        alert: {
+                          send: true,
+                          critical: false,
+                          message: 'Temperaturgrenzwert erreicht',
+                        },
+                      },
+                    ]);
                   }}
                 >
-                  Entfernen
+                  + Grenzwert hinzufügen
                 </Button>
               </div>
-
-              <FormField
-                control={form.control}
-                name={`configurations.${index}.grenzwerte.${thresholdIndex}.value`}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Wert</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name={`configurations.${index}.grenzwerte.${thresholdIndex}.color`}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Farbe</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="color"
-                        {...field}
-                        className="w-20 h-10"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-             <FormField
-  control={form.control}
-  name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert`}
-  render={({ field }) => (
-    <div className="space-y-4 p-4 border rounded-lg">
-      <FormItem className="flex items-center gap-4">
-        <FormLabel>Alert senden:</FormLabel>
-        <FormControl>
-          <Checkbox
-            checked={field.value.send}
-            onCheckedChange={(checked) => 
-              field.onChange({
-                ...field.value,
-                send: !!checked
-              })
-            }
-          />
-        </FormControl>
-      </FormItem>
-
-      <FormItem className="flex items-center gap-4">
-        <FormLabel>Kritischer Alarm:</FormLabel>
-        <FormControl>
-          <Checkbox
-            checked={field.value.critical}
-            onCheckedChange={(checked) => 
-              field.onChange({
-                ...field.value,
-                critical: !!checked
-              })
-            }
-          />
-        </FormControl>
-      </FormItem>
-
-      <FormItem>
-        <FormLabel>Nachricht</FormLabel>
-        <FormControl>
-          <Input
-            placeholder="Alarmnachricht eingeben"
-            value={field.value.message}
-            onChange={(e) => 
-              field.onChange({
-                ...field.value,
-                message: e.target.value
-              })
-            }
-          />
-        </FormControl>
-        <FormMessage />
-      </FormItem>
-    </div>
-  )}
-/>
             </div>
-          ))}
-
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              const current = form.getValues(`configurations.${index}.grenzwerte`) || [];
-              form.setValue(`configurations.${index}.grenzwerte`, [
-  ...current,
-  {
-    value: 0,
-    color: '#ff0000',
-    alert: {
-      send: true,
-      critical: false,
-      message: "Temperaturgrenzwert überschritten"
-    }
-  }
-]);}}
-          >
-            + Grenzwert hinzufügen
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
+          </div>
+        );
       case 'Luftfeuchtigkeit':
         return (
           <div className="space-y-4 p-4 border rounded-lg">
             <h3 className="font-medium">Luftfeuchtigkeit Konfiguration</h3>
             <FormField
               control={form.control}
-              name={`configurations.${index}.messintervall`}
+              name={`configurations.${index}.einheit`}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Messintervall (Minuten)</FormLabel>
-                  <Input
-                    type="number"
-                    min={1}
-                    {...field}
-                    onChange={(e) => field.onChange(Number(e.target.value))}
-                  />
+                  <FormLabel>Einheit</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value as string | undefined}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Einheit wählen" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {['g/m³', '%'].map((unit) => (
+                        <SelectItem key={unit} value={unit}>
+                          {unit}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control as any}
+              name={`configurations.${index}.name`}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Anzeigename" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Description field */}
+            <FormField
+              control={form.control}
+              name={`configurations.${index}.beschreibung`}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Beschreibung</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Optionale Beschreibung" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Thresholds section */}
+            <div className="space-y-4">
+              <FormLabel>Grenzwerte</FormLabel>
+              {form
+                .watch(`configurations.${index}.grenzwerte`)
+                ?.map((_, thresholdIndex) => (
+                  <div
+                    key={thresholdIndex}
+                    className="space-y-2 border p-4 rounded-lg"
+                  >
+                    <div className="flex justify-between items-center">
+                      <h4 className="text-sm font-medium">
+                        Grenzwert #{thresholdIndex + 1}
+                      </h4>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          const current = form.getValues(
+                            `configurations.${index}.grenzwerte`
+                          );
+                          form.setValue(
+                            `configurations.${index}.grenzwerte`,
+                            current?.filter((_, i) => i !== thresholdIndex)
+                          );
+                        }}
+                      >
+                        Entfernen
+                      </Button>
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name={`configurations.${index}.grenzwerte.${thresholdIndex}.value`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Wert</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="number"
+                              {...field}
+                              onChange={(e) =>
+                                field.onChange(Number(e.target.value))
+                              }
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name={`configurations.${index}.grenzwerte.${thresholdIndex}.color`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Farbe</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="color"
+                              {...field}
+                              className="w-20 h-10"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.send`}
+                        render={({ field }) => (
+                          <FormItem className="flex items-center gap-4">
+                            <FormLabel>Alert senden:</FormLabel>
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.critical`}
+                        render={({ field }) => (
+                          <FormItem className="flex items-center gap-4">
+                            <FormLabel>Kritischer Alarm:</FormLabel>
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.message`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Nachricht</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Alarmnachricht eingeben"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  ))}
+
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const current =
+                    form.getValues(`configurations.${index}.grenzwerte`) || [];
+                  form.setValue(`configurations.${index}.grenzwerte`, [
+                    ...current,
+                    {
+                      value: 0,
+                      color: '#006FEE',
+                      alert: {
+                        send: true,
+                        critical: false,
+                        message: 'Luftfeuchtigkeits-Grenzwert erreicht',
+                      },
+                    },
+                  ]);
+                }}
+              >
+                + Grenzwert hinzufügen
+              </Button>
+            </div>
           </div>
         );
 
