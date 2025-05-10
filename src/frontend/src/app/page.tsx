@@ -13,7 +13,7 @@ import React from 'react';
 
 const page = () => {
   return (
-    <main className='bg-primary'>
+    <main className='bg-bg-neutral'>
     <div>
       <div className="flex flex-col gap-8 md:gap-6 p-8 md:p-6 bg-neutral">
         <div className="flex flex-col gap-4 md:gap-6">
