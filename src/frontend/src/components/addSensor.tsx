@@ -624,10 +624,15 @@ export function SensorForm() {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-2/3 px-4 space-y-6"
-      >
+     <form 
+  onSubmit={form.handleSubmit(onSubmit)}
+  onKeyDown={(e) => {
+    if (e.key === "Enter" && e.target instanceof HTMLInputElement) {
+      e.preventDefault(); // Prevent form submission on input Enter
+    }
+  }}
+  className="w-2/3 px-4 space-y-6"
+>
         {/* Sensor ID */}
         <FormField
           control={form.control}
