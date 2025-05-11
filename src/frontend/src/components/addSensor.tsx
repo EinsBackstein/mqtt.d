@@ -39,192 +39,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-
-const sensorDataOptions = [
-  'Temperatur',
-  'Luftfeuchtigkeit',
-  'Luftdruck',
-  'Helligkeit',
-  'Luftqualität',
-] as const;
-
-const baseSchema = z.object({
-  sensorID: z
-    .string()
-    .min(4, { message: 'SensorID besteht aus 4 Hexadezimal-Ziffern' })
-    .regex(/^[0-9a-fA-F]{4}$/, {
-      message: 'SensorID muss aus validen Hexadezimal-Ziffern bestehen',
-    }),
-  sensorName: z.string().min(1, { message: 'Sensor-Name ist erforderlich' }),
-  sensorDescription: z
-    .string()
-    .max(500, { message: 'Beschreibung darf maximal 500 Zeichen haben' })
-    .optional(),
-  location: z.object({
-    room: z.string().min(1, { message: 'Installationsraum ist erforderlich' }),
-    floor: z.string().min(1, { message: 'Stockwerk ist erforderlich' }),
-    description: z.string().optional(),
-  }),
-  sensorTyp: z.enum(['esp8266', 'esp32'], {
-    errorMap: () => ({ message: 'Bitte Sensor-Typ auswählen' }),
-  }),
-  sensorData: z.array(z.enum([...sensorDataOptions])),
-});
-
-const configurationSchema = z.discriminatedUnion('dataType', [
-  z.object({
-    dataType: z.literal('Temperatur'),
-    unit: z.enum(['°C', '°F', 'K']),
-    name: z.string().min(1, 'Anzeigename ist erforderlich'),
-    beschreibung: z.string().optional(),
-    grenzwerte: z
-      .array(
-        z.object({
-          value: z.number(),
-          condition: z
-            .enum(['über', 'gleich', 'unter'], {
-              message: 'Bitte Bedingung auswählen',
-            })
-            .default('über'), // Threshold condition
-          color: z
-            .string()
-            .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
-          alert: z.object({
-            send: z.boolean().default(true),
-            critical: z.boolean().default(false),
-            message: z.string().min(5, 'Mindestens 5 Zeichen erforderlich'),
-          }),
-        })
-      )
-      .optional(),
-  }),
-  z.object({
-    dataType: z.literal('Luftfeuchtigkeit'),
-    unit: z.enum(['g/m³', '%']),
-    name: z.string().min(1, 'Anzeigename ist erforderlich'),
-    beschreibung: z.string().optional(),
-    grenzwerte: z
-      .array(
-        z.object({
-          value: z.number(),
-          condition: z
-            .enum(['über', 'gleich', 'unter'], {
-              message: 'Bitte Bedingung auswählen',
-            })
-            .default('über'), // Threshold condition
-          color: z
-            .string()
-            .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
-          alert: z.object({
-            send: z.boolean().default(true),
-            critical: z.boolean().default(false),
-            message: z.string().min(5, 'Mindestens 5 Zeichen erforderlich'),
-          }),
-        })
-      )
-      .optional(),
-  }),
-  z.object({
-    dataType: z.literal('Luftdruck'),
-    referenzHöhe: z.number(),
-    unit: z.enum(['hPa', 'kPa', 'bar']),
-    name: z.string().min(1, 'Anzeigename ist erforderlich'),
-    beschreibung: z.string().optional(),
-    grenzwerte: z
-      .array(
-        z.object({
-          value: z.number(),
-          condition: z
-            .enum(['über', 'gleich', 'unter'], {
-              message: 'Bitte Bedingung auswählen',
-            })
-            .default('über'), // Threshold condition
-          color: z
-            .string()
-            .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
-          alert: z.object({
-            send: z.boolean().default(true),
-            critical: z.boolean().default(false),
-            message: z.string().min(5, 'Mindestens 5 Zeichen erforderlich'),
-          }),
-        })
-      )
-      .optional(),
-  }),
-  z.object({
-    dataType: z.literal('Helligkeit'),
-    unit: z.enum(['lux', 'cd/m²', 'fL']), // Lux, Candela/m², Foot-Lamberts
-    name: z.string().min(1, 'Anzeigename ist erforderlich'),
-    beschreibung: z.string().optional(),
-    // messbereich: z
-    //   .tuple([z.number(), z.number()]) // Measurement range [min, max]
-    //   .optional()
-    //   .refine((range) => {
-    //     const [min, max] = range ?? [0, 0];
-    //     return min <= max;
-    //   }, 'Minimalwert muss <= Maximalwert sein'),
-    // sensorTyp: z.enum(['ambient', 'direkt', 'infrarot', 'UV']).optional(),
-    // spektralbereich: z.string().optional(), // Spectral range (e.g., "400-700nm")
-    grenzwerte: z
-      .array(
-        z.object({
-          value: z.number(),
-          condition: z
-            .enum(['über', 'gleich', 'unter'], {
-              message: 'Bitte Bedingung auswählen',
-            })
-            .default('über'), // Threshold condition
-          color: z
-            .string()
-            .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
-          alert: z.object({
-            send: z.boolean().default(true),
-            critical: z.boolean().default(false),
-            message: z.string().min(5, 'Mindestens 5 Zeichen erforderlich'),
-          }),
-        })
-      )
-      .optional(),
-    // kalibrierungsdatum: z.date().optional(), // Calibration date
-    // nachtsichtfähig: z.boolean().default(false).optional(),
-  }),
-  z.object({
-    dataType: z.literal('Luftqualität'),
-    unit: z.enum(['PM2.5', 'PM10', 'CO2', 'VOC']),
-    kalibrierungsDatum: z.date(),
-    grenzwerte: z
-      .array(
-        z.object({
-          value: z.number(),
-          condition: z
-            .enum(['über', 'gleich', 'unter'], {
-              message: 'Bitte Bedingung auswählen',
-            })
-            .default('über'), // Threshold condition
-          color: z
-            .string()
-            .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
-          alert: z.object({
-            send: z.boolean().default(true),
-            critical: z.boolean().default(false),
-            message: z.string().min(5, 'Mindestens 5 Zeichen erforderlich'),
-          }),
-        })
-      )
-      .optional(),
-  }),
-]);
-
-const formSchema = baseSchema.extend({
-  configurations: z.array(configurationSchema),
-});
-
+import { useRouter } from 'next/navigation';
+import { formSchema, sensorDataOptions } from '@/lib/schema';
 const frameworks: ComboboxOptions[] = [
   { value: 'esp8266', label: 'ESP8266' },
   { value: 'esp32', label: 'ESP32' },
 ];
 
 export function SensorForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema) as any,
     defaultValues: {
@@ -236,9 +59,14 @@ export function SensorForm() {
         floor: '',
         description: '',
       },
-      sensorTyp: undefined,
+      sensorTyp: 'esp8266',
       sensorData: ['Helligkeit'],
-      configurations: [],
+      configurations: [
+        {
+          name: '',
+          description: '',
+        }
+      ],
     },
     mode: 'onChange',
   });
@@ -264,8 +92,23 @@ export function SensorForm() {
     form.setValue('configurations', newConfigs);
   }, [selectedSensorData, form]);
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      console.log('Form values:', values);
+      const response = await fetch('/api/sensors', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) throw new Error('Speichern fehlgeschlagen');
+      
+      router.push('/'); // Optional: Weiterleitung nach Erfolg
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   function handleSelect(option: ComboboxOptions) {
@@ -332,7 +175,7 @@ export function SensorForm() {
               {/* Description field */}
               <FormField
                 control={form.control}
-                name={`configurations.${index}.beschreibung`}
+                name={`configurations.${index}.description`}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="gap-0">Beschreibung</FormLabel>
@@ -634,7 +477,7 @@ export function SensorForm() {
             {/* Description field */}
             <FormField
               control={form.control}
-              name={`configurations.${index}.beschreibung`}
+              name={`configurations.${index}.description`}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="gap-0">Beschreibung</FormLabel>
@@ -935,7 +778,7 @@ export function SensorForm() {
               {/* Description field */}
               <FormField
                 control={form.control}
-                name={`configurations.${index}.beschreibung`}
+                name={`configurations.${index}.description`}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="gap-0">Beschreibung</FormLabel>
@@ -1187,6 +1030,9 @@ export function SensorForm() {
           </div>
         );
       case 'Helligkeit':
+        function handleSelect(option: ComboboxOptions) {
+          form.setValue(`configurations.${index}.unit`, option.value as 'lux' | 'cd/m²' | 'fL');
+        }
         return (
           <div className="space-y-4 p-4 border rounded-lg">
             <h3 className="font-medium">Helligkeit Konfiguration</h3>
@@ -1200,42 +1046,46 @@ export function SensorForm() {
                     <FormLabel className="gap-0">
                       Einheit<div className="text-muted-foreground">*</div>
                     </FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Einheit wählen" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {['lux', 'cd/m²', 'fL'].map((unit) => (
-                          <SelectItem key={unit} value={unit}>
-                            {unit}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                                  <Combobox
+                      options={['lux', 'cd/m²', 'fL'].map((unit) => (
+                        // Add your unit options here
+                        { value: unit, label: unit }
+                      ))}
+                      placeholder="Einheit wählen"
+                      selected={field?.value ?? ''}
+                      onChange={handleSelect}
+                      onCreate={handleAppendGroup}
+              />
                     <FormMessage />
                   </FormItem>
                 )}
               />
               {/* Name field */}
-              <FormField
-                control={form.control}
-                name={`configurations.${index}.name`}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="gap-0">
-                      Anzeigename<div className="text-muted-foreground">*</div>
-                    </FormLabel>
-                    <FormControl>
-                      <Input placeholder="Sensorbezeichnung" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+             <FormField
+          control={form.control}
+          name={`configurations.${index}.name`}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="gap-0">
+                Sensor-Name<div className="text-muted-foreground">*</div>
+              </FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Geben Sie den Sensor-Namen ein"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                Name zur einfacheren Identifikation
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
               {/* Description field */}
               <FormField
                 control={form.control}
-                name={`configurations.${index}.beschreibung`}
+                name={`configurations.${index}.description`}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="gap-0">Beschreibung</FormLabel>
@@ -1649,7 +1499,7 @@ export function SensorForm() {
               {/* Description field */}
               <FormField
                 control={form.control}
-                name={`configurations.${index}.beschreibung`}
+                name={`configurations.${index}.description`}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="gap-0">Beschreibung</FormLabel>
