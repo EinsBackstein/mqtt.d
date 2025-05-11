@@ -153,7 +153,6 @@ const configurationSchema = z.discriminatedUnion('dataType', [
   }),
   z.object({
     dataType: z.literal('Helligkeit'),
-    referenzHöhe: z.number().optional(), // Sensor height in meters (optional)
     unit: z.enum(['lux', 'cd/m²', 'fL']), // Lux, Candela/m², Foot-Lamberts
     name: z.string().min(1, 'Anzeigename ist erforderlich'),
     beschreibung: z.string().optional(),
@@ -191,7 +190,7 @@ const configurationSchema = z.discriminatedUnion('dataType', [
   }),
   z.object({
     dataType: z.literal('Luftqualität'),
-    pollutantTypes: z.array(z.enum(['PM2.5', 'PM10', 'CO2', 'VOC'])),
+    unit: z.enum(['PM2.5', 'PM10', 'CO2', 'VOC']),
     kalibrierungsDatum: z.date(),
     grenzwerte: z
       .array(
@@ -291,7 +290,9 @@ export function SensorForm() {
                 name={`configurations.${index}.unit`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='gap-0'>Einheit<div className='text-muted-foreground'>*</div></FormLabel>
+                    <FormLabel className="gap-0">
+                      Einheit<div className="text-muted-foreground">*</div>
+                    </FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       value={field.value as string | undefined}
@@ -317,7 +318,9 @@ export function SensorForm() {
                 name={`configurations.${index}.name`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='gap-0'>Anzeigename<div className='text-muted-foreground'>*</div></FormLabel>
+                    <FormLabel className="gap-0">
+                      Anzeigename<div className="text-muted-foreground">*</div>
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="Anzeigename" {...field} />
                     </FormControl>
@@ -332,7 +335,7 @@ export function SensorForm() {
                 name={`configurations.${index}.beschreibung`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='gap-0'>Beschreibung</FormLabel>
+                    <FormLabel className="gap-0">Beschreibung</FormLabel>
                     <FormControl>
                       <Input placeholder="Optionale Beschreibung" {...field} />
                     </FormControl>
@@ -343,7 +346,7 @@ export function SensorForm() {
 
               {/* Thresholds section */}
               <div className="space-y-4">
-                <FormLabel className='gap-0'>Grenzwerte</FormLabel>
+                <FormLabel className="gap-0">Grenzwerte</FormLabel>
                 {form
                   .watch(`configurations.${index}.grenzwerte`)
                   ?.map((_, thresholdIndex) => (
@@ -379,7 +382,10 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.condition`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Bedingung<div className='text-muted-foreground'>*</div></FormLabel>
+                            <FormLabel className="gap-0">
+                              Bedingung
+                              <div className="text-muted-foreground">*</div>
+                            </FormLabel>
                             <ToggleGroup
                               type="single"
                               size="sm"
@@ -453,7 +459,7 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.value`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Wert</FormLabel>
+                            <FormLabel className="gap-0">Wert</FormLabel>
                             <FormControl>
                               <Input
                                 type="number"
@@ -472,7 +478,7 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.color`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Farbe</FormLabel>
+                            <FormLabel className="gap-0">Farbe</FormLabel>
                             <FormControl>
                               <Input
                                 type="color"
@@ -490,7 +496,9 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.send`}
                         render={({ field }) => (
                           <FormItem className="flex items-center gap-4">
-                            <FormLabel className='gap-0'>Alert senden:</FormLabel>
+                            <FormLabel className="gap-0">
+                              Alert senden:
+                            </FormLabel>
                             <FormControl>
                               <Checkbox
                                 checked={field.value}
@@ -507,7 +515,9 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.critical`}
                         render={({ field }) => (
                           <FormItem className="flex items-center gap-4">
-                            <FormLabel className='gap-0'>Kritischer Alarm:</FormLabel>
+                            <FormLabel className="gap-0">
+                              Kritischer Alarm:
+                            </FormLabel>
                             <FormControl>
                               <Checkbox
                                 checked={field.value}
@@ -524,7 +534,10 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.message`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Nachricht<div className='text-muted-foreground'>*</div></FormLabel>
+                            <FormLabel className="gap-0">
+                              Nachricht
+                              <div className="text-muted-foreground">*</div>
+                            </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Alarmnachricht eingeben"
@@ -579,7 +592,9 @@ export function SensorForm() {
               name={`configurations.${index}.unit`}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='gap-0'>Einheit<div className='text-muted-foreground'>*</div></FormLabel>
+                  <FormLabel className="gap-0">
+                    Einheit<div className="text-muted-foreground">*</div>
+                  </FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     value={field.value as string | undefined}
@@ -605,7 +620,9 @@ export function SensorForm() {
               name={`configurations.${index}.name`}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='gap-0'>Anzeigename<div className='text-muted-foreground'>*</div></FormLabel>
+                  <FormLabel className="gap-0">
+                    Anzeigename<div className="text-muted-foreground">*</div>
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Anzeigename" {...field} />
                   </FormControl>
@@ -620,7 +637,7 @@ export function SensorForm() {
               name={`configurations.${index}.beschreibung`}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='gap-0'>Beschreibung</FormLabel>
+                  <FormLabel className="gap-0">Beschreibung</FormLabel>
                   <FormControl>
                     <Input placeholder="Optionale Beschreibung" {...field} />
                   </FormControl>
@@ -631,7 +648,7 @@ export function SensorForm() {
 
             {/* Thresholds section */}
             <div className="space-y-4">
-              <FormLabel className='gap-0'>Grenzwerte</FormLabel>
+              <FormLabel className="gap-0">Grenzwerte</FormLabel>
               {form
                 .watch(`configurations.${index}.grenzwerte`)
                 ?.map((_, thresholdIndex) => (
@@ -667,7 +684,10 @@ export function SensorForm() {
                       name={`configurations.${index}.grenzwerte.${thresholdIndex}.condition`}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className='gap-0'>Bedingung<div className='text-muted-foreground'>*</div></FormLabel>
+                          <FormLabel className="gap-0">
+                            Bedingung
+                            <div className="text-muted-foreground">*</div>
+                          </FormLabel>
                           <ToggleGroup
                             type="single"
                             size="sm"
@@ -741,7 +761,7 @@ export function SensorForm() {
                       name={`configurations.${index}.grenzwerte.${thresholdIndex}.value`}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className='gap-0'>Wert</FormLabel>
+                          <FormLabel className="gap-0">Wert</FormLabel>
                           <FormControl>
                             <Input
                               type="number"
@@ -760,7 +780,7 @@ export function SensorForm() {
                       name={`configurations.${index}.grenzwerte.${thresholdIndex}.color`}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className='gap-0'>Farbe</FormLabel>
+                          <FormLabel className="gap-0">Farbe</FormLabel>
                           <FormControl>
                             <Input
                               type="color"
@@ -778,7 +798,7 @@ export function SensorForm() {
                       name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.send`}
                       render={({ field }) => (
                         <FormItem className="flex items-center gap-4">
-                          <FormLabel className='gap-0'>Alert senden:</FormLabel>
+                          <FormLabel className="gap-0">Alert senden:</FormLabel>
                           <FormControl>
                             <Checkbox
                               checked={field.value}
@@ -795,7 +815,9 @@ export function SensorForm() {
                       name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.critical`}
                       render={({ field }) => (
                         <FormItem className="flex items-center gap-4">
-                          <FormLabel className='gap-0'>Kritischer Alarm:</FormLabel>
+                          <FormLabel className="gap-0">
+                            Kritischer Alarm:
+                          </FormLabel>
                           <FormControl>
                             <Checkbox
                               checked={field.value}
@@ -812,7 +834,10 @@ export function SensorForm() {
                       name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.message`}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className='gap-0'>Nachricht<div className='text-muted-foreground'>*</div></FormLabel>
+                          <FormLabel className="gap-0">
+                            Nachricht
+                            <div className="text-muted-foreground">*</div>
+                          </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Alarmnachricht eingeben"
@@ -868,7 +893,9 @@ export function SensorForm() {
                 name={`configurations.${index}.unit`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='gap-0'>Einheit<div className='text-muted-foreground'>*</div></FormLabel>
+                    <FormLabel className="gap-0">
+                      Einheit<div className="text-muted-foreground">*</div>
+                    </FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       value={field.value as string | undefined}
@@ -894,7 +921,9 @@ export function SensorForm() {
                 name={`configurations.${index}.name`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='gap-0'>Anzeigename<div className='text-muted-foreground'>*</div></FormLabel>
+                    <FormLabel className="gap-0">
+                      Anzeigename<div className="text-muted-foreground">*</div>
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="Anzeigename" {...field} />
                     </FormControl>
@@ -909,7 +938,7 @@ export function SensorForm() {
                 name={`configurations.${index}.beschreibung`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='gap-0'>Beschreibung</FormLabel>
+                    <FormLabel className="gap-0">Beschreibung</FormLabel>
                     <FormControl>
                       <Input placeholder="Optionale Beschreibung" {...field} />
                     </FormControl>
@@ -920,7 +949,7 @@ export function SensorForm() {
 
               {/* Thresholds section */}
               <div className="space-y-4">
-                <FormLabel className='gap-0'>Grenzwerte</FormLabel>
+                <FormLabel className="gap-0">Grenzwerte</FormLabel>
                 {form
                   .watch(`configurations.${index}.grenzwerte`)
                   ?.map((_, thresholdIndex) => (
@@ -956,7 +985,10 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.condition`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Bedingung<div className='text-muted-foreground'>*</div></FormLabel>
+                            <FormLabel className="gap-0">
+                              Bedingung
+                              <div className="text-muted-foreground">*</div>
+                            </FormLabel>
                             <ToggleGroup
                               type="single"
                               size="sm"
@@ -1030,7 +1062,7 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.value`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Wert</FormLabel>
+                            <FormLabel className="gap-0">Wert</FormLabel>
                             <FormControl>
                               <Input
                                 type="number"
@@ -1049,7 +1081,7 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.color`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Farbe</FormLabel>
+                            <FormLabel className="gap-0">Farbe</FormLabel>
                             <FormControl>
                               <Input
                                 type="color"
@@ -1067,7 +1099,9 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.send`}
                         render={({ field }) => (
                           <FormItem className="flex items-center gap-4">
-                            <FormLabel className='gap-0'>Alert senden:</FormLabel>
+                            <FormLabel className="gap-0">
+                              Alert senden:
+                            </FormLabel>
                             <FormControl>
                               <Checkbox
                                 checked={field.value}
@@ -1084,7 +1118,9 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.critical`}
                         render={({ field }) => (
                           <FormItem className="flex items-center gap-4">
-                            <FormLabel className='gap-0'>Kritischer Alarm:</FormLabel>
+                            <FormLabel className="gap-0">
+                              Kritischer Alarm:
+                            </FormLabel>
                             <FormControl>
                               <Checkbox
                                 checked={field.value}
@@ -1101,7 +1137,10 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.message`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Nachricht<div className='text-muted-foreground'>*</div></FormLabel>
+                            <FormLabel className="gap-0">
+                              Nachricht
+                              <div className="text-muted-foreground">*</div>
+                            </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Alarmnachricht eingeben"
@@ -1158,7 +1197,9 @@ export function SensorForm() {
                 name={`configurations.${index}.unit`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='gap-0'>Einheit<div className='text-muted-foreground'>*</div></FormLabel>
+                    <FormLabel className="gap-0">
+                      Einheit<div className="text-muted-foreground">*</div>
+                    </FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger>
                         <SelectValue placeholder="Einheit wählen" />
@@ -1181,7 +1222,9 @@ export function SensorForm() {
                 name={`configurations.${index}.name`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='gap-0'>Anzeigename<div className='text-muted-foreground'>*</div></FormLabel>
+                    <FormLabel className="gap-0">
+                      Anzeigename<div className="text-muted-foreground">*</div>
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="Sensorbezeichnung" {...field} />
                     </FormControl>
@@ -1195,7 +1238,7 @@ export function SensorForm() {
                 name={`configurations.${index}.beschreibung`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='gap-0'>Beschreibung</FormLabel>
+                    <FormLabel className="gap-0">Beschreibung</FormLabel>
                     <FormControl>
                       <Input placeholder="Optionale Beschreibung" {...field} />
                     </FormControl>
@@ -1320,7 +1363,7 @@ export function SensorForm() {
               /> */}
               {/* Thresholds section */}
               <div className="space-y-4">
-                <FormLabel className='gap-0'>Grenzwerte</FormLabel>
+                <FormLabel className="gap-0">Grenzwerte</FormLabel>
                 {form
                   .watch(`configurations.${index}.grenzwerte`)
                   ?.map((_, thresholdIndex) => (
@@ -1356,7 +1399,10 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.condition`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Bedingung<div className='text-muted-foreground'>*</div></FormLabel>
+                            <FormLabel className="gap-0">
+                              Bedingung
+                              <div className="text-muted-foreground">*</div>
+                            </FormLabel>
                             <ToggleGroup
                               type="single"
                               size="sm"
@@ -1430,7 +1476,7 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.value`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Wert</FormLabel>
+                            <FormLabel className="gap-0">Wert</FormLabel>
                             <FormControl>
                               <Input
                                 type="number"
@@ -1449,7 +1495,7 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.color`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Farbe</FormLabel>
+                            <FormLabel className="gap-0">Farbe</FormLabel>
                             <FormControl>
                               <Input
                                 type="color"
@@ -1467,7 +1513,9 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.send`}
                         render={({ field }) => (
                           <FormItem className="flex items-center gap-4">
-                            <FormLabel className='gap-0'>Alert senden:</FormLabel>
+                            <FormLabel className="gap-0">
+                              Alert senden:
+                            </FormLabel>
                             <FormControl>
                               <Checkbox
                                 checked={field.value}
@@ -1484,7 +1532,9 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.critical`}
                         render={({ field }) => (
                           <FormItem className="flex items-center gap-4">
-                            <FormLabel className='gap-0'>Kritischer Alarm:</FormLabel>
+                            <FormLabel className="gap-0">
+                              Kritischer Alarm:
+                            </FormLabel>
                             <FormControl>
                               <Checkbox
                                 checked={field.value}
@@ -1501,7 +1551,10 @@ export function SensorForm() {
                         name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.message`}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className='gap-0'>Nachricht<div className='text-muted-foreground'>*</div></FormLabel>
+                            <FormLabel className="gap-0">
+                              Nachricht
+                              <div className="text-muted-foreground">*</div>
+                            </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Alarmnachricht eingeben"
@@ -1548,7 +1601,297 @@ export function SensorForm() {
           </div>
         );
       case 'Luftqualität':
-        return <div>Luftqualität</div>;
+        return (
+          <div className="space-y-4 p-4 border rounded-lg">
+            <h3 className="font-medium">Luftqualität Konfiguration</h3>
+            <div className="space-y-4">
+              {/* Pollutant Types */}
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.unit`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="gap-0">
+                      Sensortyp<div className="text-muted-foreground">*</div>
+                    </FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Einheit wählen" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {['PM2.5', 'PM10', 'CO2', 'VOC'].map((unit) => (
+                          <SelectItem key={unit} value={unit}>
+                            {unit}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {/* Name field */}
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.name`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="gap-0">
+                      Anzeigename<div className="text-muted-foreground">*</div>
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="Sensorbezeichnung" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {/* Description field */}
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.beschreibung`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="gap-0">Beschreibung</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Optionale Beschreibung" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {/* Thresholds section */}
+              <div className="space-y-4">
+                <FormLabel className="gap-0">Grenzwerte</FormLabel>
+                {form
+                  .watch(`configurations.${index}.grenzwerte`)
+                  ?.map((_, thresholdIndex) => (
+                    <div
+                      key={thresholdIndex}
+                      className="space-y-2 border p-4 rounded-lg"
+                    >
+                      <div className="flex justify-between items-center">
+                        <h4 className="text-sm font-medium">
+                          Grenzwert #{thresholdIndex + 1}
+                        </h4>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            const current = form.getValues(
+                              `configurations.${index}.grenzwerte`
+                            );
+                            form.setValue(
+                              `configurations.${index}.grenzwerte`,
+                              current?.filter((_, i) => i !== thresholdIndex)
+                            );
+                          }}
+                        >
+                          Entfernen
+                        </Button>
+                      </div>
+                      {/* Threshold condition */}
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.condition`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="gap-0">
+                              Bedingung
+                              <div className="text-muted-foreground">*</div>
+                            </FormLabel>
+                            <ToggleGroup
+                              type="single"
+                              size="sm"
+                              value={field.value}
+                              onValueChange={field.onChange}
+                              className="flex"
+                            >
+                              {/* Über Condition */}
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <ToggleGroupItem
+                                      value="über"
+                                      aria-label="Über"
+                                      aria-checked={field.value === 'über'}
+                                      className="aria-checked:bg-accent"
+                                    >
+                                      <ChevronRight className="h-4 w-4" />
+                                    </ToggleGroupItem>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>Bedingung: Über</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                              {/* Gleich Condition */}
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <ToggleGroupItem
+                                      value="gleich"
+                                      aria-label="Gleich"
+                                      aria-checked={field.value === 'gleich'}
+                                      className="aria-checked:bg-accent"
+                                    >
+                                      <Equal className="h-4 w-4" />
+                                    </ToggleGroupItem>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>Bedingung: Gleich</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                              {/* Unter Condition */}
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <ToggleGroupItem
+                                      value="unter"
+                                      aria-label="Unter"
+                                      aria-checked={field.value === 'unter'}
+                                      className="aria-checked:bg-accent"
+                                    >
+                                      <ChevronLeft className="h-4 w-4" />
+                                    </ToggleGroupItem>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>Bedingung: Unter</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </ToggleGroup>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.value`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="gap-0">Wert</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="number"
+                                {...field}
+                                onChange={(e) =>
+                                  field.onChange(Number(e.target.value))
+                                }
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.color`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="gap-0">Farbe</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="color"
+                                {...field}
+                                className="w-20 h-10"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.send`}
+                        render={({ field }) => (
+                          <FormItem className="flex items-center gap-4">
+                            <FormLabel className="gap-0">
+                              Alert senden:
+                            </FormLabel>
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.critical`}
+                        render={({ field }) => (
+                          <FormItem className="flex items-center gap-4">
+                            <FormLabel className="gap-0">
+                              Kritischer Alarm:
+                            </FormLabel>
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`configurations.${index}.grenzwerte.${thresholdIndex}.alert.message`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="gap-0">
+                              Nachricht
+                              <div className="text-muted-foreground">*</div>
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Alarmnachricht eingeben"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  ))}
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const current =
+                      form.getValues(`configurations.${index}.grenzwerte`) ||
+                      [];
+                    form.setValue(`configurations.${index}.grenzwerte`, [
+                      ...current.map((item) => ({
+                        ...item,
+                        condition: 'über' as 'über' | 'gleich' | 'unter',
+                      })),
+                      {
+                        value: 0,
+                        condition: 'über',
+                        color: '#00B388',
+                        alert: {
+                          send: true,
+                          critical: false,
+                          message: 'Luftqualitätsgrenzwert überschritten',
+                        },
+                      },
+                    ]);
+                  }}
+                >
+                  + Grenzwert hinzufügen
+                </Button>
+              </div>
+            </div>
+          </div>
+        );
 
       default:
         return null;
@@ -1572,7 +1915,9 @@ export function SensorForm() {
           name="sensorID"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='gap-0'>SensorID<div className='text-muted-foreground'>*</div></FormLabel>
+              <FormLabel className="gap-0">
+                SensorID<div className="text-muted-foreground">*</div>
+              </FormLabel>
               <FormControl>
                 <InputOTP maxLength={4} {...field}>
                   <InputOTPGroup>
@@ -1595,7 +1940,9 @@ export function SensorForm() {
           name="sensorTyp"
           render={() => (
             <FormItem>
-              <FormLabel className='gap-0'>Sensor Typ<div className='text-muted-foreground'>*</div></FormLabel>
+              <FormLabel className="gap-0">
+                Sensor Typ<div className="text-muted-foreground">*</div>
+              </FormLabel>
               <Combobox
                 options={frameworks}
                 placeholder="Sensor Typ auswählen"
@@ -1620,7 +1967,9 @@ export function SensorForm() {
           name="sensorName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='gap-0'>Sensor-Name<div className='text-muted-foreground'>*</div></FormLabel>
+              <FormLabel className="gap-0">
+                Sensor-Name<div className="text-muted-foreground">*</div>
+              </FormLabel>
               <FormControl>
                 <Input
                   placeholder="Geben Sie den Sensor-Namen ein"
@@ -1641,7 +1990,7 @@ export function SensorForm() {
           name="sensorDescription"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='gap-0'>Sensor-Beschreibung</FormLabel>
+              <FormLabel className="gap-0">Sensor-Beschreibung</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Beschreiben Sie den Sensor und seinen Zweck"
@@ -1662,7 +2011,9 @@ export function SensorForm() {
           name="location"
           render={() => (
             <FormItem>
-              <FormLabel className='gap-0'>Standort<div className='text-muted-foreground'>*</div></FormLabel>
+              <FormLabel className="gap-0">
+                Standort<div className="text-muted-foreground">*</div>
+              </FormLabel>
               <div className="space-y-2">
                 <FormField
                   control={form.control}
@@ -1722,7 +2073,7 @@ export function SensorForm() {
           name="sensorData"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className='gap-0'>Sensor-Daten</FormLabel>
+              <FormLabel className="gap-0">Sensor-Daten</FormLabel>
               <MultiSelect
                 options={[...sensorDataOptions]}
                 selected={field.value}
