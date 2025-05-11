@@ -1,0 +1,14 @@
+sensorID: '6521'
+sensorTyp: Arduino
+sensorName: asdf
+sensorDescription: asdf
+location:
+  room: asdf
+  floor: asdf
+  description: ''
+sensorData:
+  - Helligkeit
+  - Temperatur
+  - Luftfeuchtigkeit
+  - Luftdruck
+  - Luftqualität

@@ -59,17 +59,105 @@ export function SensorForm() {
         floor: '',
         description: '',
       },
-      sensorTyp: 'esp8266',
+      sensorTyp: undefined,
       sensorData: ['Helligkeit'],
       configurations: [
         {
+          dataType: 'Temperatur',
+          unit: '°C',
           name: '',
           description: '',
+          grenzwerte: [
+            {
+              value: 0,
+              condition: 'über',
+              color: '#CF2430',
+              alert: {
+                send: true,
+                critical: false,
+                message: 'Temperaturgrenzwert überschritten',
+              },
+            },
+          ],
+        },
+        {
+          dataType: 'Luftfeuchtigkeit',
+          unit: '%',
+          name: '',
+          description: '',
+          grenzwerte: [
+            {
+              value: 0,
+              condition: 'über',
+              color: '#006FEE',
+              alert: {
+                send: true,
+                critical: false,
+                message: 'Luftfeuchtigkeitsgrenzwert überschritten',
+              },
+            },
+          ],
+        },
+        {
+          dataType: 'Luftdruck',
+          unit: 'hPa',
+          name: '',
+          description: '',
+          grenzwerte: [
+            {
+              value: 0,
+              condition: 'über',
+              color: '#00FF00',
+              alert: {
+                send: true,
+                critical: false,
+                message: 'Luftdruckgrenzwert überschritten',
+              },
+            },
+          ],
+        },
+        {
+          dataType: 'Helligkeit',
+          unit: 'lux',
+          name: '',
+          description: '',
+          grenzwerte: [
+            {
+              value: 0,
+              condition: 'über',
+              color: '#FF00FF',
+              alert: {
+                send: true,
+                critical: false,
+                message: 'Helligkeitsgrenzwert überschritten',
+              },
+            },
+          ],
+        },
+        {
+          dataType: 'Luftqualität',
+          unit: undefined,
+          name: '',
+          description: '',
+          grenzwerte: [
+            {
+              value: 0,
+              condition: 'über',
+              color: '#FFFF00',
+              alert: {
+                send: true,
+                critical: false,
+                message: 'Luftqualitätsgrenzwert überschritten',
+              },
+            },
+          ],
         }
       ],
     },
     mode: 'onChange',
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleAppendGroup = (label: ComboboxOptions['label']) => {
     const newFlameWork = {
@@ -94,6 +182,7 @@ export function SensorForm() {
 
 const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      setIsSubmitting(true)
       console.log('Form values:', values);
       const response = await fetch('/api/sensors', {
         method: 'POST',
@@ -108,7 +197,9 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
       router.push('/'); // Optional: Weiterleitung nach Erfolg
     } catch (error) {
       console.error('Error:', error);
-    }
+    } finally {
+    setIsSubmitting(false);
+  }
   };
 
   function handleSelect(option: ComboboxOptions) {
@@ -1945,9 +2036,32 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
           </div>
         ))}
 
-        <Button className="w-20" type="submit">
-          Submit
-        </Button>
+        <Button 
+  className="w-20" 
+  type="submit"
+  disabled={isSubmitting}
+>
+  {isSubmitting ? 'Wird gesendet...' : 'Submit'}
+</Button>
+
+// Füge einen Error-Banner hinzu
+{Object.keys(form.formState.errors).length > 0 && (
+  <div className="text-red-500 p-2 border rounded mb-4">
+    Bitte beheben Sie alle Validierungsfehler bevor Sie absenden
+    {Object.entries(form.formState.errors).map(([key, error]) => (
+      <div key={key}>
+        {key}: {(error as any)?.message|| 'Unbekannter Fehler'}
+      </div>
+    ))}
+  </div>
+)}
+// Füge einen Debug-Button hinzu
+<Button 
+  type="button" 
+  onClick={() => console.log(form.formState.errors)}
+>
+  Validierungsfehler anzeigen
+</Button>
       </form>
     </Form>
   );

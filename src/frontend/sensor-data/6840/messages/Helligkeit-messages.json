@@ -1,0 +1,30 @@
+[
+  {
+    "value": 922,
+    "dataType": "Licht",
+    "unit": "lux",
+    "sensorId": "6840",
+    "timestamp": "2024-02-20T14:00:00Z"
+  },
+  {
+    "value": 922,
+    "dataType": "Licht",
+    "unit": "lux",
+    "sensorId": "6840",
+    "timestamp": "2024-02-20T14:10:00Z"
+  },
+  {
+    "value": 946,
+    "dataType": "Licht",
+    "unit": "lux",
+    "sensorId": "6840",
+    "timestamp": "2024-02-20T14:20:00Z"
+  },
+  {
+    "value": 946,
+    "dataType": "Licht",
+    "unit": "lux",
+    "sensorId": "6840",
+    "timestamp": "2024-02-20T14:30:00Z"
+  }
+]

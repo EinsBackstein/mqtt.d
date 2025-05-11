@@ -15,9 +15,9 @@ export const baseSchema = z.object({
     .regex(/^[0-9a-fA-F]{4}$/, {
       message: 'SensorID muss aus validen Hexadezimal-Ziffern bestehen',
     }),
-  sensorTyp: z.enum(['esp8266', 'esp32'], {
+  sensorTyp: z.string({
       errorMap: () => ({ message: 'Bitte Sensor-Typ auswählen' }),
-    }),
+    }).min(1),
   sensorName: z.string().min(1, { message: 'Sensor-Name ist erforderlich' }),
   sensorDescription: z
     .string()
@@ -86,7 +86,6 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
   }),
   z.object({
     dataType: z.literal('Luftdruck'),
-    referenzHöhe: z.number(),
     unit: z.enum(['hPa', 'kPa', 'bar']),
     name: z.string().min(1, 'Anzeigename ist erforderlich'),
     description: z.string().optional(),
@@ -151,7 +150,8 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
   z.object({
     dataType: z.literal('Luftqualität'),
     unit: z.enum(['PM2.5', 'PM10', 'CO2', 'VOC']),
-    kalibrierungsDatum: z.date(),
+    name: z.string().min(1, 'Anzeigename ist erforderlich'),
+    description: z.string().optional(),
     grenzwerte: z
       .array(
         z.object({

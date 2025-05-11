@@ -1,0 +1,10 @@
+sensorID: aaaa
+sensorTyp: Arduino Uno
+sensorName: Arduino
+sensorDescription: Ardi Ini uwu
+location:
+  room: Haus
+  floor: Haus1
+  description: Haus2
+sensorData:
+  - Helligkeit

@@ -1,0 +1,28 @@
+{
+  "dataType": "Temperatur",
+  "unit": "°C",
+  "name": "6840-ESP8266-Test",
+  "description": "6840-ESP8266-Test",
+  "grenzwerte": [
+    {
+      "value": 22,
+      "condition": "über",
+      "color": "#25d047",
+      "alert": {
+        "send": true,
+        "critical": false,
+        "message": "Temperaturgrenzwert überschritten"
+      }
+    },
+    {
+      "value": 25,
+      "condition": "unter",
+      "color": "#CF2430",
+      "alert": {
+        "send": true,
+        "critical": false,
+        "message": "Temperaturgrenzwert überschritten"
+      }
+    }
+  ]
+}

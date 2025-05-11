@@ -1,0 +1,10 @@
+sensorID: afa5
+sensorTyp: esp8266
+sensorName: ESP8211 - 1
+sensorDescription: asd
+location:
+  room: asd
+  floor: asd
+  description: asd
+sensorData:
+  - Helligkeit

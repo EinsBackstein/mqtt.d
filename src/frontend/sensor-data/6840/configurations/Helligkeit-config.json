@@ -1,0 +1,19 @@
+{
+  "dataType": "Helligkeit",
+  "unit": "lux",
+  "name": "6840-ESP8266-Test",
+  "description": "6840-ESP8266-Test",
+  "grenzwerte": [
+    {
+      "value": 600,
+      "condition": "über",
+      "color": "#cca000",
+      "alert": {
+        "send": true,
+        "critical": false,
+        "message": "Helligkeitsgrenzwert überschritten"
+      }
+
+    }
+  ]
+}

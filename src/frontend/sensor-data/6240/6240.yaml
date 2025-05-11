@@ -1,0 +1,12 @@
+sensorID: '6240'
+sensorTyp: esp8266
+sensorName: Arduino
+sensorDescription: Mein Arduino Sensor System
+location:
+  room: Badezimmer
+  floor: Erdgeschoss
+  description: Badezimmer im Erdgeschoss
+sensorData:
+  - Helligkeit
+  - Temperatur
+  - Luftfeuchtigkeit

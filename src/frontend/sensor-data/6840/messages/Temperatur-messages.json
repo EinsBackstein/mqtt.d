@@ -1,0 +1,30 @@
+[
+  {
+    "value": 23.63,
+    "dataType": "Temperatur",
+    "unit": "°C",
+    "sensorId": "6840",
+    "timestamp": "2024-02-20T14:05:00Z"
+  },
+  {
+    "value": 23.81,
+    "dataType": "Temperatur",
+    "unit": "°C",
+    "sensorId": "6840",
+    "timestamp": "2024-02-20T14:15:00Z"
+  },
+  {
+    "value": 23.94,
+    "dataType": "Temperatur",
+    "unit": "°C",
+    "sensorId": "6840",
+    "timestamp": "2024-02-20T14:25:00Z"
+  },
+  {
+    "value": 24.13,
+    "dataType": "Temperatur",
+    "unit": "°C",
+    "sensorId": "6840",
+    "timestamp": "2024-02-20T14:35:00Z"
+  }
+]

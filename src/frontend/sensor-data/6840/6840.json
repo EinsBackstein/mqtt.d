@@ -1,0 +1,15 @@
+{
+  "sensorID": "6840",
+  "sensorTyp": "esp8266",
+  "sensorName": "6840-ESP8266-Test",
+  "sensorDescription": "6840-ESP8266-Test",
+  "location": {
+    "room": "Schlafzimmer",
+    "floor": "Obergeschoss",
+    "description": "-"
+  },
+  "sensorData": [
+    "Helligkeit",
+    "Temperatur"
+  ]
+}

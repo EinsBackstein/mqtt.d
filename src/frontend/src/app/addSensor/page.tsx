@@ -3,7 +3,7 @@ import { SensorForm } from '@/components/addSensor'
 
 const page = () => {
   return (
-    <div className='m-auto flex flex-col items-center justify-center w-250 min-h-screen p-4'>
+    <div className='m-auto flex flex-col items-center justify-center min-w-380 min-h-screen p-14'>
       <SensorForm />
     </div>
   )

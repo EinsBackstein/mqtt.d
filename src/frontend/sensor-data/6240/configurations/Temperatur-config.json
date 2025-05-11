@@ -1,0 +1,18 @@
+{
+  "dataType": "Temperatur",
+  "unit": "°C",
+  "name": "Temperatursensor",
+  "description": "misst Temperatur",
+  "grenzwerte": [
+    {
+      "value": 30,
+      "condition": "über",
+      "color": "#CF2430",
+      "alert": {
+        "send": true,
+        "critical": false,
+        "message": "Temperaturgrenzwert überschritten"
+      }
+    }
+  ]
+}

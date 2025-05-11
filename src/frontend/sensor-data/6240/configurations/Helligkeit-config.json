@@ -1,0 +1,28 @@
+{
+  "dataType": "Helligkeit",
+  "unit": "lux",
+  "name": "Lichtsensor",
+  "description": "misst Raumhelligkeit",
+  "grenzwerte": [
+    {
+      "value": 1000,
+      "condition": "über",
+      "color": "#fff700",
+      "alert": {
+        "send": true,
+        "critical": true,
+        "message": "Helligkeitsgrenzwert überschritten"
+      }
+    },
+    {
+      "value": 200,
+      "condition": "unter",
+      "color": "#5c4e00",
+      "alert": {
+        "send": true,
+        "critical": false,
+        "message": "Helligkeitsgrenzwert überschritten"
+      }
+    }
+  ]
+}

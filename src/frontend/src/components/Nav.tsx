@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useState } from 'react';
-import { House, LayoutDashboard, Star, MonitorSpeaker, HousePlus, Info, Bell, Settings2, UserRound } from 'lucide-react';
+import { House, LayoutDashboard, Star, MonitorSpeaker, HousePlus, Info, Bell, Settings2, UserRound, FilePlus2 } from 'lucide-react';
 
 import { Button } from '@heroui/button';
 import { usePathname, useRouter } from 'next/navigation';
@@ -75,7 +75,7 @@ export default function Navbar() {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            router.push('/favourites');
+            router.push('/addSensor');
           }}
           className="p-4 focus:outline-none relative"
         >
@@ -84,14 +84,14 @@ export default function Navbar() {
               expanded ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            Favourites
+            Hinzufügen
           </span>
           <span
             className={`transition-opacity duration-200 ${
               expanded ? 'opacity-0' : 'opacity-100'
             }`}
           >
-            <Star />
+            <FilePlus2 />
           </span>
         </button>
         <button
