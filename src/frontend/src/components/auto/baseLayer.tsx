@@ -1,5 +1,4 @@
-import { Button } from '@/components/ui/button'
-import { Minus, MoveRight, RefreshCcw, Settings, TrendingDown, TrendingUp } from 'lucide-react'
+import { Minus, MoveRight, TrendingDown, TrendingUp } from 'lucide-react'
 import React from 'react'
 
 type BaseLayerProps = {
@@ -69,14 +68,14 @@ const BaseLayer = ({icon,heading, id, value, unit, lastValue, timeStamp, statusC
         <p className="text-sm text-white/35">{diffPositive}{diff} seit letzer Messung</p>
         <p className="text-sm text-white/25 italic">{timeStamp}</p>
       </div>
-      <div>
+      {/* <div>
         <Button className=" rounded-4xl text-2xl p-1">
           <Settings />
         </Button>
         <Button className=" rounded-4xl p-1 text-2xl">
           <RefreshCcw />
         </Button>
-      </div>
+      </div> */}
     </div>
   )
 }

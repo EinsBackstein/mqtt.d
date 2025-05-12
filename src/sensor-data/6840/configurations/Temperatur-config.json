@@ -6,7 +6,7 @@
   "grenzwerte": [
     {
       "value": 22,
-      "condition": "über",
+      "condition": "unter",
       "color": "#25d047",
       "alert": {
         "send": true,
@@ -15,9 +15,19 @@
       }
     },
     {
+      "value": 22,
+      "condition": "über",
+      "color": "#FFCC00",
+      "alert": {
+        "send": true,
+        "critical": false,
+        "message": "Temperaturgrenzwert überschritten"
+      }
+    },
+    {
       "value": 29,
-      "condition": "unter",
       "color": "#CF2430",
+      "condition": "über",
       "alert": {
         "send": true,
         "critical": false,

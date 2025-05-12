@@ -3,9 +3,9 @@ import threading
 import sys
 
 # MQTT Broker configuration
-broker = "10.0.0.197"
+broker = "192.168.1.100"
 port = 1883
-topic = "sensors/ESP8266/#"
+topic = "sensors/ESP8266/6840/#"
 command_topic = ""  # Will be set after client ID input
 
 # Get client ID from user
