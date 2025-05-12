@@ -1,69 +1,131 @@
-import BaseLayer from '@/components/auto/baseLayer';
-import AdvancedTemp from '@/components/static/advancedTemp';
-import Pressure from '@/components/static/airpressure';
-import CO2 from '@/components/static/co2';
-import Humidity from '@/components/static/humidity';
-import Brightness from '@/components/static/lightlevel';
-import Temperatur from '@/components/static/temp';
-import { Settings2 } from 'lucide-react';
-import React from 'react';
+'use client'
 
-const page = () => {
-  const icon = <Settings2 />;
-  const titleTest = 'Test-Display';
-  const idTest = 'testid1';
-  const valueTest = 23.5;
-  const lastValueTest = 26;
-  const timeStampTest = '2023-10-01 12:00:00';
-  const statusColorTest = 'danger';
+import React, { useEffect, useState } from 'react'
+import SensorDataDisplay from '@/components/auto/testDisplay'
+import { Skeleton } from '@/components/ui/skeleton'
+
+interface Sensor {
+  sensorID: string
+  sensorName?: string
+  clientType?: string // The type of device (ESP8266, ESP32, etc.)
+  location?: {
+    room: string
+    floor: string
+    description: string
+  }
+}
+
+interface GroupedByDeviceType {
+  [deviceType: string]: {
+    deviceType: string
+    sensors: string[] // Array of sensorIDs
+  }
+}
+
+const DevicesPage = () => {
+  const [groupedByDeviceType, setGroupedByDeviceType] = useState<GroupedByDeviceType>({})
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchSensors = async () => {
+      try {
+        const response = await fetch(`/api/devices`)
+        if (!response.ok) {
+          throw new Error('Failed to fetch sensors')
+        }
+        
+        const data = await response.json()
+        
+        // Group sensors by device type
+        const grouped: GroupedByDeviceType = {}
+        
+        data.forEach((sensor: Sensor) => {
+          const deviceType = sensor.clientType || 'Unknown Device'
+          
+          if (!grouped[deviceType]) {
+            grouped[deviceType] = {
+              deviceType,
+              sensors: []
+            }
+          }
+          
+          grouped[deviceType].sensors.push(sensor.sensorID)
+        })
+        
+        setGroupedByDeviceType(grouped)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error occurred')
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchSensors()
+  }, [])
+  
+  if (loading) {
+    return (
+      <div className="p-6">
+        <h1 className="text-2xl font-bold mb-6">Sensors by Device Type</h1>
+        <div className="grid grid-cols-1 gap-4">
+          {[1, 2, 3].map(item => (
+            <div key={item} className="border rounded-lg p-2">
+              <Skeleton className="h-6 w-32 mb-2" />
+              <div className="space-y-2">
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-16 w-full" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+  
+  if (error) {
+    return (
+      <div className="p-6">
+        <h1 className="text-2xl font-bold mb-6">Sensors by Device Type</h1>
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+          Error: {error}
+        </div>
+      </div>
+    )
+  }
+  
+  if (Object.keys(groupedByDeviceType).length === 0) {
+    return (
+      <div className="p-6">
+        <h1 className="text-2xl font-bold mb-6">Sensors by Device Type</h1>
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+          No device type data available for sensors.
+        </div>
+      </div>
+    )
+  }
+  
   return (
-    <div className="w-[80%] ml-4 h-screen grid grid-rows-[auto,1fr]">
-      <header className="mb-6">
-        <h1 className="text-2xl font-bold mt-4">Device Sensors</h1>
-        <p className="text-gray-600">
-          Monitor the data from various sensors in real-time.
-        </p>
-      </header>
-      <section className="space-y-8">
-        <div>
-          <h2 className="text-xl font-semibold">Sensor 1</h2>
-          <div className="flex gap-4 mt-2">
-            <Pressure />
-            <CO2 />
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-6">Sensors by Device Type</h1>
+      <div className="grid grid-cols-1 gap-6">
+        {Object.entries(groupedByDeviceType).map(([deviceType, deviceInfo]) => (
+          <div key={deviceType} className="border rounded-lg px-4 py-2 shadow-sm">
+            <h2 className="text-lg font-semibold border-b pb-2">
+              {deviceInfo.deviceType}
+            </h2>
+            
+            <div className="space-y-1 mt-4">
+              <h3 className="text-md font-medium">Sensors of this type:</h3>
+              {deviceInfo.sensors.map(sensorId => (
+                <SensorDataDisplay notId={true} htmlId={false} verticalId={false} key={sensorId} sensorId={sensorId} />
+              ))}
+            </div>
           </div>
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold">Sensor 2</h2>
-          <div className="flex gap-4 mt-2">
-            <Temperatur />
-            <Brightness />
-          </div>
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold">Sensor 3</h2>
-          <div className="flex gap-4 mt-2 max-h-100">
-            <AdvancedTemp />
-            <BaseLayer
-              icon={icon}
-              heading={titleTest}
-              id={idTest}
-              value={valueTest}
-              lastValue={lastValueTest}
-              timeStamp={timeStampTest}
-              statusColor={statusColorTest}
-            />
-            <Brightness />
-          </div>
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold">Sensor 4</h2>
-          <div className="flex gap-4 mt-2 pb-4">
-            <Humidity />
-          </div>
-        </div>
-      </section>
+        ))}
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default page;
+export default DevicesPage

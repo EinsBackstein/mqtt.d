@@ -82,7 +82,7 @@ const SensorRoomsPage = () => {
         <h1 className="text-2xl font-bold mb-6">Sensor Locations</h1>
         <div className="grid grid-cols-1 gap-4">
           {[1, 2, 3, 4].map(loc => (
-            <div key={loc} className="border rounded-lg p-4">
+            <div key={loc} className="border rounded-lg p-2">
               <Skeleton className="h-6 w-32 mb-2" />
               <Skeleton className="h-4 w-48 mb-4" />
               <div className="space-y-2">
@@ -123,16 +123,16 @@ const SensorRoomsPage = () => {
       <h1 className="text-2xl font-bold mb-6">Sensor Locations</h1>
       <div className="grid grid-cols-1 gap-6">
         {Object.entries(groupedByLocation).map(([locationKey, locationInfo]) => (
-          <div key={locationKey} className="border rounded-lg p-4 shadow-sm">
+          <div key={locationKey} className="border rounded-lg px-4 py-2 shadow-sm">
             <h2 className="text-lg font-semibold border-b pb-2">
               {locationInfo.room} (Floor: {locationInfo.floor})
             </h2>
             <p className="text-sm text-muted mt-2 mb-4">{locationInfo.description}</p>
             
-            <div className="space-y-4">
+            <div className="space-y-1">
               <h3 className="text-md font-medium">Sensors in this location:</h3>
               {locationInfo.sensors.map(sensorId => (
-                <SensorDataDisplay key={sensorId} sensorId={sensorId} />
+                <SensorDataDisplay notId={true} htmlId={false} verticalId={false} key={sensorId} sensorId={sensorId} />
               ))}
             </div>
           </div>

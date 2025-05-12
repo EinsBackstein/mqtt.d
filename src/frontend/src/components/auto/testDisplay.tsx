@@ -5,7 +5,7 @@ import { SensorDataResponse, SensorConfig } from '@/lib/types';
 import { Thermometer, Sun, CloudRain, Gauge, Wind, InfoIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 
-const SensorDataDisplay = ({ sensorId, htmlId, verticalId }: { sensorId: string, htmlId: boolean, verticalId: boolean }) => {
+const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:boolean, sensorId: string, htmlId: boolean, verticalId: boolean }) => {
   const [sensorData, setSensorData] = useState<SensorDataResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -170,10 +170,10 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId }: { sensorId: string,
         </Button>
       </h2>
       <div 
-        className={`grid grid-cols-1 md:grid-cols-2 ${
+        className={`grid grid-cols-1 md:grid-cols-2  ${
           htmlId ? 'lg:grid-cols-2' : ''
         } ${verticalId ? 'lg:grid-cols-1': ''}
-         gap-4`}
+         gap-4 ${notId ? 'lg:grid-cols-4' : ''} `}
       >
         {sensorData?.sensor.sensorData.map((dataType) => {
           const config = sensorData.configurations[dataType];
