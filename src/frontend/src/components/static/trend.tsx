@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   LineChart,
   Line,
@@ -11,18 +11,59 @@ import {
   LabelList,
 } from 'recharts';
 
-// Beispiel-Daten mit Zeitstempeln als X-Achsen-Werte
-const data = [
-  { name: '20-04-2025@14:05', value: 24 },
-  { name: '20-04-2025@15:10', value: 22 },
-  { name: '20-04-2025@16:15', value: 23 },
-  { name: '20-04-2025@16:20', value: 26 },
-  { name: '20-04-2025@17:30', value: 25 },
-  { name: '20-04-2025@18:40', value: 18 },
+const LineChartComponent = ({sensorId}:{sensorId:string}) => {
+  // State to store temperature data
+  const [data, setData] = useState<{ name: string; value: number }[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-];
+  // Fetch temperature data on component mount
+  useEffect(() => {
+    const fetchTemperatureData = async () => {
+      try {
+        setLoading(true);
+        // Fetch temperature data from API
+        const response = await fetch('/api/temperature-data/' + sensorId);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch temperature data');
+        }
+        
+        const tempData = await response.json();
+        console.log('Raw data:', tempData);
+        
+        // Format the data to match the required structure
+        const formattedData = tempData.map(item => ({
+          name: item.name, // Use timestamp as name for X-axis, with fallback
+          value: item.temperature || item.value // Handle both possible field names
+        }));
+        
+        console.log('Formatted data:', formattedData);
+        setData(formattedData); // Use the formatted data instead of raw data
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching temperature data:', err);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
 
-const LineChartComponent = () => {
+    fetchTemperatureData();
+    
+    // Optional: Set up polling or WebSocket connection for real-time updates
+    const intervalId = setInterval(fetchTemperatureData, 60000); // Update every minute
+    
+    return () => clearInterval(intervalId); // Clean up on unmount
+  }, []);
+
+  if (loading) {
+    return <div className="p-4 bg-secondary rounded-4xl text-white">Loading temperature data...</div>;
+  }
+
+  if (error) {
+    return <div className="p-4 bg-secondary rounded-4xl text-white">Error: {error}</div>;
+  }
+
   return (
     <div className="p-4 bg-secondary max-w-full h-auto rounded-4xl ring-1 ring-success/20 shadow-md shadow-success/30">
       {/* Titel der Komponente */}
@@ -32,26 +73,27 @@ const LineChartComponent = () => {
       <ResponsiveContainer width="100%" height={500}>
         {/* Hauptdiagramm-Komponente */}
         <LineChart
-          data={data} // Übergabe der Daten
+          data={data} // Using properly formatted data
           margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
         >
           {/* Hintergrundraster mit nur horizontalen Linien */}
           <CartesianGrid stroke="#4A4A4A" vertical={false} />
 
-          {/* X-Achse mit deaktivierten Linien und benutzerdefiniertem Textstil */}
-          <XAxis
+            <XAxis
             dataKey="name"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: '#737373', fontSize: 12 }}
-          />
+            tick={{ fill: '#737373', fontSize: 10 }}
+            />
 
-          {/* Y-Achse mit ähnlicher Formatierung wie X-Achse */}
-          <YAxis
+            <YAxis
             axisLine={false}
             tickLine={false}
             tick={{ fill: '#737373', fontSize: 12 }}
-          />
+            domain={['auto', 'auto - 1']} // Slightly extend the range for better scaling
+            allowDecimals={true} // Allow decimal values for finer granularity
+            additive='sum'
+            />
 
           {/* Tooltip mit dunklem Design */}
           <Tooltip
@@ -98,7 +140,11 @@ const LineChartComponent = () => {
       {/* Bereich unterhalb des Diagramms für Trend-Visualisierung */}
       <div className="mt-4 flex items-center text-white text-lg font-bold">
         <span>Langzeit-Trend:</span>
-        <span className="ml-2 text-2xl text-success">↑</span>
+        <span className="ml-2 text-2xl text-success">
+            {data.length > 1 && 
+            (Number(data[data.length - 1]?.value) > Number(data[data.length - 2]?.value) ? "↑" : 
+             Number(data[data.length - 1]?.value) < Number(data[data.length - 2]?.value) ? "↓" : "→")}
+        </span>
       </div>
     </div>
   );

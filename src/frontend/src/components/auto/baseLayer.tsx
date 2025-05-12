@@ -56,26 +56,18 @@ const BaseLayer = ({icon,heading, id, value, unit, lastValue, timeStamp, statusC
 
   // console.log(statusColorHex)
   return (
-    <div style={{color: statusColor}} className={`flex flex-row items-center justify-center w-[450px] h-[180px] bg-secondary rounded-4xl ring-1 ring-[${statusColorHex}] shadow-md shadow-[${statusColorHex}] p-4`}>
+    <div style={{color: statusColor}} className={`flex flex-col md:flex-row items-center justify-center w-[100%] bg-secondary rounded-4xl max-h-60 ring-1 ring-[${statusColorHex}]/20 shadow-md shadow-[${statusColorHex}]/30 p-4`}>
       <div className="flex flex-col w-full h-full pt-4">
         <div className="flex flex-row items-end gap-4 pb-2">
-          <h1 className="text-xl flex flex-row gap-4 justify-center items-center text-left font-semibold text-white">
+          <h1 className="text-lg md:text-xl flex text-left font-semibold text-white">
             {icon}{heading}
           </h1>
-          <p className="text-xs text-left  text-white/20">ID: {id}</p>
+          <p className="text-xs text-left text-white/20">ID: {id}</p>
         </div>
         <div className={`text-3xl  flex flex-row items-center  gap-3 font-bold pb-0.5`}>{value} {unit} {upDown}</div>
         <p className="text-sm text-white/35">{diffPositive}{diff} seit letzer Messung</p>
         <p className="text-sm text-white/25 italic">{timeStamp}</p>
       </div>
-      {/* <div>
-        <Button className=" rounded-4xl text-2xl p-1">
-          <Settings />
-        </Button>
-        <Button className=" rounded-4xl p-1 text-2xl">
-          <RefreshCcw />
-        </Button>
-      </div> */}
     </div>
   )
 }

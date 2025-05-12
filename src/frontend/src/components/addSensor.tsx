@@ -151,7 +151,7 @@ export function SensorForm() {
               },
             },
           ],
-        }
+        },
       ],
     },
     mode: 'onChange',
@@ -180,9 +180,9 @@ export function SensorForm() {
     form.setValue('configurations', newConfigs);
   }, [selectedSensorData, form]);
 
-const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setIsSubmitting(true)
+      setIsSubmitting(true);
       console.log('Form values:', values);
       const response = await fetch('/api/sensors', {
         method: 'POST',
@@ -193,13 +193,13 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
       });
 
       if (!response.ok) throw new Error('Speichern fehlgeschlagen');
-      
+
       router.push('/'); // Optional: Weiterleitung nach Erfolg
     } catch (error) {
       console.error('Error:', error);
     } finally {
-    setIsSubmitting(false);
-  }
+      setIsSubmitting(false);
+    }
   };
 
   function handleSelect(option: ComboboxOptions) {
@@ -1122,7 +1122,10 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
         );
       case 'Helligkeit':
         function handleSelect(option: ComboboxOptions) {
-          form.setValue(`configurations.${index}.unit`, option.value as 'lux' | 'cd/m²' | 'fL');
+          form.setValue(
+            `configurations.${index}.unit`,
+            option.value as 'lux' | 'cd/m²' | 'fL'
+          );
         }
         return (
           <div className="space-y-4 p-4 border rounded-lg">
@@ -1137,42 +1140,42 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
                     <FormLabel className="gap-0">
                       Einheit<div className="text-muted-foreground">*</div>
                     </FormLabel>
-                                  <Combobox
-                      options={['lux', 'cd/m²', 'fL'].map((unit) => (
+                    <Combobox
+                      options={['lux', 'cd/m²', 'fL'].map((unit) =>
                         // Add your unit options here
-                        { value: unit, label: unit }
-                      ))}
+                        ({ value: unit, label: unit })
+                      )}
                       placeholder="Einheit wählen"
                       selected={field?.value ?? ''}
                       onChange={handleSelect}
                       onCreate={handleAppendGroup}
-              />
+                    />
                     <FormMessage />
                   </FormItem>
                 )}
               />
               {/* Name field */}
-             <FormField
-          control={form.control}
-          name={`configurations.${index}.name`}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="gap-0">
-                Sensor-Name<div className="text-muted-foreground">*</div>
-              </FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Geben Sie den Sensor-Namen ein"
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>
-                Name zur einfacheren Identifikation
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.name`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="gap-0">
+                      Sensor-Name<div className="text-muted-foreground">*</div>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Geben Sie den Sensor-Namen ein"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Name zur einfacheren Identifikation
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               {/* Description field */}
               <FormField
                 control={form.control}
@@ -2036,32 +2039,27 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
           </div>
         ))}
 
-        <Button 
-  className="w-20" 
-  type="submit"
-  disabled={isSubmitting}
->
-  {isSubmitting ? 'Wird gesendet...' : 'Submit'}
-</Button>
+        <Button className="w-20 mr-4" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Wird gesendet...' : 'Submit'}
+        </Button>
 
+        {Object.keys(form.formState.errors).length > 0 && (
+          <div className="text-red-500 p-2 border rounded mb-4">
+            Bitte beheben Sie alle Validierungsfehler bevor Sie absenden
+            {Object.entries(form.formState.errors).map(([key, error]) => (
+              <div key={key}>
+                {key}: {(error as any)?.message || 'Unbekannter Fehler'}
+              </div>
+            ))}
+          </div>
+        )}
 
-{Object.keys(form.formState.errors).length > 0 && (
-  <div className="text-red-500 p-2 border rounded mb-4">
-    Bitte beheben Sie alle Validierungsfehler bevor Sie absenden
-    {Object.entries(form.formState.errors).map(([key, error]) => (
-      <div key={key}>
-        {key}: {(error as any)?.message|| 'Unbekannter Fehler'}
-      </div>
-    ))}
-  </div>
-)}
-
-<Button 
-  type="button" 
-  onClick={() => console.log(form.formState.errors)}
->
-  Debug
-</Button>
+        <Button
+          type="button"
+          onClick={() => console.log(form.formState.errors)}
+        >
+          Debug
+        </Button>
       </form>
     </Form>
   );

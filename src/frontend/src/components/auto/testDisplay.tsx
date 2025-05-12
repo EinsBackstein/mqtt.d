@@ -5,7 +5,7 @@ import { SensorDataResponse, SensorConfig } from '@/lib/types';
 import { Thermometer, Sun, CloudRain, Gauge, Wind, InfoIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 
-const SensorDataDisplay = ({ sensorId }: { sensorId: string }) => {
+const SensorDataDisplay = ({ sensorId, htmlId, verticalId }: { sensorId: string, htmlId: boolean, verticalId: boolean }) => {
   const [sensorData, setSensorData] = useState<SensorDataResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -139,7 +139,7 @@ const SensorDataDisplay = ({ sensorId }: { sensorId: string }) => {
   if (error) return <div>Error loading sensor {sensorId}: {error}</div>;
   if (!sensorData) return <div>No sensor data found for sensor {sensorId}</div>;
 
-  console.log(sensorData);
+  // console.log(sensorData);
 
   // If no sensor data types are defined, display an empty sensor card
   if (!sensorData.sensor.sensorData || sensorData.sensor.sensorData.length === 0) {
@@ -169,7 +169,12 @@ const SensorDataDisplay = ({ sensorId }: { sensorId: string }) => {
           {updating ? 'Refreshing...' : 'Force-Update'}
         </Button>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div 
+        className={`grid grid-cols-1 md:grid-cols-2 ${
+          htmlId ? 'lg:grid-cols-2' : ''
+        } ${verticalId ? 'lg:grid-cols-1': ''}
+         gap-4`}
+      >
         {sensorData?.sensor.sensorData.map((dataType) => {
           const config = sensorData.configurations[dataType];
             // @ts-expect-error: messages might not exist on sensorData

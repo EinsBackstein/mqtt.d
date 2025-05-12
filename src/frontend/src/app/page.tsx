@@ -1,14 +1,8 @@
 "use client";
 
-import AdvancedTemp from '@/components/static/advancedTemp';
-import Pressure from '@/components/static/airpressure';
+import SensorDataDisplay from '@/components/auto/testDisplay';
 import Alert from '@/components/static/alert';
-import AlertCard from '@/components/static/alertTest';
-import CO2 from '@/components/static/co2';
 import LineChartComponent from '@/components/static/trend';
-import Trend from '@/components/static/trend';
-import { Button } from '@heroui/button';
-import { CircleAlert, RefreshCcw, Settings, TrendingDown, TrendingUp, TriangleAlert } from 'lucide-react';
 import React from 'react';
 
 const page = () => {
@@ -30,8 +24,8 @@ const page = () => {
         <div className="lg:col-span-4 flex flex-col gap-4 md:gap-6 h-full">
           <Alert />
           <div className="flex flex-col gap-4 h-full">
-            {[1, 2].map((item) => (
-              <CO2 key={item}/>
+            {[1].map((item) => (
+              <SensorDataDisplay htmlId={false} verticalId={true} key={item} sensorId={"6840"} />
             ))}
           </div>
         </div>
@@ -39,16 +33,14 @@ const page = () => {
         {/* Right Column - Chart + Actions */}
         <div className="lg:col-span-8 gap-y-8 flex flex-col md:gap-6 relative">
           {/* Chart Container */}
-          <div className="rounded-4xl p-4 md:p-6 ">
+          <div className="rounded-4xl ">
             <div className="">
-              <LineChartComponent />
+              <LineChartComponent sensorId='6840' />
             </div>
             
             {/* Integrated CO2 Panels */}
-            <div className="grid grid-cols-2 gap-4 mt-6 place-items-stretch">
-              {[3, 4].map((item) => (
-                <CO2 key={item}/>
-              ))}
+            <div className="grid grid-cols-1 items-center gap-4 mt-6 place-items-stretch">
+              <SensorDataDisplay verticalId={false} htmlId={true} sensorId={"ef84"} />
             </div>
           </div>
 
