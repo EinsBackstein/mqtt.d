@@ -9,7 +9,9 @@ export async function GET(request: Request, props: { params: Promise<{ sensorId:
   const sensorId = params.sensorId;
   try {
     const sensorId = (await props.params).sensorId
-    const basePath = path.join(process.cwd(), 'sensor-data', sensorId)
+    const basePath = path.join(process.cwd(), '..', 'sensor-data', sensorId)
+    const test = fs.readdirSync(basePath)
+    // console.log(test)
 
     // Rest of your existing code...
     const sensorData = JSON.parse(
@@ -44,6 +46,7 @@ export async function GET(request: Request, props: { params: Promise<{ sensorId:
       }
     }
 
+    // console.log(result)
     return NextResponse.json(result)
   } catch (error) {
     return NextResponse.json(

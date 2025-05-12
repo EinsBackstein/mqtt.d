@@ -1,0 +1,6 @@
+{
+  "dataType": "Luftdruck",
+  "unit": "hPa",
+  "name": "data",
+  "description": "data"
+}

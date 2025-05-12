@@ -1,0 +1,6 @@
+{
+  "dataType": "Luftqualität",
+  "unit": "PM2.5",
+  "name": "data",
+  "description": "data"
+}

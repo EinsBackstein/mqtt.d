@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { stat } from 'fs'
-import { MoveRight, RefreshCcw, Settings, TrendingDown, TrendingUp } from 'lucide-react'
+import { Minus, MoveRight, RefreshCcw, Settings, TrendingDown, TrendingUp } from 'lucide-react'
 import React from 'react'
 
 type BaseLayerProps = {
@@ -8,12 +7,13 @@ type BaseLayerProps = {
   heading: string,
   id: string,
   value: string | number,
+  unit: string,
   lastValue?: string | number,
   timeStamp?: string,
   statusColor?: string,
 }
 
-const BaseLayer = ({icon,heading, id, value, lastValue, timeStamp, statusColor}:BaseLayerProps) => {
+const BaseLayer = ({icon,heading, id, value, unit, lastValue, timeStamp, statusColor}:BaseLayerProps) => {
 
   if(!id.startsWith("#")){
     id = "#" + id;
@@ -23,6 +23,9 @@ const BaseLayer = ({icon,heading, id, value, lastValue, timeStamp, statusColor}:
     lastValue = "No reference point yet";
   }
 
+  // console.log("lastValue: ", lastValue);
+  // console.log("value: ", value);
+
   let upDown;
   if (lastValue === value){
     upDown = <p className="text-sm"><MoveRight /></p>;
@@ -30,8 +33,10 @@ const BaseLayer = ({icon,heading, id, value, lastValue, timeStamp, statusColor}:
     upDown = <p className="text-sm"><TrendingUp /></p>;
   }else if (lastValue > value){
     upDown = <p className="text-sm"><TrendingDown /></p>;
-  }else{
-    upDown = <p className="text-sm">How did we get here?</p>;
+  }
+  if(value == "N/A" ){
+    upDown = <p className="text-sm"><Minus /></p>;
+    // console.log("DEBUG");
   }
 
   let diff = Number(value) - Number(lastValue);
@@ -60,7 +65,7 @@ const BaseLayer = ({icon,heading, id, value, lastValue, timeStamp, statusColor}:
           </h1>
           <p className="text-xs text-left  text-white/20">ID: {id}</p>
         </div>
-        <div className={`text-3xl  flex flex-row items-center  gap-3 font-bold pb-0.5`}>{value} {upDown}</div>
+        <div className={`text-3xl  flex flex-row items-center  gap-3 font-bold pb-0.5`}>{value} {unit} {upDown}</div>
         <p className="text-sm text-white/35">{diffPositive}{diff} seit letzer Messung</p>
         <p className="text-sm text-white/25 italic">{timeStamp}</p>
       </div>

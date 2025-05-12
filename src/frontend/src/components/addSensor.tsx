@@ -2044,7 +2044,7 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
   {isSubmitting ? 'Wird gesendet...' : 'Submit'}
 </Button>
 
-// Füge einen Error-Banner hinzu
+
 {Object.keys(form.formState.errors).length > 0 && (
   <div className="text-red-500 p-2 border rounded mb-4">
     Bitte beheben Sie alle Validierungsfehler bevor Sie absenden
@@ -2055,12 +2055,12 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
     ))}
   </div>
 )}
-// Füge einen Debug-Button hinzu
+
 <Button 
   type="button" 
   onClick={() => console.log(form.formState.errors)}
 >
-  Validierungsfehler anzeigen
+  Debug
 </Button>
       </form>
     </Form>

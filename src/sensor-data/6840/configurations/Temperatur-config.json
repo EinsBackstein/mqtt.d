@@ -15,7 +15,7 @@
       }
     },
     {
-      "value": 25,
+      "value": 29,
       "condition": "unter",
       "color": "#CF2430",
       "alert": {

@@ -1,0 +1,12 @@
+sensorID: acab
+sensorTyp: Fortigate Firewall
+sensorName: NEEEEEEEEEEIN
+sensorDescription: Firewalling
+location:
+  room: Büro
+  floor: Obergeschoss
+  description: ''
+sensorData:
+  - Helligkeit
+  - Luftqualität
+  - Luftdruck

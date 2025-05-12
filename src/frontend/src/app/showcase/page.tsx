@@ -1,23 +1,8 @@
-import Pressure from "@/components/static/airpressure";
-import BaseLayer from "@/components/auto/baseLayer";
-import CO2 from "@/components/static/co2";
-import Humidity from "@/components/static/humidity";
-import Brightness from "@/components/static/lightlevel";
-import Temperatur from "@/components/static/temp";
-
-
-import { Settings } from 'lucide-react'
 import SensorDataDisplay from "@/components/auto/testDisplay";
+import fs from "fs";
 
-
-
-const icon = <Settings/>;
-const titleTest = "Test-Display";
-const idTest = "testid1";
-const valueTest = 23.5;
-const lastValueTest = 26;
-const timeStampTest = "2023-10-01 12:00:00";
-const statusColorTest = "danger";
+const list = fs.readdirSync("../sensor-data");
+console.log(list);
 
 export default function Home() {
   return (
@@ -29,8 +14,14 @@ export default function Home() {
       <Humidity />
       <Brightness />
       <Pressure /> */}
-        <SensorDataDisplay sensorId="6840" />
-        {/* <SensorDataDisplay sensorId="6521" /> */}
+        {/* <SensorDataDisplay sensorId="6840" />
+        <SensorDataDisplay sensorId="6521" /> */}
+      {list.map((file) => {
+        const sensorId = file.split(".")[0];
+        return (
+          <SensorDataDisplay key={sensorId} sensorId={sensorId} />
+        );
+      })}
     </div>
   );
 }
