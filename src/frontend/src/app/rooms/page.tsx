@@ -33,14 +33,13 @@ const SensorRoomsPage = () => {
   useEffect(() => {
     const fetchSensors = async () => {
       try {
-        // Change this line from /api/rooms/ to /api/sensors
         const response = await fetch(`/api/rooms`)
         if (!response.ok) {
           throw new Error('Failed to fetch sensors')
         }
         
         const data = await response.json()
-        // Removed setSensors as sensors state is no longer used
+
         
         // Group sensors by unique location
         const grouped: GroupedByLocation = {}
