@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import * as mqtt from 'mqtt';
 
 // MQTT broker configuration
-const MQTT_BROKER_URL = process.env.MQTT_BROKER_URL || 'mqtt://localhost:1883';
+const MQTT_BROKER_URL = process.env.MQTT_BROKER_URL || 'mqtt://mqttdbroker:1883';
 const MQTT_OPTIONS = {
   clientId: `api_${Math.random().toString(16).slice(2, 8)}`,
   clean: true

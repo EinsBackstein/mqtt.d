@@ -5,14 +5,14 @@ import * as yaml from 'js-yaml';
 import * as util from 'util';
 
 // MQTT broker configuration
-const MQTT_BROKER_URL = 'mqtt://localhost:1883'; // Change to your MQTT broker URL
+const MQTT_BROKER_URL = 'mqtt://mqttdbroker:1883'; // Change to your MQTT broker URL
 const MQTT_OPTIONS = {
   clientId: `backend_${Math.random().toString(16).slice(2, 8)}`,
   clean: true
 };
 
 // Path to sensor data directory
-const SENSOR_DATA_DIR = path.resolve(__dirname, '../../sensor-data');
+const SENSOR_DATA_DIR = path.resolve(__dirname, '../../data');
 
 // Message retention configuration
 const MAX_MESSAGES_PER_FILE = 100;
@@ -201,7 +201,8 @@ client.on('message', (topic, payload) => {
             };
             
             // Read existing messages or create new array
-            let messages = [];
+            type Message = { timestamp: string; topic: string; payload: any };
+            let messages: Message[] = [];
             if (fs.existsSync(messageFilePath)) {
                 try {
                     const fileContent = fs.readFileSync(messageFilePath, 'utf8');

@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
   try {
     const validatedData = formSchema.parse(data);
-    const baseDir = path.join(process.cwd(),"..", 'sensor-data', validatedData.sensorID);
+    const baseDir = path.join(process.cwd(),"..", 'data', validatedData.sensorID);
 
     // Create main directory
     if (!fs.existsSync(baseDir)) {

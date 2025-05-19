@@ -9,15 +9,21 @@ export async function GET(_request: Request, { params }: { params: { sensorId: s
   const { sensorId } = await params
   
   try {
-    const basePath = path.join(process.cwd(), '..', 'sensor-data', sensorId, 'messages')
+    const basePath = path.join(process.cwd(), '..', 'data', sensorId, 'messages')
     const dataFilePath = path.join(basePath, `Temperatur-messages.json`)
 
     // Read and parse the sensor data file
     const rawData = fs.readFileSync(dataFilePath, 'utf-8')
     const sensorData = JSON.parse(rawData)
     // console.log(sensorData)
+    // Define the type for sensor data entries
+    type SensorDataEntry = {
+      timestamp: string;
+      payload: { dataValue: string | number };
+    };
+
     // Transform data to match your static format if necessary
-    const formattedData = sensorData.map((entry) => ({
+    const formattedData = (sensorData as SensorDataEntry[]).map((entry: SensorDataEntry) => ({
       name: entry.timestamp,  // assuming your stored data has timestamp field
       value: Number(entry.payload.dataValue)
     }))

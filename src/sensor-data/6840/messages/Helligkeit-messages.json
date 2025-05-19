@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2025-05-12 @ 16:17:41",
+    "timestamp": "2025-05-14 @ 15:00:49",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -8,12 +8,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "317",
+      "dataValue": "462",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:17:51",
+    "timestamp": "2025-05-14 @ 15:00:59",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -21,12 +21,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "317",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:18:01",
+    "timestamp": "2025-05-14 @ 15:01:09",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -34,12 +34,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "328",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:18:11",
+    "timestamp": "2025-05-14 @ 15:01:19",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -47,12 +47,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "336",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:18:21",
+    "timestamp": "2025-05-14 @ 15:01:29",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -60,12 +60,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "360",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:18:31",
+    "timestamp": "2025-05-14 @ 15:01:39",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -73,12 +73,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "363",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:18:41",
+    "timestamp": "2025-05-14 @ 15:01:49",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -86,12 +86,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "364",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:18:51",
+    "timestamp": "2025-05-14 @ 15:01:59",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -99,12 +99,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "364",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:19:01",
+    "timestamp": "2025-05-14 @ 15:02:09",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -112,12 +112,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "366",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:19:11",
+    "timestamp": "2025-05-14 @ 15:02:19",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -125,12 +125,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "368",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:19:21",
+    "timestamp": "2025-05-14 @ 15:02:29",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -138,12 +138,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "366",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:19:31",
+    "timestamp": "2025-05-14 @ 15:02:39",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -151,51 +151,51 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "367",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:19:41",
+    "timestamp": "2025-05-14 @ 15:02:42",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
-      "event": "Regular Data Upload",
+      "event": "Command-Triggered Update",
       "topic": "sensors/ESP8266/6840/Licht",
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "374",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:19:51",
+    "timestamp": "2025-05-14 @ 15:02:44",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
-      "event": "Regular Data Upload",
+      "event": "Command-Triggered Update",
       "topic": "sensors/ESP8266/6840/Licht",
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "375",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:20:01",
+    "timestamp": "2025-05-14 @ 15:02:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
-      "event": "Regular Data Upload",
+      "event": "Command-Triggered Update",
       "topic": "sensors/ESP8266/6840/Licht",
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "376",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:20:11",
+    "timestamp": "2025-05-14 @ 15:02:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -203,12 +203,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "376",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:20:21",
+    "timestamp": "2025-05-14 @ 15:03:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -216,12 +216,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "377",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:20:31",
+    "timestamp": "2025-05-14 @ 15:03:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -229,12 +229,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "377",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:20:41",
+    "timestamp": "2025-05-14 @ 15:03:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -242,12 +242,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "378",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:20:51",
+    "timestamp": "2025-05-14 @ 15:03:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -255,12 +255,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "378",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:21:01",
+    "timestamp": "2025-05-14 @ 15:03:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -268,12 +268,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "380",
+      "dataValue": "459",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:21:11",
+    "timestamp": "2025-05-14 @ 15:03:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -281,12 +281,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "384",
+      "dataValue": "459",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:21:21",
+    "timestamp": "2025-05-14 @ 15:04:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -294,12 +294,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "387",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:21:31",
+    "timestamp": "2025-05-14 @ 15:04:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -307,12 +307,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "388",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:21:41",
+    "timestamp": "2025-05-14 @ 15:04:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -320,12 +320,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "389",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:21:51",
+    "timestamp": "2025-05-14 @ 15:04:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -333,12 +333,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "391",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:22:01",
+    "timestamp": "2025-05-14 @ 15:04:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -346,12 +346,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "392",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:22:11",
+    "timestamp": "2025-05-14 @ 15:04:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -359,12 +359,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "392",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:22:21",
+    "timestamp": "2025-05-14 @ 15:05:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -372,12 +372,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "392",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:22:31",
+    "timestamp": "2025-05-14 @ 15:05:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -385,12 +385,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "393",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:22:41",
+    "timestamp": "2025-05-14 @ 15:05:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -398,12 +398,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "393",
+      "dataValue": "461",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:22:51",
+    "timestamp": "2025-05-14 @ 15:05:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -411,12 +411,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "393",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:23:01",
+    "timestamp": "2025-05-14 @ 15:05:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -424,12 +424,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "394",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:23:11",
+    "timestamp": "2025-05-14 @ 15:05:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -437,12 +437,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "394",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:23:21",
+    "timestamp": "2025-05-14 @ 15:06:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -450,12 +450,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "394",
+      "dataValue": "460",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:23:31",
+    "timestamp": "2025-05-14 @ 15:06:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -463,12 +463,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "462",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:23:41",
+    "timestamp": "2025-05-14 @ 15:06:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -476,12 +476,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "480",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:23:51",
+    "timestamp": "2025-05-14 @ 15:06:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -489,12 +489,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "466",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:24:01",
+    "timestamp": "2025-05-14 @ 15:06:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -502,12 +502,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "559",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:24:11",
+    "timestamp": "2025-05-14 @ 15:06:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -515,12 +515,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "522",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:24:21",
+    "timestamp": "2025-05-14 @ 15:07:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -528,12 +528,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "470",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:24:31",
+    "timestamp": "2025-05-14 @ 15:07:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -541,12 +541,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "466",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:24:41",
+    "timestamp": "2025-05-14 @ 15:07:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -554,12 +554,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "465",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:24:51",
+    "timestamp": "2025-05-14 @ 15:07:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -567,12 +567,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "464",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:25:01",
+    "timestamp": "2025-05-14 @ 15:07:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -580,12 +580,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "465",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:25:11",
+    "timestamp": "2025-05-14 @ 15:07:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -593,12 +593,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "398",
+      "dataValue": "466",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:25:21",
+    "timestamp": "2025-05-14 @ 15:08:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -606,12 +606,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "466",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:25:31",
+    "timestamp": "2025-05-14 @ 15:08:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -619,12 +619,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "466",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:25:41",
+    "timestamp": "2025-05-14 @ 15:08:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -632,12 +632,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "466",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:25:51",
+    "timestamp": "2025-05-14 @ 15:08:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -645,12 +645,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "465",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:26:01",
+    "timestamp": "2025-05-14 @ 15:08:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -658,12 +658,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "465",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:26:11",
+    "timestamp": "2025-05-14 @ 15:08:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -671,12 +671,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "468",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:26:21",
+    "timestamp": "2025-05-14 @ 15:09:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -684,12 +684,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "466",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:26:31",
+    "timestamp": "2025-05-14 @ 15:09:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -697,12 +697,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "466",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:26:41",
+    "timestamp": "2025-05-14 @ 15:09:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -710,12 +710,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "465",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:26:51",
+    "timestamp": "2025-05-14 @ 15:09:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -723,12 +723,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "468",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:27:01",
+    "timestamp": "2025-05-14 @ 15:09:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -736,12 +736,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "398",
+      "dataValue": "470",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:27:11",
+    "timestamp": "2025-05-14 @ 15:09:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -749,12 +749,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "398",
+      "dataValue": "469",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:27:21",
+    "timestamp": "2025-05-14 @ 15:10:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -762,12 +762,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "469",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:27:31",
+    "timestamp": "2025-05-14 @ 15:10:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -775,12 +775,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "471",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:27:41",
+    "timestamp": "2025-05-14 @ 15:10:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -788,12 +788,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "474",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:27:51",
+    "timestamp": "2025-05-14 @ 15:10:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -801,12 +801,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "475",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:28:01",
+    "timestamp": "2025-05-14 @ 15:10:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -814,12 +814,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "474",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:28:11",
+    "timestamp": "2025-05-14 @ 15:10:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -827,12 +827,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "478",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:28:21",
+    "timestamp": "2025-05-14 @ 15:11:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -840,12 +840,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "481",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:28:31",
+    "timestamp": "2025-05-14 @ 15:11:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -853,12 +853,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "481",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:28:41",
+    "timestamp": "2025-05-14 @ 15:11:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -866,12 +866,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "483",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:28:51",
+    "timestamp": "2025-05-14 @ 15:11:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -879,12 +879,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "487",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:29:01",
+    "timestamp": "2025-05-14 @ 15:11:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -892,12 +892,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "490",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:29:11",
+    "timestamp": "2025-05-14 @ 15:11:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -905,12 +905,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "490",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:29:21",
+    "timestamp": "2025-05-14 @ 15:12:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -918,12 +918,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "490",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:29:31",
+    "timestamp": "2025-05-14 @ 15:12:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -931,12 +931,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "517",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:29:41",
+    "timestamp": "2025-05-14 @ 15:12:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -944,12 +944,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "494",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:29:51",
+    "timestamp": "2025-05-14 @ 15:12:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -957,12 +957,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "495",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:30:01",
+    "timestamp": "2025-05-14 @ 15:12:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -970,12 +970,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "493",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:30:11",
+    "timestamp": "2025-05-14 @ 15:12:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -983,12 +983,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "500",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:30:21",
+    "timestamp": "2025-05-14 @ 15:13:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -996,12 +996,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "500",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:30:31",
+    "timestamp": "2025-05-14 @ 15:13:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1009,12 +1009,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "493",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:30:41",
+    "timestamp": "2025-05-14 @ 15:13:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1022,12 +1022,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "396",
+      "dataValue": "532",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:30:51",
+    "timestamp": "2025-05-14 @ 15:13:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1035,12 +1035,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "569",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:31:01",
+    "timestamp": "2025-05-14 @ 15:13:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1048,12 +1048,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "566",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:31:11",
+    "timestamp": "2025-05-14 @ 15:13:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1061,12 +1061,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "570",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:31:21",
+    "timestamp": "2025-05-14 @ 15:14:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1074,12 +1074,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "572",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:31:31",
+    "timestamp": "2025-05-14 @ 15:14:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1087,12 +1087,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "578",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:31:41",
+    "timestamp": "2025-05-14 @ 15:14:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1100,12 +1100,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "580",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:31:51",
+    "timestamp": "2025-05-14 @ 15:14:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1113,12 +1113,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "582",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:32:01",
+    "timestamp": "2025-05-14 @ 15:14:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1126,12 +1126,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "582",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:32:11",
+    "timestamp": "2025-05-14 @ 15:14:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1139,12 +1139,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "397",
+      "dataValue": "582",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:32:21",
+    "timestamp": "2025-05-14 @ 15:15:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1152,12 +1152,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "398",
+      "dataValue": "578",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:32:31",
+    "timestamp": "2025-05-14 @ 15:15:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1165,12 +1165,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "582",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:32:41",
+    "timestamp": "2025-05-14 @ 15:15:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1178,12 +1178,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "590",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:32:51",
+    "timestamp": "2025-05-14 @ 15:15:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1191,12 +1191,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "591",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:33:01",
+    "timestamp": "2025-05-14 @ 15:15:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1204,12 +1204,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "598",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:33:11",
+    "timestamp": "2025-05-14 @ 15:15:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1217,12 +1217,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "616",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:33:21",
+    "timestamp": "2025-05-14 @ 15:16:05",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1230,12 +1230,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "619",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:33:31",
+    "timestamp": "2025-05-14 @ 15:16:15",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1243,12 +1243,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "628",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:33:41",
+    "timestamp": "2025-05-14 @ 15:16:25",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1256,12 +1256,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "399",
+      "dataValue": "628",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:33:51",
+    "timestamp": "2025-05-14 @ 15:16:35",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1269,12 +1269,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "400",
+      "dataValue": "627",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:34:01",
+    "timestamp": "2025-05-14 @ 15:16:45",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1282,12 +1282,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "401",
+      "dataValue": "636",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:34:11",
+    "timestamp": "2025-05-14 @ 15:16:55",
     "topic": "sensors/ESP8266/6840/Licht",
     "payload": {
       "event": "Regular Data Upload",
@@ -1295,7 +1295,7 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Licht",
-      "dataValue": "401",
+      "dataValue": "638",
       "WIFI SSID": "MQTT.d"
     }
   }

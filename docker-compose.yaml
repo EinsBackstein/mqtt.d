@@ -18,7 +18,50 @@ services:
       - "JAVA_OPTS=-Xms256m -Xmx1g"   # adjust JVM heap (set max heap)&#8203;:contentReference[oaicite:8]{index=8}
       - "HIVEMQ_LOG_LEVEL=INFO"       # optional: set log verbosity (DEBUG, INFO, etc)
 
+  nextjs-frontend:
+    build: 
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    container_name: nextjs-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/frontend:/app # mounted to host #* for dynamic development & updates
+      - /app/node_modules # not mounted to host #! never mount node_modules to host
+      - sensor-data-volume:/data # sensor data volume
+    environment:
+      - NEXTJS_ENV=production  # Update this based on your needs
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+    container_name: backend
+    restart: unless-stopped
+    volumes:
+      - ./src/backend:/app # mounted to host #* for dynamic development & updates
+      - /app/node_modules # not mounted to host #! never mount node_modules to host
+      - sensor-data-volume:/data # sensor data volume
+    environment:
+      - BACKEND_ENV=production  # Update this based on your needs
+
+  sensor-data:
+    container_name: sensor-data
+    build:
+      context: .
+      dockerfile: ./docker/data/Dockerfile
+    volumes:
+      - sensor-data-volume:/data
+    restart: unless-stopped
+    command: >
+      sh -c "while true; do
+        sleep 5;  # Adjust the interval as needed
+      done"
+
 volumes:
   hivemq-data:
   hivemq-logs:
   hivemq-conf:
+  nextjs-volumes:
+  sensor-data-volume:

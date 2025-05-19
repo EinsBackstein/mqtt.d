@@ -1,7 +1,7 @@
 import SensorDataDisplay from "@/components/auto/testDisplay";
 import fs from "fs";
 
-const list = fs.readdirSync("../sensor-data");
+const list = fs.readdirSync("../data");
 // console.log(list);
 
 export default function Home() {

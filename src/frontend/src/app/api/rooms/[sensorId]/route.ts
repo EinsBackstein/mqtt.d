@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic'
 export async function GET() {
   try {
     // Path to the directory containing sensor data folders
-    const basePath = path.join(process.cwd(), '..', 'sensor-data')
+    const basePath = path.join(process.cwd(), '..', 'data')
     
     // Get all sensor folders
     const sensorFolders = fs.readdirSync(basePath, { withFileTypes: true })
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
     }
     
     const sensorId = body.sensorID
-    const basePath = path.join(process.cwd(), '..', 'sensor-data', sensorId)
+    const basePath = path.join(process.cwd(), '..', 'data', sensorId)
     
     // Create sensor folder if it doesn't exist
     if (!fs.existsSync(basePath)) {

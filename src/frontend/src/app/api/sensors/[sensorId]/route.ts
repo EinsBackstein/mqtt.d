@@ -9,7 +9,7 @@ export async function GET(request: Request, props: { params: Promise<{ sensorId:
   const sensorId = params.sensorId;
   try {
     const sensorId = (await props.params).sensorId
-    const basePath = path.join(process.cwd(), '..', 'sensor-data', sensorId)
+    const basePath = path.join(process.cwd(), '..', 'data', sensorId)
     const test = fs.readdirSync(basePath)
     // console.log(test)
 

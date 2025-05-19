@@ -1,188 +1,6 @@
 [
   {
-    "timestamp": "2025-05-12 @ 16:17:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.13",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:17:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.13",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:18:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.13",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:18:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.13",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:18:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.13",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:18:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.13",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:18:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.13",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:18:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.13",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:19:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.19",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:19:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.19",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:19:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.19",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:19:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.19",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:19:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.19",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:19:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.19",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:20:01",
+    "timestamp": "2025-05-14 @ 15:00:49",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -195,20 +13,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:20:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:20:21",
+    "timestamp": "2025-05-14 @ 15:00:59",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -221,33 +26,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:20:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:20:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:20:51",
+    "timestamp": "2025-05-14 @ 15:01:09",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -260,189 +39,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:21:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:21:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:21:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:21:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:21:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:21:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:22:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:22:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:22:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:22:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:22:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:22:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:23:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:23:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:23:21",
+    "timestamp": "2025-05-14 @ 15:01:19",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -455,7 +52,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:23:31",
+    "timestamp": "2025-05-14 @ 15:01:29",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -468,7 +65,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:23:41",
+    "timestamp": "2025-05-14 @ 15:01:39",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -481,7 +78,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:23:51",
+    "timestamp": "2025-05-14 @ 15:01:49",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -494,137 +91,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:24:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:24:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:24:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:24:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:24:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:24:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:25:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:25:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:25:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:25:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:25:41",
+    "timestamp": "2025-05-14 @ 15:01:59",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -637,202 +104,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:25:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:26:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:26:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:26:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:26:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:26:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:26:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:27:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:27:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:27:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:27:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:27:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:27:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:28:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:28:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:28:21",
+    "timestamp": "2025-05-14 @ 15:02:09",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -845,7 +117,462 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:28:31",
+    "timestamp": "2025-05-14 @ 15:02:19",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:02:29",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:02:39",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:02:42",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Command-Triggered Update",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:02:44",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Command-Triggered Update",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:02:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Command-Triggered Update",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.19",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:02:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:03:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:03:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:03:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:03:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:03:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.13",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:03:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.00",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:04:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.13",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:04:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:04:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:04:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.94",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:04:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.88",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:04:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.94",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:05:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.00",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:05:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:05:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:05:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.00",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:05:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.94",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:05:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.94",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:06:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.94",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:06:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.00",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:06:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:06:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:06:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.13",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:06:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:07:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:07:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.00",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:07:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:07:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.13",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:07:45",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -858,7 +585,33 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:28:41",
+    "timestamp": "2025-05-14 @ 15:07:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.13",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:08:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.19",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:08:15",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -871,7 +624,59 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:28:51",
+    "timestamp": "2025-05-14 @ 15:08:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:08:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:08:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:08:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:09:05",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -884,7 +689,189 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:29:01",
+    "timestamp": "2025-05-14 @ 15:09:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.19",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:09:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.00",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:09:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.94",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:09:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.88",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:09:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.94",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:10:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.00",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:10:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.00",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:10:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:10:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:10:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:10:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:11:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.13",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:11:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.13",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:11:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.13",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:11:35",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -897,7 +884,20 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:29:11",
+    "timestamp": "2025-05-14 @ 15:11:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.19",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:11:55",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -910,59 +910,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:29:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:29:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:29:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:29:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:30:01",
+    "timestamp": "2025-05-14 @ 15:12:05",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -975,7 +923,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:30:11",
+    "timestamp": "2025-05-14 @ 15:12:15",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -983,272 +931,12 @@
       "clientType": "ESP8266",
       "clientId": "6840",
       "dataType": "Temperatur",
-      "dataValue": "32.31",
+      "dataValue": "32.44",
       "WIFI SSID": "MQTT.d"
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:30:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:30:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:30:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:30:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:31:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:31:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:31:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:31:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:31:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:31:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:32:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:32:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:32:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:32:31",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:32:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:32:51",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:33:01",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:33:11",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:33:21",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.25",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:33:41",
-    "topic": "sensors/ESP8266/6840/Temperatur",
-    "payload": {
-      "event": "Regular Data Upload",
-      "topic": "sensors/ESP8266/6840/Temperatur",
-      "clientType": "ESP8266",
-      "clientId": "6840",
-      "dataType": "Temperatur",
-      "dataValue": "32.31",
-      "WIFI SSID": "MQTT.d"
-    }
-  },
-  {
-    "timestamp": "2025-05-12 @ 16:34:01",
+    "timestamp": "2025-05-14 @ 15:12:25",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -1261,7 +949,7 @@
     }
   },
   {
-    "timestamp": "2025-05-12 @ 16:34:11",
+    "timestamp": "2025-05-14 @ 15:12:35",
     "topic": "sensors/ESP8266/6840/Temperatur",
     "payload": {
       "event": "Regular Data Upload",
@@ -1270,6 +958,344 @@
       "clientId": "6840",
       "dataType": "Temperatur",
       "dataValue": "32.38",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:12:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.38",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:12:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.38",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:13:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:13:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:13:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:13:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "32.06",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:13:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.88",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:13:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.81",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:14:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.63",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:14:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.50",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:14:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.38",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:14:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:14:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:14:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:15:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:15:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:15:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.31",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:15:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:15:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.25",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:15:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.19",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:16:05",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "31.13",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:16:15",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "30.94",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:16:25",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "30.63",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:16:35",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "30.50",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:16:45",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "30.44",
+      "WIFI SSID": "MQTT.d"
+    }
+  },
+  {
+    "timestamp": "2025-05-14 @ 15:16:55",
+    "topic": "sensors/ESP8266/6840/Temperatur",
+    "payload": {
+      "event": "Regular Data Upload",
+      "topic": "sensors/ESP8266/6840/Temperatur",
+      "clientType": "ESP8266",
+      "clientId": "6840",
+      "dataType": "Temperatur",
+      "dataValue": "30.44",
       "WIFI SSID": "MQTT.d"
     }
   }

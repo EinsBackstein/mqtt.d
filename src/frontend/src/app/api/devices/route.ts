@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     // Path to the directory containing sensor data folders
-    const basePath = path.join(process.cwd(), '..', 'sensor-data');
+    const basePath = path.join(process.cwd(), '..', 'data');
 
     // Get all sensor folders
     const sensorFolders = fs
