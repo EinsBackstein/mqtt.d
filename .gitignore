@@ -1,3 +1,20 @@
+#envs
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.test
+.env.production
+
+#sensor data config
 sensor-data/
+
+#cosmetics
 .VSCodeCounter/
+
+#nginx certificates
+*.crt
+*.key 
+

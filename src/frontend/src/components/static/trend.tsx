@@ -15,7 +15,7 @@ const LineChartComponent = ({sensorId}:{sensorId:string}) => {
   // State to store temperature data
   const [data, setData] = useState<{ name: string; value: number }[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   // Fetch temperature data on component mount
   useEffect(() => {
@@ -33,7 +33,7 @@ const LineChartComponent = ({sensorId}:{sensorId:string}) => {
         console.log('Raw data:', tempData);
         
         // Format the data to match the required structure
-        const formattedData = tempData.map(item => ({
+        const formattedData = tempData.map((item: { name: any; temperature: any; value: any; }) => ({
           name: item.name, // Use timestamp as name for X-axis, with fallback
           value: item.temperature || item.value // Handle both possible field names
         }));
@@ -43,7 +43,12 @@ const LineChartComponent = ({sensorId}:{sensorId:string}) => {
         setLoading(false);
       } catch (err) {
         console.error('Error fetching temperature data:', err);
-        setError(err.message);
+        
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('An unknown error occurred');
+        }
         setLoading(false);
       }
     };
