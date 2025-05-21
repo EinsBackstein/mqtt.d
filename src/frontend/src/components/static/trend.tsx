@@ -30,7 +30,7 @@ const LineChartComponent = ({sensorId}:{sensorId:string}) => {
         }
         
         const tempData = await response.json();
-        console.log('Raw data:', tempData);
+        // console.log('Raw data:', tempData);
         
         // Format the data to match the required structure
         const formattedData = tempData.map((item: { name: any; temperature: any; value: any; }) => ({
@@ -38,7 +38,7 @@ const LineChartComponent = ({sensorId}:{sensorId:string}) => {
           value: item.temperature || item.value // Handle both possible field names
         }));
         
-        console.log('Formatted data:', formattedData);
+        // console.log('Formatted data:', formattedData);
         setData(formattedData); // Use the formatted data instead of raw data
         setLoading(false);
       } catch (err) {
