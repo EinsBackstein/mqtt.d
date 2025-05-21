@@ -1,7 +1,7 @@
 services:
   hivemq:
     image: hivemq/hivemq4  # Official HiveMQ Community Edition image
-    container_name: mqttdbroker
+    container_name: broker
     restart: unless-stopped
     # Ports
     ports:
@@ -18,11 +18,11 @@ services:
       - "JAVA_OPTS=-Xms256m -Xmx1g"   # adjust JVM heap (set max heap)&#8203;:contentReference[oaicite:8]{index=8}
       - "HIVEMQ_LOG_LEVEL=INFO"       # optional: set log verbosity (DEBUG, INFO, etc)
 
-  nextjs-frontend:
+  frontend:
     build: 
       context: .
       dockerfile: ./docker/frontend/Dockerfile
-    container_name: nextjs-frontend
+    container_name: frontend
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -46,8 +46,8 @@ services:
     environment:
       - BACKEND_ENV=production  # Update this based on your needs
 
-  sensor-data:
-    container_name: sensor-data
+  data:
+    container_name: data
     build:
       context: .
       dockerfile: ./docker/data/Dockerfile
@@ -61,7 +61,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: nginx-proxy
+    container_name: proxy
     restart: unless-stopped
     ports:
       - "80:80"
@@ -70,7 +70,12 @@ services:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./docker/nginx/certs:/etc/nginx/certs:ro
     depends_on:
-      - nextjs-frontend
+      - frontend
+
+networks:
+  default:
+    driver: bridge
+    name: MQTT.d-NETWORK
 
 volumes:
   hivemq-data:

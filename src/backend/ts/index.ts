@@ -5,7 +5,7 @@ import * as yaml from 'js-yaml';
 import * as util from 'util';
 
 // MQTT broker configuration
-const MQTT_BROKER_URL = 'mqtt://mqttdbroker:1883'; // Change to your MQTT broker URL
+const MQTT_BROKER_URL = 'mqtt://broker:1883'; // Change to your MQTT broker URL
 const MQTT_OPTIONS = {
   clientId: `backend_${Math.random().toString(16).slice(2, 8)}`,
   clean: true
