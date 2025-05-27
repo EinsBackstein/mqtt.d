@@ -41,6 +41,7 @@ import {
 } from '@/components/ui/tooltip';
 import { useRouter } from 'next/navigation';
 import { formSchema, sensorDataOptions } from '@/lib/schema';
+
 const frameworks: ComboboxOptions[] = [
   { value: 'esp8266', label: 'ESP8266' },
   { value: 'esp32', label: 'ESP32' },
@@ -67,6 +68,7 @@ export function SensorForm() {
           unit: '°C',
           name: '',
           description: '',
+          maxAgeHours: 24,
           grenzwerte: [
             {
               value: 0,
@@ -85,6 +87,7 @@ export function SensorForm() {
           unit: '%',
           name: '',
           description: '',
+          maxAgeHours: 24,
           grenzwerte: [
             {
               value: 0,
@@ -103,6 +106,7 @@ export function SensorForm() {
           unit: 'hPa',
           name: '',
           description: '',
+          maxAgeHours: 24,
           grenzwerte: [
             {
               value: 0,
@@ -121,6 +125,7 @@ export function SensorForm() {
           unit: 'lux',
           name: '',
           description: '',
+          maxAgeHours: 24,
           grenzwerte: [
             {
               value: 0,
@@ -139,6 +144,7 @@ export function SensorForm() {
           unit: undefined,
           name: '',
           description: '',
+          maxAgeHours: 24,
           grenzwerte: [
             {
               value: 0,
@@ -273,6 +279,35 @@ export function SensorForm() {
                     <FormControl>
                       <Input placeholder="Optionale Beschreibung" {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* MaxAge Threshold */}
+
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.maxAgeHours`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="gap-0">
+                      Sensor-Timeout Warnung (Stunden)
+                      <div className="text-muted-foreground">*</div>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Timeout-Warnung in Stunden"
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(Number(e.target.value))
+                        }
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Ab wann soll eine Warnung angezeigt werden, wenn der Sensor keine Daten sendet?
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -580,6 +615,35 @@ export function SensorForm() {
               )}
             />
 
+                          {/* MaxAge Threshold */}
+
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.maxAgeHours`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="gap-0">
+                      Sensor-Timeout Warnung (Stunden)
+                      <div className="text-muted-foreground">*</div>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Timeout-Warnung in Stunden"
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(Number(e.target.value))
+                        }
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Ab wann soll eine Warnung angezeigt werden, wenn der Sensor keine Daten sendet?
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
             {/* Thresholds section */}
             <div className="space-y-4">
               <FormLabel className="gap-0">Grenzwerte</FormLabel>
@@ -876,6 +940,35 @@ export function SensorForm() {
                     <FormControl>
                       <Input placeholder="Optionale Beschreibung" {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+                              {/* MaxAge Threshold */}
+
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.maxAgeHours`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="gap-0">
+                      Sensor-Timeout Warnung (Stunden)
+                      <div className="text-muted-foreground">*</div>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Timeout-Warnung in Stunden"
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(Number(e.target.value))
+                        }
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Ab wann soll eine Warnung angezeigt werden, wenn der Sensor keine Daten sendet?
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -1186,6 +1279,35 @@ export function SensorForm() {
                     <FormControl>
                       <Input placeholder="Optionale Beschreibung" {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+                            {/* MaxAge Threshold */}
+
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.maxAgeHours`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="gap-0">
+                      Sensor-Timeout Warnung (Stunden)
+                      <div className="text-muted-foreground">*</div>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Timeout-Warnung in Stunden"
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(Number(e.target.value))
+                        }
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Ab wann soll eine Warnung angezeigt werden, wenn der Sensor keine Daten sendet?
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -1600,6 +1722,34 @@ export function SensorForm() {
                     <FormControl>
                       <Input placeholder="Optionale Beschreibung" {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+                            {/* MaxAge Threshold */}
+
+              <FormField
+                control={form.control}
+                name={`configurations.${index}.maxAgeHours`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="gap-0">
+                      Sensor-Timeout Warnung (Stunden)
+                      <div className="text-muted-foreground">*</div>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Timeout-Warnung in Stunden"
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(Number(e.target.value))
+                        }
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Ab wann soll eine Warnung angezeigt werden, wenn der Sensor keine Daten sendet?
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

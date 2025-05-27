@@ -37,6 +37,7 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
     unit: z.enum(['°C', '°F', 'K']),
     name: z.string().min(1, 'Anzeigename ist erforderlich'),
     description: z.string().optional(),
+    maxAgeHours: z.number().min(1, 'Maximales Alter (Stunden) ist erforderlich').default(24),
     grenzwerte: z
       .array(
         z.object({
@@ -45,7 +46,7 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
             .enum(['über', 'gleich', 'unter'], {
               message: 'Bitte Bedingung auswählen',
             })
-            .default('über'), // Threshold condition
+            .default('über'),
           color: z
             .string()
             .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
@@ -63,6 +64,7 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
     unit: z.enum(['g/m³', '%']),
     name: z.string().min(1, 'Anzeigename ist erforderlich'),
     description: z.string().optional(),
+    maxAgeHours: z.number().min(1, 'Maximales Alter (Stunden) ist erforderlich').default(24),
     grenzwerte: z
       .array(
         z.object({
@@ -71,7 +73,7 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
             .enum(['über', 'gleich', 'unter'], {
               message: 'Bitte Bedingung auswählen',
             })
-            .default('über'), // Threshold condition
+            .default('über'),
           color: z
             .string()
             .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
@@ -89,6 +91,7 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
     unit: z.enum(['hPa', 'kPa', 'bar']),
     name: z.string().min(1, 'Anzeigename ist erforderlich'),
     description: z.string().optional(),
+    maxAgeHours: z.number().min(1, 'Maximales Alter (Stunden) ist erforderlich').default(24),
     grenzwerte: z
       .array(
         z.object({
@@ -97,7 +100,7 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
             .enum(['über', 'gleich', 'unter'], {
               message: 'Bitte Bedingung auswählen',
             })
-            .default('über'), // Threshold condition
+            .default('über'),
           color: z
             .string()
             .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
@@ -112,18 +115,10 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
   }),
   z.object({
     dataType: z.literal('Helligkeit'),
-    unit: z.enum(['lux', 'cd/m²', 'fL']), // Lux, Candela/m², Foot-Lamberts
+    unit: z.enum(['lux', 'cd/m²', 'fL']),
     name: z.string().min(1, 'Anzeigename ist erforderlich'),
     description: z.string().optional(),
-    // messbereich: z
-    //   .tuple([z.number(), z.number()]) // Measurement range [min, max]
-    //   .optional()
-    //   .refine((range) => {
-    //     const [min, max] = range ?? [0, 0];
-    //     return min <= max;
-    //   }, 'Minimalwert muss <= Maximalwert sein'),
-    // sensorTyp: z.enum(['ambient', 'direkt', 'infrarot', 'UV']).optional(),
-    // spektralbereich: z.string().optional(), // Spectral range (e.g., "400-700nm")
+    maxAgeHours: z.number().min(1, 'Maximales Alter (Stunden) ist erforderlich').default(24),
     grenzwerte: z
       .array(
         z.object({
@@ -132,7 +127,7 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
             .enum(['über', 'gleich', 'unter'], {
               message: 'Bitte Bedingung auswählen',
             })
-            .default('über'), // Threshold condition
+            .default('über'),
           color: z
             .string()
             .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),
@@ -144,14 +139,13 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
         })
       )
       .optional(),
-    // kalibrierungsdatum: z.date().optional(), // Calibration date
-    // nachtsichtfähig: z.boolean().default(false).optional(),
   }),
   z.object({
     dataType: z.literal('Luftqualität'),
     unit: z.enum(['PM2.5', 'PM10', 'CO2', 'VOC']),
     name: z.string().min(1, 'Anzeigename ist erforderlich'),
     description: z.string().optional(),
+    maxAgeHours: z.number().min(1, 'Maximales Alter (Stunden) ist erforderlich').default(24),
     grenzwerte: z
       .array(
         z.object({
@@ -160,7 +154,7 @@ export const configurationSchema = z.discriminatedUnion('dataType', [
             .enum(['über', 'gleich', 'unter'], {
               message: 'Bitte Bedingung auswählen',
             })
-            .default('über'), // Threshold condition
+            .default('über'),
           color: z
             .string()
             .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Ungültige Hex-Farbe'),

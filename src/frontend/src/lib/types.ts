@@ -5,6 +5,7 @@ export type SensorConfig = {
   unit: string;
   name: string;
   description?: string;
+  maxAgeHours?: number;
   grenzwerte?: Threshold[];
   latestValue?: number;
   lastValue?: number;
