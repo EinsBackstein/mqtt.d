@@ -1,8 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react';
 import BaseLayer from './baseLayer';
-import { SensorDataResponse, SensorConfig } from '@/lib/types';
-import { Thermometer, Sun, CloudRain, Gauge, Wind, InfoIcon } from 'lucide-react';
+import { SensorDataResponse, SensorConfig } from '../../lib/types'
+import { Thermometer, Sun, CloudRain, Gauge, Wind, InfoIcon, CloudAlert } from 'lucide-react';
 import { Button } from '../ui/button';
 
 const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:boolean, sensorId: string, htmlId: boolean, verticalId: boolean }) => {
@@ -177,8 +177,8 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
       >
         {sensorData?.sensor.sensorData.map((dataType) => {
           const config = sensorData.configurations[dataType];
-            // @ts-expect-error: messages might not exist on sensorData
-            const messages = sensorData.messages[dataType] || [];
+          //@ts-expect-error
+          const messages = sensorData.messages[dataType] || [];
           const latest = messages[messages.length - 1];
           const previous = messages.length >= 2 ? messages[messages.length - 2] : null;
 
@@ -189,6 +189,27 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
             calculateStatusColor(config, latestValue.value) : 
             '#666666';
 
+          // Highlight timestamp if older than 1 day
+          let timeStampElem: React.ReactNode = latestValue?.timestamp || 'No data available';
+          if (latestValue?.timestamp) {
+            const ts = latestValue.timestamp.replace(' @ ', 'T'); // "2025-05-14T15:16:55"
+            const date = new Date(ts);
+            const now = new Date();
+            const diffMs = now.getTime() - date.getTime();
+            const oneDayMs = 24 * 60 * 60 * 1000;
+            if (diffMs > oneDayMs) {
+              console.log('Highlighting timestamp:', latestValue.timestamp, diffMs);
+              timeStampElem = (
+                <span className="text-orange-400/75 font-semibold flex flex-row gap-4 items-center">
+                  {latestValue.timestamp} <CloudAlert />
+                </span>
+              );
+            } else {
+              timeStampElem = latestValue.timestamp;
+              console.log('Timestamp within 1 day:', latestValue.timestamp, diffMs);
+            }
+          }
+
           return (
             <BaseLayer
               key={dataType}
@@ -198,7 +219,7 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
               value={latestValue?.value.toFixed(2) || 'N/A'}
               unit={config?.unit || (dataType === 'Temperatur' ? '°C' : 'lux')}
               lastValue={previousValue?.value.toFixed(2)}
-              timeStamp={latestValue?.timestamp || 'No data available'}
+              timeStamp={timeStampElem}
               statusColor={statusColor}
             />
           );
