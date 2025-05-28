@@ -17,14 +17,6 @@ import AddCustomSensorPage from './addUserCustomPage';
 import { Button } from '@heroui/button';
 import { usePathname, useRouter } from 'next/navigation';
 
-const exampleSensors = [
-  { sensorID: '1001', sensorName: 'Wohnzimmer Temperatur' },
-  { sensorID: '1002', sensorName: 'Schlafzimmer Luftfeuchtigkeit' },
-  { sensorID: '1003', sensorName: 'Küche CO2' },
-  { sensorID: '1004', sensorName: 'Balkon Helligkeit' },
-  { sensorID: '6840', sensorName: 'Keller Luftdruck' },
-];
-
 export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
   const router = useRouter();
@@ -46,11 +38,13 @@ export default function Navbar() {
       .catch(() => setAvailableSensors([]));
   }, []);
 
-  // Load custom pages from localStorage
-  useEffect(() => {
-    const pages = JSON.parse(localStorage.getItem('customSensorPages') || '[]');
-    setCustomPages(pages);
-  }, [isAddCustomPageOpen]); // reload when modal closes
+// Load custom pages from server-side storage
+useEffect(() => {
+  fetch('/api/user-page/list')
+    .then(res => res.ok ? res.json() : [])
+    .then(data => setCustomPages(data))
+    .catch(() => setCustomPages([]));
+}, [isAddCustomPageOpen]); // reload when modal closes
 
   const handleContainerClick = () => {
     setExpanded(!expanded);
@@ -184,6 +178,7 @@ export default function Navbar() {
         </button>
 
         {/* Custom Pages Section */}
+        <div className={`${expanded ? "p-6": "p-2"}`}>
         {customPages.length > 0 && (
           <div
             className="flex flex-col items-center w-full"
@@ -220,6 +215,7 @@ export default function Navbar() {
             ))}
           </div>
         )}
+        </div>
       </div>
       <div
         className={`mt-auto mb-4 px-2.5 py-2 duration-300 flex flex-col ease-initial transition-all w-full ${

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,29 +11,21 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { MultiSelect } from "@/components/ui/mutliselect"; // You may need to adjust import path
 import SensorDataDisplay from "@/components/auto/testDisplay";
 import { SensorMultiSelect } from "./ui/sensorMultiSelect";
+import { ArrowDownToLine, ArrowUpToLine, FoldVertical } from "lucide-react";
+
 
 type Option = {
   value: string;
   label: string;
 };
 
-type MultiSelectProps = {
-  options: Option[];
-  selected: string[];
-  onChange: (selected: string[]) => void;
-  placeholder?: string;
-};
-
-
-
 export default function AddCustomSensorPage({
   isOpen,
   onOpenChange,
   onSuccess,
-  availableSensors, // [{ sensorID: string, sensorName: string }]
+  availableSensors,
 }: {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
@@ -42,22 +34,61 @@ export default function AddCustomSensorPage({
 }) {
   const [pageName, setPageName] = useState("");
   const [selectedSensorIds, setSelectedSensorIds] = useState<string[]>([]);
+  const [customPages, setCustomPages] = useState<any[]>([]);
+  const [loadingPages, setLoadingPages] = useState(false);
+  const [showPages, setShowPages] = useState(true);
+  const [deleteTarget, setDeleteTarget] = useState<any>(null);
+
+  // Fetch all custom pages
+  const fetchPages = async () => {
+    setLoadingPages(true);
+    const res = await fetch('/api/user-page/list');
+    if (res.ok) {
+      setCustomPages(await res.json());
+    } else {
+      setCustomPages([]);
+    }
+    setLoadingPages(false);
+  };
+
+  useEffect(() => {
+    if (isOpen) fetchPages();
+  }, [isOpen]);
 
   const handleSave = async () => {
     if (!pageName || selectedSensorIds.length === 0) {
       alert("Bitte einen Namen und mindestens einen Sensor wählen.");
       return;
     }
-    // Save to localStorage
-    const existing = JSON.parse(localStorage.getItem('customSensorPages') || '[]');
-    existing.push({
+    const pageData = {
       pageName,
       sensorIds: selectedSensorIds,
-      id: Date.now(), // unique id
+      id: Date.now(),
+    };
+
+    const res = await fetch('/api/user-page', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(pageData),
     });
-    localStorage.setItem('customSensorPages', JSON.stringify(existing));
-    onSuccess();
-    handleClose();
+
+    if (res.ok) {
+      await fetchPages();
+      onSuccess();
+      handleClose();
+    } else {
+      alert('Fehler beim Speichern!');
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    const res = await fetch(`/api/user-page/${id}`, { method: 'DELETE' });
+    if (res.ok) {
+      await fetchPages();
+      setDeleteTarget(null);
+    } else {
+      alert('Fehler beim Löschen!');
+    }
   };
 
   const handleClose = () => {
@@ -70,7 +101,7 @@ export default function AddCustomSensorPage({
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent
         className="sm:max-w-[1000px] bg-background/95"
-        onClick={e => e.stopPropagation()} // <-- Add this line
+        onClick={e => e.stopPropagation()}
       >
         <DialogHeader>
           <DialogTitle>Eigene Sensorseite erstellen</DialogTitle>
@@ -91,23 +122,23 @@ export default function AddCustomSensorPage({
               placeholder="Meine Sensorseite"
             />
           </div>
-            <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="sensorSelect" className="text-right">
               Sensoren
             </Label>
             <div className="col-span-3">
               <SensorMultiSelect
-              id="sensorSelect"
-              options={availableSensors.map((s) => ({
-                value: s.sensorID,
-                label: `${s.sensorName} (${s.sensorID})`,
-              }))}
-              selected={selectedSensorIds}
-              onChange={setSelectedSensorIds}
-              placeholder="Sensoren auswählen"
+                id="sensorSelect"
+                options={availableSensors.map((s) => ({
+                  value: s.sensorID,
+                  label: `${s.sensorName} (${s.sensorID})`,
+                }))}
+                selected={selectedSensorIds}
+                onChange={setSelectedSensorIds}
+                placeholder="Sensoren auswählen"
               />
             </div>
-            </div>
+          </div>
         </div>
         <div className="flex justify-end gap-2">
           <Button variant="outline" onClick={handleClose}>
@@ -130,6 +161,64 @@ export default function AddCustomSensorPage({
                 verticalId={false}
               />
             ))}
+          </div>
+        )}
+        {/* List of existing custom pages (collapsible) */}
+        <div className="mt-8">
+          <button
+            type="button"
+            className="flex items-center gap-2 font-semibold mb-2 text-left hover:underline"
+            onClick={() => setShowPages((v) => !v)}
+          >
+            <span>Bestehende Seiten:</span>
+            <span className="text-xs">
+              {showPages ? <ArrowDownToLine /> : <ArrowUpToLine /> }
+            </span>
+          </button>
+          {showPages && (
+            loadingPages ? (
+              <div>Lade Seiten...</div>
+            ) : customPages.length === 0 ? (
+              <div className="text-neutral-400">Keine Seiten vorhanden.</div>
+            ) : (
+              <ul className="space-y-2">
+                {customPages.map((page) => (
+                  <li key={page.id} className="flex items-center justify-between bg-neutral-800 rounded px-4 py-2">
+                    <span>{page.pageName}</span>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => setDeleteTarget(page)}
+                    >
+                      Löschen
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            )
+          )}
+        </div>
+
+        {/* Custom confirmation dialog */}
+        {deleteTarget && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div className="bg-neutral-900 rounded-lg p-6 shadow-lg w-full max-w-sm">
+              <div className="font-semibold mb-2">Seite löschen?</div>
+              <div className="mb-4 text-neutral-300">
+                Möchten Sie <span className="font-bold">{deleteTarget.pageName}</span> wirklich löschen?
+              </div>
+              <div className="flex justify-end gap-2">
+                <Button variant="outline" onClick={() => setDeleteTarget(null)}>
+                  Abbrechen
+                </Button>
+                <Button
+                  variant="destructive"
+                  onClick={() => handleDelete(deleteTarget.id)}
+                >
+                  Löschen
+                </Button>
+              </div>
+            </div>
           </div>
         )}
       </DialogContent>

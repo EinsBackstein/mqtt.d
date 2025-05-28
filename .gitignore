@@ -16,5 +16,7 @@ sensor-data/
 
 #nginx certificates
 *.crt
-*.key 
+*.key
 
+user-pages/
+user-profiles/
