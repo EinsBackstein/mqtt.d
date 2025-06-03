@@ -1,6 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   House,
   LayoutDashboard,
@@ -28,6 +27,7 @@ export default function Navbar() {
   const [customPages, setCustomPages] = useState<
     { id: number; pageName: string; sensorIds: string[] }[]
   >([]);
+  const [alertCount, setAlertCount] = useState(0);
 
   // Fetch available sensors (replace with your actual API call)
   useEffect(() => {
@@ -38,13 +38,30 @@ export default function Navbar() {
       .catch(() => setAvailableSensors([]));
   }, []);
 
-// Load custom pages from server-side storage
-useEffect(() => {
-  fetch('/api/user-page/list')
-    .then(res => res.ok ? res.json() : [])
-    .then(data => setCustomPages(data))
-    .catch(() => setCustomPages([]));
-}, [isAddCustomPageOpen]); // reload when modal closes
+  // Load custom pages from server-side storage
+  useEffect(() => {
+    fetch('/api/user-page/list')
+      .then(res => res.ok ? res.json() : [])
+      .then(data => setCustomPages(data))
+      .catch(() => setCustomPages([]));
+  }, [isAddCustomPageOpen]); // reload when modal closes
+
+  useEffect(() => {
+    const fetchAlerts = async () => {
+      try {
+        const res = await fetch('/api/alerts');
+        if (res.ok) {
+          const data = await res.json();
+          setAlertCount(Array.isArray(data) ? data.length : 0);
+        }
+      } catch {
+        setAlertCount(0);
+      }
+    };
+    fetchAlerts();
+    const interval = setInterval(fetchAlerts, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleContainerClick = () => {
     setExpanded(!expanded);
@@ -257,20 +274,30 @@ useEffect(() => {
             </span>
           </Button>
         </div>
-        <div className="relative flex w-full  py-2" onClick={stopPropagation}>
+        <div className="relative flex w-full py-2 overflow-visible" onClick={stopPropagation}>
           <div
             className={`flex justify-center items-center transition-opacity duration-200 ${
               expanded ? 'hidden opacity-0' : 'opacity-100'
-            }`}
+            } overflow-visible`}
+            onClick={stopPropagation}
           >
             <Button
               id="notify_sm"
               onPress={() => {
                 router.push(`${pathName}/?notifications=true`);
               }}
+              className="relative overflow-visible"
             >
-              <span className="rounded-4xl cursor-pointer flex items-center justify-center">
+              <span className="rounded-4xl cursor-pointer flex items-center justify-center relative overflow-visible">
                 <Bell />
+                {alertCount > 0 && (
+                  <span
+                    className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 z-10 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center border-2 border-neutral-900"
+                    style={{ fontSize: '0.75rem', minWidth: '1.25rem', minHeight: '1.25rem' }}
+                  >
+                    {alertCount}
+                  </span>
+                )}
               </span>
             </Button>
           </div>
@@ -279,14 +306,25 @@ useEffect(() => {
             onPress={() => {
               router.push(`${pathName}/?notifications=true`);
             }}
-            className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer "
+            className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer relative overflow-visible"
           >
             <span
-              className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
+              className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer relative ${
                 expanded ? 'opacity-100' : 'hidden opacity-0'
-              }`}
+              } overflow-visible`}
             >
-              <Bell /> Notifications
+              <span className="relative overflow-visible">
+                <Bell />
+                {alertCount > 0 && (
+                  <span
+                    className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 z-10 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center border-2 border-neutral-900"
+                    style={{ fontSize: '0.75rem', minWidth: '1.25rem', minHeight: '1.25rem' }}
+                  >
+                    {alertCount}
+                  </span>
+                )}
+              </span>
+              Notifications
             </span>
           </Button>
         </div>

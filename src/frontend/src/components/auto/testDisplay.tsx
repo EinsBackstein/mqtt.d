@@ -11,6 +11,7 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [updating, setUpdating] = useState(false);
+  const [alerts, setAlerts] = useState([]);
 
   // Extract fetchData function so it can be called from multiple places
   const fetchData = async () => {
@@ -54,6 +55,13 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
     return () => clearInterval(interval);
   }, [sensorId]);
 
+  // Example: Fetch alerts in a React component
+  useEffect(() => {
+    fetch('/api/alerts')
+      .then(res => res.json())
+      .then(data => setAlerts(data));
+  }, []);
+
   // Helper function to parse message values
   const parseMessageValue = (message: { timestamp: string; payload: { dataValue: string } }) => {
     if (!message) return null;
@@ -86,18 +94,45 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
     }
   };
 
-  // Updated calculateStatusColor with type safety
-  const calculateStatusColor = (config: SensorConfig | undefined, value: number) => {
+  const triggerAlert = async (sensorId: string, dataType: string, value: number, threshold: any) => {
+    // Example: send alert to backend or show notification
+    const alert = await fetch('/api/alerts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sensorId,
+        dataType,
+        value,
+        threshold,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+    // console.log(alert);
+    // Optionally, show a toast or UI notification here
+  };
+
+  const calculateStatusColor = (
+    config: SensorConfig | undefined,
+    value: number,
+    sensorId?: string,
+    dataType?: string
+  ) => {
     if (!config?.grenzwerte) return '#4CAF50';
-    
-    return config.grenzwerte.reduce((acc, threshold) => {
-      const meetsCondition = 
+
+    let alertTriggered = false;
+    const color = config.grenzwerte.reduce((acc, threshold) => {
+      const meetsCondition =
         (threshold.condition === 'über' && value > threshold.value) ||
         (threshold.condition === 'unter' && value < threshold.value) ||
         (threshold.condition === 'gleich' && value === threshold.value);
-      
+
+      if (meetsCondition && !alertTriggered && sensorId && dataType) {
+        alertTriggered = true;
+        triggerAlert(sensorId, dataType, value, threshold);
+      }
       return meetsCondition ? threshold.color : acc;
     }, '#4CAF50');
+    return color;
   };
 
   // Function to send force update command with immediate refresh
@@ -187,7 +222,7 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
           const previousValue = parseMessageValue(previous);
 
           const statusColor = latestValue ? 
-            calculateStatusColor(config, latestValue.value) : 
+            calculateStatusColor(config, latestValue.value, sensorId, dataType) : 
             '#666666';
 
           // Highlight timestamp if older than user-configured maxAgeHours
@@ -227,7 +262,7 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
               unit={config?.unit || (dataType === 'Temperatur' ? '°C' : '°F')}
               lastValue={previousValue?.value.toFixed(2)}
               timeStamp={timeStampElem}
-              statusColor={statusColor}
+              statusColor={calculateStatusColor(config, latestValue?.value ?? 0, sensorId, dataType)}
             />
           );
         })}
