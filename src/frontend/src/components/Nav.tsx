@@ -15,6 +15,7 @@ import {
 import AddCustomSensorPage from './addUserCustomPage';
 import { Button } from '@heroui/button';
 import { usePathname, useRouter } from 'next/navigation';
+import AlertOverviewModal from "@/components/modal/alert"; // Add this import at the top
 
 export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
@@ -28,6 +29,7 @@ export default function Navbar() {
     { id: number; pageName: string; sensorIds: string[] }[]
   >([]);
   const [alertCount, setAlertCount] = useState(0);
+  const [isAlertModalOpen, setIsAlertModalOpen] = useState(false); // Add this state
 
   // Fetch available sensors (replace with your actual API call)
   useEffect(() => {
@@ -252,6 +254,7 @@ export default function Navbar() {
               onPress={() => {
                 router.push(`${pathName}/?info=true`);
               }}
+              disableRipple={true} // <-- Add this
             >
               <span className="rounded-4xl cursor-pointer flex items-center justify-center">
                 <Info />
@@ -260,10 +263,11 @@ export default function Navbar() {
           </div>
           <Button
             id="info_lg"
-            onClick={() => {
+            onPress={() => {
               router.push(`${pathName}/?info=true`);
             }}
             className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer "
+            disableRipple={true} // <-- Add this
           >
             <span
               className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
@@ -283,10 +287,9 @@ export default function Navbar() {
           >
             <Button
               id="notify_sm"
-              onPress={() => {
-                router.push(`${pathName}/?notifications=true`);
-              }}
+              onPress={() => setIsAlertModalOpen(true)} // Open modal on click
               className="relative overflow-visible"
+              disableRipple={true} // <-- Add this
             >
               <span className="rounded-4xl cursor-pointer flex items-center justify-center relative overflow-visible">
                 <Bell />
@@ -303,10 +306,9 @@ export default function Navbar() {
           </div>
           <Button
             id="notify_lg"
-            onPress={() => {
-              router.push(`${pathName}/?notifications=true`);
-            }}
+            onPress={() => setIsAlertModalOpen(true)} // Open modal on click
             className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer relative overflow-visible"
+            disableRipple={true} // <-- Add this
           >
             <span
               className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer relative ${
@@ -339,6 +341,7 @@ export default function Navbar() {
               onPress={() => {
                 router.push(`${pathName}/?settings=true`);
               }}
+              disableRipple={true} // <-- Add this
             >
               <span className="rounded-4xl cursor-pointer flex items-center justify-center">
                 <Settings2 />
@@ -351,6 +354,7 @@ export default function Navbar() {
               router.push(`${pathName}/?settings=true`);
             }}
             className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer "
+            disableRipple={true} // <-- Add this
           >
             <span
               className={`flex items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
@@ -372,6 +376,7 @@ export default function Navbar() {
               onPress={() => {
                 router.push(`${pathName}/?user=true`);
               }}
+              disableRipple={true} // <-- Add this
             >
               <span className="rounded-4xl flex items-center cursor-pointer justify-center">
                 <UserRound />
@@ -382,6 +387,7 @@ export default function Navbar() {
             id="user_big"
             onPress={() => setIsAddCustomPageOpen(true)}
             className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer "
+            disableRipple={true} // <-- Add this
           >
             {expanded ? (
               <div className="flex items-center">
@@ -401,6 +407,10 @@ export default function Navbar() {
         onOpenChange={setIsAddCustomPageOpen}
         onSuccess={() => setIsAddCustomPageOpen(false)}
         availableSensors={availableSensors}
+      />
+      <AlertOverviewModal
+        isOpen={isAlertModalOpen}
+        onOpenChange={setIsAlertModalOpen}
       />
     </div>
   );

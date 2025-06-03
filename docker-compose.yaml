@@ -32,7 +32,7 @@ services:
       - sensor-data-volume:/data
       - user_data_volume:/user
     environment:
-      - NEXTJS_ENV=development
+      NEXT_PUBLIC_ALERT_FIRST_MATCH_ONLY: ${NEXT_PUBLIC_ALERT_FIRST_MATCH_ONLY}
 
   backend:
     build:
