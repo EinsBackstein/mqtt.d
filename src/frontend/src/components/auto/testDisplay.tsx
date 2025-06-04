@@ -2,10 +2,27 @@
 import { useEffect, useState } from 'react';
 import BaseLayer from './baseLayer';
 import { SensorDataResponse, SensorConfig } from '../../lib/types'
-import { Thermometer, Sun, CloudRain, Gauge, Wind, InfoIcon, CloudAlert } from 'lucide-react';
+import { Thermometer, Sun, CloudRain, Gauge, Wind, InfoIcon, CloudAlert, Settings } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Skeleton } from "@/components/ui/skeleton";
 import { late } from 'zod';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { useForm } from 'react-hook-form';
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ChevronLeft, ChevronRight, Equal } from "lucide-react";
+import { configurationSchema } from '@/lib/schema'; // 1. Import schema
+import { ZodError } from 'zod';
+
+// Helper: Map dataType to allowed units from schema
+const unitOptionsByDataType: Record<string, string[]> = {
+  'Temperatur': ['°C', '°F', 'K'],
+  'Luftfeuchtigkeit': ['g/m³', '%'],
+  'Luftdruck': ['hPa', 'kPa', 'bar'],
+  'Helligkeit': ['lux', 'cd/m²', 'fL'],
+  'Luftqualität': ['PM2.5', 'PM10', 'CO2', 'VOC'],
+};
 
 const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:boolean, sensorId: string, htmlId: boolean, verticalId: boolean }) => {
   const [sensorData, setSensorData] = useState<SensorDataResponse | null>(null);
@@ -14,6 +31,9 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
   const [updating, setUpdating] = useState(false);
   const [alerts, setAlerts] = useState([]);
   const [skeletonCount, setSkeletonCount] = useState<number | null>(null);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [editingConfig, setEditingConfig] = useState<any>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   useEffect(() => {
     // Only runs on client
@@ -122,7 +142,9 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
     console.log('Alert POST response:', alert.status, await alert.text());
   };
 
-  const ALERT_FIRST_MATCH_ONLY = process.env.NEXT_PUBLIC_ALERT_FIRST_MATCH_ONLY === 'true';
+  const ALERT_BEST_MATCH_ONLY = process.env.NEXT_PUBLIC_BEST_FIRST_MATCH_ONLY === 'true';
+
+console.log('ALERT_BEST_MATCH_ONLY:', ALERT_BEST_MATCH_ONLY);
 
   const calculateStatusColor = (
     config: SensorConfig | undefined,
@@ -132,7 +154,7 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
     if (!hasData) return '#666666'; // gray for no data
     if (!config?.grenzwerte) return '#4CAF50';
 
-    if (ALERT_FIRST_MATCH_ONLY) {
+    if (ALERT_BEST_MATCH_ONLY) {
       // Find the threshold whose color would be used (most severe: red > yellow > green)
       let selectedThreshold: any = null;
       for (const threshold of config.grenzwerte) {
@@ -217,6 +239,7 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
 
   useEffect(() => {
     if (!sensorData?.sensor?.sensorData) return;
+
     sensorData.sensor.sensorData.forEach((dataType) => {
       const config = sensorData.configurations[dataType];
       //@ts-expect-error
@@ -226,18 +249,80 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
       const hasData = !!latestValue && typeof latestValue.value === 'number' && !isNaN(latestValue.value);
 
       if (!hasData || !config?.grenzwerte) return;
-      config.grenzwerte.forEach(threshold => {
-        const meetsCondition =
-          (threshold.condition === 'über' && latestValue.value > threshold.value) ||
-          (threshold.condition === 'unter' && latestValue.value < threshold.value) ||
-          (threshold.condition === 'gleich' && latestValue.value === threshold.value);
 
-        if (meetsCondition) {
-          triggerAlert(sensorData.sensor.sensorID, dataType, latestValue.value, threshold);
+      if (ALERT_BEST_MATCH_ONLY) {
+        // Only trigger alert for the threshold that determines the status color
+        let selectedThreshold: any = null;
+        for (const threshold of config.grenzwerte) {
+          const meetsCondition =
+            (threshold.condition === 'über' && latestValue.value > threshold.value) ||
+            (threshold.condition === 'unter' && latestValue.value < threshold.value) ||
+            (threshold.condition === 'gleich' && latestValue.value === threshold.value);
+
+          if (meetsCondition) {
+            if (threshold.color === '#CF2430') {
+              selectedThreshold = threshold;
+              break; // danger, take immediately
+            }
+            if (threshold.color === '#F5A524' && !selectedThreshold) {
+              selectedThreshold = threshold; // caution, but keep looking for danger
+            }
+            if (!selectedThreshold) {
+              selectedThreshold = threshold; // any match if nothing else
+            }
+          }
         }
-      });
+        if (selectedThreshold) {
+          triggerAlert(sensorData.sensor.sensorID, dataType, latestValue.value, selectedThreshold);
+          // Optionally, setAlerts([{ ... }]) if you want to display only this alert
+        }
+      } else {
+        // Trigger and collect all matching alerts
+        config.grenzwerte.forEach(threshold => {
+          const meetsCondition =
+            (threshold.condition === 'über' && latestValue.value > threshold.value) ||
+            (threshold.condition === 'unter' && latestValue.value < threshold.value) ||
+            (threshold.condition === 'gleich' && latestValue.value === threshold.value);
+
+          if (meetsCondition) {
+            triggerAlert(sensorData.sensor.sensorID, dataType, latestValue.value, threshold);
+            // Optionally, collect all alerts in an array if you want to display them
+          }
+        });
+      }
     });
   }, [sensorData]);
+
+  // Handler to open settings modal
+  const handleOpenSettings = (dataType: string) => {
+    const config = sensorData?.configurations[dataType];
+    setEditingConfig({ ...config, dataType });
+    setSettingsOpen(true);
+  };
+
+  // Handler to save settings
+  const handleSaveSettings = async (updatedConfig: any) => {
+    setValidationError(null);
+    try {
+      // 2. Validate config using Zod
+      configurationSchema.parse(updatedConfig);
+      // If valid, send PATCH
+      await fetch(`/api/sensors/${sensorId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dataType: updatedConfig.dataType, config: updatedConfig }),
+      });
+      setSettingsOpen(false);
+      fetchData(); // Refresh data
+    } catch (err) {
+      // 3. Show validation errors
+      if (err instanceof ZodError) {
+        setValidationError(err.errors.map(e => e.message).join(', '));
+      } else {
+        setValidationError('Unbekannter Fehler beim Validieren');
+      }
+    }
+  };
 
   if (loading) {
     // Wait until skeletonCount is set on the client to avoid hydration mismatch
@@ -335,20 +420,219 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
           }
 
           return (
-            <BaseLayer
-              key={dataType}
-              icon={getIcon(dataType)}
-              heading={dataType}
-              id={sensorId}
-              value={hasData ? latestValue.value.toFixed(2) : 'N/A'}
-              unit={config?.unit || (dataType === 'Temperatur' ? '°C' : '°F')}
-              lastValue={previousValue?.value?.toFixed(2)}
-              timeStamp={timeStampElem}
-              statusColor={statusColor}
-            />
+            <div key={dataType} className="relative">
+              <BaseLayer
+                icon={getIcon(dataType)}
+                heading={dataType}
+                id={sensorId}
+                value={hasData ? latestValue.value.toFixed(2) : 'N/A'}
+                unit={config?.unit || (dataType === 'Temperatur' ? '°C' : '°F')}
+                lastValue={previousValue?.value?.toFixed(2)}
+                timeStamp={timeStampElem}
+                statusColor={statusColor}
+              />
+              <button
+                className="absolute top-2 right-2 bg-white/80 rounded-full p-1 hover:bg-white"
+                onClick={() => handleOpenSettings(dataType)}
+                title="Einstellungen"
+              >
+                <Settings className="w-5 h-5 text-gray-700" />
+              </button>
+            </div>
           );
         })}
       </div>
+      {/* Settings Modal */}
+      <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
+        <DialogContent
+          className="w-full max-w-[80vw] md:max-w-[800px] overflow-auto"
+          style={{ minWidth: '0', width: '100%' }}
+        >
+          <DialogHeader>
+            <DialogTitle>Sensor-Einstellungen bearbeiten</DialogTitle>
+          </DialogHeader>
+          {editingConfig && (
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                handleSaveSettings(editingConfig);
+              }}
+              className="space-y-4"
+            >
+              {validationError && (
+                <div className="text-red-500 p-2 border rounded">{validationError}</div>
+              )}
+              {/* Einheit */}
+              <label className="block">
+                <span className="flex items-center gap-1">
+                  Einheit
+                  <div className="text-muted-foreground">*</div>
+                </span>
+                <Select
+                  value={editingConfig.unit}
+                  onValueChange={val => setEditingConfig({ ...editingConfig, unit: val })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Einheit wählen" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(unitOptionsByDataType[editingConfig.dataType] || []).map(unit => (
+                      <SelectItem key={unit} value={unit}>{unit}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </label>
+              {/* Anzeigename */}
+              <label className="block">
+                <span className="flex items-center gap-1">
+                  Anzeigename
+                  <div className="text-muted-foreground">*</div>
+                </span>
+                <Input
+                  value={editingConfig.name}
+                  onChange={e => setEditingConfig({ ...editingConfig, name: e.target.value })}
+                />
+              </label>
+              {/* Beschreibung */}
+              <label className="block">
+                Beschreibung
+                <Input
+                  value={editingConfig.description || ""}
+                  onChange={e => setEditingConfig({ ...editingConfig, description: e.target.value })}
+                />
+              </label>
+              {/* MaxAgeHours */}
+              <label className="block">
+                <span className="flex items-center gap-1">
+                  Sensor-Timeout Warnung (Stunden)
+                  <div className="text-muted-foreground">*</div>
+                </span>
+                <Input
+                  type="number"
+                  value={editingConfig.maxAgeHours ?? 24}
+                  onChange={e => setEditingConfig({ ...editingConfig, maxAgeHours: Number(e.target.value) })}
+                />
+              </label>
+              {/* Grenzwerte (Thresholds) */}
+              <div className="space-y-2">
+                <div className="font-semibold">Grenzwerte</div>
+                {editingConfig.grenzwerte?.map((threshold: any, idx: number) => (
+                  <div key={idx} className="border p-2 rounded space-y-1">
+                    <div className="flex gap-2 items-center flex-wrap">
+                      <span>Bedingung:</span>
+                      <Select
+                        value={threshold.condition}
+                        onValueChange={val => {
+                          const newGrenzwerte = [...editingConfig.grenzwerte];
+                          newGrenzwerte[idx].condition = val;
+                          setEditingConfig({ ...editingConfig, grenzwerte: newGrenzwerte });
+                        }}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Bedingung wählen" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="über">Über <ChevronRight className="inline h-4 w-4" /></SelectItem>
+                          <SelectItem value="gleich">Gleich <Equal className="inline h-4 w-4" /></SelectItem>
+                          <SelectItem value="unter">Unter <ChevronLeft className="inline h-4 w-4" /></SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <span>Wert:</span>
+                      <Input
+                        type="number"
+                        value={threshold.value}
+                        onChange={e => {
+                          const newGrenzwerte = [...editingConfig.grenzwerte];
+                          newGrenzwerte[idx].value = Number(e.target.value);
+                          setEditingConfig({ ...editingConfig, grenzwerte: newGrenzwerte });
+                        }}
+                        className="w-20"
+                      />
+                      <span>Farbe:</span>
+                      <Input
+                        type="color"
+                        value={threshold.color}
+                        onChange={e => {
+                          const newGrenzwerte = [...editingConfig.grenzwerte];
+                          newGrenzwerte[idx].color = e.target.value;
+                          setEditingConfig({ ...editingConfig, grenzwerte: newGrenzwerte });
+                        }}
+                        className="w-10 h-8"
+                      />
+                    </div>
+                    <div className="flex flex-col md:flex-row gap-2 items-start md:items-center mt-2">
+                      <div className="flex gap-4 items-center">
+                        <Checkbox
+                          checked={threshold.alert?.send}
+                          onCheckedChange={val => {
+                            const newGrenzwerte = [...editingConfig.grenzwerte];
+                            newGrenzwerte[idx].alert = { ...newGrenzwerte[idx].alert, send: val };
+                            setEditingConfig({ ...editingConfig, grenzwerte: newGrenzwerte });
+                          }}
+                        /> Alert senden
+                        <Checkbox
+                          checked={threshold.alert?.critical}
+                          onCheckedChange={val => {
+                            const newGrenzwerte = [...editingConfig.grenzwerte];
+                            newGrenzwerte[idx].alert = { ...newGrenzwerte[idx].alert, critical: val };
+                            setEditingConfig({ ...editingConfig, grenzwerte: newGrenzwerte });
+                          }}
+                        /> Kritischer Alarm
+                      </div>
+                      <Input
+                        placeholder="Alarmnachricht"
+                        value={threshold.alert?.message || ""}
+                        onChange={e => {
+                          const newGrenzwerte = [...editingConfig.grenzwerte];
+                          newGrenzwerte[idx].alert = { ...newGrenzwerte[idx].alert, message: e.target.value };
+                          setEditingConfig({ ...editingConfig, grenzwerte: newGrenzwerte });
+                        }}
+                        className="flex-1 min-w-[200px] md:min-w-[300px]"
+                      />
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => {
+                          const newGrenzwerte = editingConfig.grenzwerte.filter((_: any, i: number) => i !== idx);
+                          setEditingConfig({ ...editingConfig, grenzwerte: newGrenzwerte });
+                        }}
+                      >
+                        Entfernen
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setEditingConfig({
+                      ...editingConfig,
+                      grenzwerte: [
+                        ...(editingConfig.grenzwerte || []),
+                        {
+                          value: 0,
+                          condition: "über",
+                          color: "#CF2430",
+                          alert: { send: true, critical: false, message: "" }
+                        }
+                      ]
+                    });
+                  }}
+                >
+                  + Grenzwert hinzufügen
+                </Button>
+              </div>
+              <DialogFooter>
+                <button type="submit" className="btn btn-primary">Speichern</button>
+                <button type="button" className="btn" onClick={() => setSettingsOpen(false)}>Abbrechen</button>
+              </DialogFooter>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

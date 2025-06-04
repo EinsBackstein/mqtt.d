@@ -373,13 +373,11 @@ export default function Navbar() {
           >
             <Button
               id="user_small"
-              onPress={() => {
-                router.push(`${pathName}/?user=true`);
-              }}
+              onPress={() => setIsAddCustomPageOpen(true)}
               disableRipple={true} // <-- Add this
             >
               <span className="rounded-4xl flex items-center cursor-pointer justify-center">
-                <UserRound />
+                <Star />
               </span>
             </Button>
           </div>
