@@ -11,106 +11,99 @@ import {
   LabelList,
 } from 'recharts';
 
-const LineChartComponent = ({sensorId}:{sensorId:string}) => {
-  // State to store temperature data
+type TrendProps = {
+  sensorId: string;
+  dataType: string;
+  valueCount?: number | 'all';
+};
+
+const LineChartComponent = ({ sensorId, dataType, valueCount }: TrendProps) => {
   const [data, setData] = useState<{ name: string; value: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch temperature data on component mount
+  // Fetch trend data for the selected sensor and dataType
   useEffect(() => {
-    const fetchTemperatureData = async () => {
+    const fetchTrendData = async () => {
       try {
         setLoading(true);
-        // Fetch temperature data from API
-        const response = await fetch('/api/temperature-data/' + sensorId);
-        
+        const response = await fetch(`/api/sensors/${sensorId}?dataType=${encodeURIComponent(dataType)}`);
+
         if (!response.ok) {
-          throw new Error('Failed to fetch temperature data');
+          throw new Error('Failed to fetch trend data');
         }
-        
-        const tempData = await response.json();
-        // console.log('Raw data:', tempData);
-        
-        // Format the data to match the required structure
-        const formattedData = tempData.map((item: { name: any; temperature: any; value: any; }) => ({
-          name: item.name, // Use timestamp as name for X-axis, with fallback
-          value: item.temperature || item.value // Handle both possible field names
+
+        const sensorData = await response.json();
+        const messages = sensorData?.messages?.[dataType] || [];
+
+        const formattedData = messages.map((msg: any) => ({
+          name: msg.timestamp?.replace('T', ' ')?.replace(' @ ', ' ') || '',
+          value: Number(msg.payload?.dataValue),
         }));
-        
-        // console.log('Formatted data:', formattedData);
-        setData(formattedData); // Use the formatted data instead of raw data
+
+        setData(formattedData);
         setLoading(false);
       } catch (err) {
-        console.error('Error fetching temperature data:', err);
-        
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('An unknown error occurred');
-        }
+        console.error('Error fetching trend data:', err);
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
         setLoading(false);
       }
     };
 
-    fetchTemperatureData();
-    
-    // Optional: Set up polling or WebSocket connection for real-time updates
-    const intervalId = setInterval(fetchTemperatureData, 60000); // Update every minute
-    
-    return () => clearInterval(intervalId); // Clean up on unmount
-  }, []);
+    if (sensorId && dataType) {
+      fetchTrendData();
+      const intervalId = setInterval(fetchTrendData, 60000); // Update every minute
+      return () => clearInterval(intervalId);
+    }
+  }, [sensorId, dataType]);
+
+  // Only show value labels if there are not too many points
+  const filteredData =
+    valueCount === 'all' || !valueCount
+      ? data
+      : data.slice(-Number(valueCount));
+  const showLabels = filteredData.length <= 20;
 
   if (loading) {
-    return <div className="p-4 bg-secondary rounded-4xl text-white">Loading temperature data...</div>;
+    return <div className="p-4 bg-secondary rounded-4xl text-white">Lade Trenddaten...</div>;
   }
 
   if (error) {
-    return <div className="p-4 bg-secondary rounded-4xl text-white">Error: {error}</div>;
+    return <div className="p-4 bg-secondary rounded-4xl text-white">Fehler: {error}</div>;
   }
 
   return (
     <div className="p-4 bg-secondary max-w-full h-auto rounded-4xl ring-1 ring-success/20 shadow-md shadow-success/30">
-      {/* Titel der Komponente */}
-      <h2 className="text-2xl font-bold mb-4 text-white">Temperatur-Trend</h2>
-
-      {/* Responsiver Container für das Diagramm */}
+      <h2 className="text-2xl font-bold mb-4 text-white">
+        {dataType ? `${dataType}-Trend` : 'Trend'}
+      </h2>
       <ResponsiveContainer width="100%" height={500}>
-        {/* Hauptdiagramm-Komponente */}
         <LineChart
-          data={data} // Using properly formatted data
+          data={filteredData}
           margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
         >
-          {/* Hintergrundraster mit nur horizontalen Linien */}
           <CartesianGrid stroke="#4A4A4A" vertical={false} />
-
-            <XAxis
+          <XAxis
             dataKey="name"
             axisLine={false}
             tickLine={false}
             tick={{ fill: '#737373', fontSize: 10 }}
-            />
-
-            <YAxis
+          />
+          <YAxis
             axisLine={false}
             tickLine={false}
             tick={{ fill: '#737373', fontSize: 12 }}
-            domain={['auto', 'auto - 1']} // Slightly extend the range for better scaling
-            allowDecimals={true} // Allow decimal values for finer granularity
-            additive='sum'
-            />
-
-          {/* Tooltip mit dunklem Design */}
+            domain={['auto', 'auto - 1']}
+            allowDecimals={true}
+          />
           <Tooltip
             contentStyle={{ backgroundColor: '#1F1F1F', border: 'none' }}
             labelStyle={{ color: '#FFF' }}
             itemStyle={{ color: '#FFF' }}
-            cursor={{ stroke: '#4A4A4A' }} // Cursor-Stil für Hover-Effekt
+            cursor={{ stroke: '#4A4A4A' }}
           />
-
-          {/* Linie mit grüner Farbe und sichtbaren Punkten */}
           <Line
-            type="monotone" // Glatte Linie
+            type="monotone"
             dataKey="value"
             stroke="#1DF419"
             strokeWidth={3}
@@ -119,7 +112,7 @@ const LineChartComponent = ({sensorId}:{sensorId:string}) => {
               fill: '#1DF419',
               strokeWidth: 0,
               style: {
-                transition: 'all 0.3s ease', // Smooth transition for all styles
+                transition: 'all 0.3s ease',
               },
             }}
             activeDot={{
@@ -127,31 +120,34 @@ const LineChartComponent = ({sensorId}:{sensorId:string}) => {
               fill: '#1DF419',
               strokeWidth: 0,
               style: {
-                transition: 'all 0.3s ease', // Smooth transition for active dot
+                transition: 'all 0.3s ease',
               },
             }}
           >
-            {/* Anzeigen der Werte über den Punkten */}
-            <LabelList
-              dataKey="value"
-              position="top"
-              fill="#FFF"
-              fontSize={14}
-            />
+            {showLabels && (
+              <LabelList
+                dataKey="value"
+                position="top"
+                fill="#FFF"
+                fontSize={14}
+              />
+            )}
           </Line>
         </LineChart>
       </ResponsiveContainer>
-
-      {/* Bereich unterhalb des Diagramms für Trend-Visualisierung */}
       <div className="mt-4 flex items-center text-white text-lg font-bold">
         <span>Langzeit-Trend:</span>
         <span className="ml-2 text-2xl text-success">
-            {data.length > 1 && 
-            (Number(data[data.length - 1]?.value) > Number(data[data.length - 2]?.value) ? "↑" : 
-             Number(data[data.length - 1]?.value) < Number(data[data.length - 2]?.value) ? "↓" : "→")}
+          {filteredData.length > 1 &&
+            (Number(filteredData[filteredData.length - 1]?.value) > Number(filteredData[filteredData.length - 2]?.value)
+              ? "↑"
+              : Number(filteredData[filteredData.length - 1]?.value) < Number(filteredData[filteredData.length - 2]?.value)
+              ? "↓"
+              : "→")}
         </span>
       </div>
     </div>
   );
 };
+
 export default LineChartComponent;

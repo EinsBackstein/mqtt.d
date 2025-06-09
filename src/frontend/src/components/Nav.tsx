@@ -15,7 +15,8 @@ import {
 import AddCustomSensorPage from './addUserCustomPage';
 import { Button } from '@heroui/button';
 import { usePathname, useRouter } from 'next/navigation';
-import AlertOverviewModal from "@/components/modal/alert"; // Add this import at the top
+import AlertOverviewModal from '@/components/modal/alert';
+import SettingsModal from '@/components/modal/settings';
 
 export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
@@ -29,11 +30,18 @@ export default function Navbar() {
     { id: number; pageName: string; sensorIds: string[] }[]
   >([]);
   const [alertCount, setAlertCount] = useState(0);
-  const [isAlertModalOpen, setIsAlertModalOpen] = useState(false); // Add this state
+  const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+
+  // --- Trend state ---
+  const [userSettings, setUserSettings] = useState<{
+    userName: string;
+    sensorIds: string[];
+    trend?: { sensorId: string; dataType: string; valueCount?: number | 'all' };
+  }>({ userName: '', sensorIds: [] });
 
   // Fetch available sensors (replace with your actual API call)
   useEffect(() => {
-    // Example fetch, replace with your real API
     fetch('/api/sensors/list')
       .then((res) => res.json())
       .then((data) => setAvailableSensors(data))
@@ -43,10 +51,10 @@ export default function Navbar() {
   // Load custom pages from server-side storage
   useEffect(() => {
     fetch('/api/user-page/list')
-      .then(res => res.ok ? res.json() : [])
-      .then(data => setCustomPages(data))
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setCustomPages(data))
       .catch(() => setCustomPages([]));
-  }, [isAddCustomPageOpen]); // reload when modal closes
+  }, [isAddCustomPageOpen]);
 
   useEffect(() => {
     const fetchAlerts = async () => {
@@ -64,6 +72,20 @@ export default function Navbar() {
     const interval = setInterval(fetchAlerts, 10000);
     return () => clearInterval(interval);
   }, []);
+
+  // Fetch user settings (id: 1) on mount, including trend and valueCount
+  useEffect(() => {
+    fetch('/api/user-page/1')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data)
+          setUserSettings({
+            userName: data.userName || '',
+            sensorIds: data.sensorIds || [],
+            trend: data.trend, // trend may include valueCount
+          });
+      });
+  }, [isSettingsModalOpen]);
 
   const handleContainerClick = () => {
     setExpanded(!expanded);
@@ -196,89 +218,62 @@ export default function Navbar() {
           </span>
         </button>
 
+        <div className="w-[90%] flex border-t border-neutral-700 mb-2 px-2" />
         {/* Custom Pages Section */}
-        <div className={`${expanded ? "p-6": "p-2"}`}>
-        {customPages.length > 0 && (
-          <div
-            className="flex flex-col items-center w-full"
-            onClick={stopPropagation}
-          >
-            {customPages.map((page, idx) => (
-              <button
-                key={page.id}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  router.push(`/custom/${page.id}`);
-                }}
-                className="p-4 focus:outline-none relative"
-                title={!expanded ? page.pageName : undefined}
-              >
-                <span
-                  className={`absolute top-1/2 left-1/2 transform -translate-x-3/4 -translate-y-1/3 text-left w-20 transition-opacity duration-200 ${
-                    expanded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                >
-                  {page.pageName}
-                </span>
-                <span
-                  className={`flex items-center justify-center transition-opacity duration-200 ${
-                    expanded ? 'opacity-0' : 'opacity-100'
-                  }`}
-                >
-                  <Star className="w-6 h-6" />
-                  <span className="ml-2 text-sm">{`${idx + 1}`}</span>
-                  {/* Tooltip for accessibility, always present */}
-                  <span className="sr-only">{page.pageName}</span>
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
+        <div className={`${expanded ? 'p-6' : 'p-2'}`}>
+          {/* --- Separator above custom pages --- */}
+          {customPages.length > 0 && (
+            <div
+              className="flex flex-col items-center w-full"
+              onClick={stopPropagation}
+            >
+              {customPages
+                .filter((page) => page.id !== 1) // Do not display the custom page if its id is 1
+                .map((page, idx) => (
+                  <button
+                    key={page.id}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      router.push(`/custom/${page.id}`);
+                    }}
+                    className="p-4 focus:outline-none relative"
+                    title={!expanded ? page.pageName : undefined}
+                  >
+                    <span
+                      className={`absolute top-1/2 left-1/2 transform -translate-x-3/4 -translate-y-1/3 text-left w-20 transition-opacity duration-200 ${
+                        expanded ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      {page.pageName}
+                    </span>
+                    <span
+                      className={`flex items-center justify-center transition-opacity duration-200 ${
+                        expanded ? 'opacity-0' : 'opacity-100'
+                      }`}
+                    >
+                      <Star className="w-6 h-6" />
+                      <span className="ml-2 text-sm">{`${idx + 1}`}</span>
+                      {/* Tooltip for accessibility, always present */}
+                      <span className="sr-only">{page.pageName}</span>
+                    </span>
+                  </button>
+                ))}
+            </div>
+          )}
         </div>
       </div>
+      {/* --- Separator above bottom 3 buttons --- */}
       <div
-        className={`mt-auto mb-4 px-2.5 py-2 duration-300 flex flex-col ease-initial transition-all w-full ${
+        className={`mt-auto mb-4 px-2 py-2 duration-300 flex flex-col ease-initial transition-all w-full ${
           expanded ? '' : ''
         }`}
         onClick={stopPropagation}
       >
-        <div className="relative flex w-full py-2">
-          <div
-            className={`flex justify-center items-center transition-opacity duration-200 ${
-              expanded ? 'hidden opacity-0' : 'opacity-100'
-            }`}
-            onClick={stopPropagation}
-          >
-            <Button
-              id="info_sm"
-              onPress={() => {
-                router.push(`${pathName}/?info=true`);
-              }}
-              disableRipple={true} // <-- Add this
-            >
-              <span className="rounded-4xl cursor-pointer flex items-center justify-center">
-                <Info />
-              </span>
-            </Button>
-          </div>
-          <Button
-            id="info_lg"
-            onPress={() => {
-              router.push(`${pathName}/?info=true`);
-            }}
-            className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer "
-            disableRipple={true} // <-- Add this
-          >
-            <span
-              className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
-                expanded ? 'opacity-100' : 'hidden opacity-0 p-0'
-              }`}
-            >
-              <Info /> Help/Info
-            </span>
-          </Button>
-        </div>
-        <div className="relative flex w-full py-2 overflow-visible" onClick={stopPropagation}>
+        <div className="w-full flex border-t border-neutral-700 mb-2 mt-auto" />
+        <div
+          className="relative flex w-full py-2 overflow-visible"
+          onClick={stopPropagation}
+        >
           <div
             className={`flex justify-center items-center transition-opacity duration-200 ${
               expanded ? 'hidden opacity-0' : 'opacity-100'
@@ -287,16 +282,20 @@ export default function Navbar() {
           >
             <Button
               id="notify_sm"
-              onPress={() => setIsAlertModalOpen(true)} // Open modal on click
+              onPress={() => setIsAlertModalOpen(true)}
               className="relative overflow-visible"
-              disableRipple={true} // <-- Add this
+              disableRipple={true}
             >
               <span className="rounded-4xl cursor-pointer flex items-center justify-center relative overflow-visible">
                 <Bell />
                 {alertCount > 0 && (
                   <span
                     className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 z-10 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center border-2 border-neutral-900"
-                    style={{ fontSize: '0.75rem', minWidth: '1.25rem', minHeight: '1.25rem' }}
+                    style={{
+                      fontSize: '0.75rem',
+                      minWidth: '1.25rem',
+                      minHeight: '1.25rem',
+                    }}
                   >
                     {alertCount}
                   </span>
@@ -306,9 +305,9 @@ export default function Navbar() {
           </div>
           <Button
             id="notify_lg"
-            onPress={() => setIsAlertModalOpen(true)} // Open modal on click
+            onPress={() => setIsAlertModalOpen(true)}
             className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer relative overflow-visible"
-            disableRipple={true} // <-- Add this
+            disableRipple={true}
           >
             <span
               className={`flex flex-row items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer relative ${
@@ -320,7 +319,11 @@ export default function Navbar() {
                 {alertCount > 0 && (
                   <span
                     className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 z-10 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center border-2 border-neutral-900"
-                    style={{ fontSize: '0.75rem', minWidth: '1.25rem', minHeight: '1.25rem' }}
+                    style={{
+                      fontSize: '0.75rem',
+                      minWidth: '1.25rem',
+                      minHeight: '1.25rem',
+                    }}
                   >
                     {alertCount}
                   </span>
@@ -338,10 +341,8 @@ export default function Navbar() {
           >
             <Button
               id="settings_sm"
-              onPress={() => {
-                router.push(`${pathName}/?settings=true`);
-              }}
-              disableRipple={true} // <-- Add this
+              onPress={() => setIsSettingsModalOpen(true)}
+              disableRipple={true}
             >
               <span className="rounded-4xl cursor-pointer flex items-center justify-center">
                 <Settings2 />
@@ -350,11 +351,9 @@ export default function Navbar() {
           </div>
           <Button
             id="settings_big"
-            onPress={() => {
-              router.push(`${pathName}/?settings=true`);
-            }}
+            onPress={() => setIsSettingsModalOpen(true)}
             className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer "
-            disableRipple={true} // <-- Add this
+            disableRipple={true}
           >
             <span
               className={`flex items-center gap-2 transition-opacity duration-200 justify-start hover:cursor-pointer ${
@@ -374,7 +373,7 @@ export default function Navbar() {
             <Button
               id="user_small"
               onPress={() => setIsAddCustomPageOpen(true)}
-              disableRipple={true} // <-- Add this
+              disableRipple={true}
             >
               <span className="rounded-4xl flex items-center cursor-pointer justify-center">
                 <Star />
@@ -385,7 +384,7 @@ export default function Navbar() {
             id="user_big"
             onPress={() => setIsAddCustomPageOpen(true)}
             className="hover:bg-neutral-800/10 hover:shadow-2xl hover:shadow-neutral-800 duration-400 transition-all cursor-pointer "
-            disableRipple={true} // <-- Add this
+            disableRipple={true}
           >
             {expanded ? (
               <div className="flex items-center">
@@ -409,6 +408,13 @@ export default function Navbar() {
       <AlertOverviewModal
         isOpen={isAlertModalOpen}
         onOpenChange={setIsAlertModalOpen}
+      />
+      <SettingsModal
+        isOpen={isSettingsModalOpen}
+        onOpenChange={setIsSettingsModalOpen}
+        availableSensors={availableSensors}
+        userSettings={userSettings}
+        setUserSettings={setUserSettings}
       />
     </div>
   );

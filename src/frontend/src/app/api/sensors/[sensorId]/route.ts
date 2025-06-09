@@ -2,23 +2,36 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-export const dynamic = 'force-dynamic'; // Add this line
+export const dynamic = 'force-dynamic';
 
-export async function GET(request: Request, props: { params: Promise<{ sensorId: string }> }) {
-  const params = await props.params;
+// GET /api/sensors/[sensorId]?dataType=...
+export async function GET(request: NextRequest, { params }: { params: { sensorId: string } }) {
   const sensorId = params.sensorId;
+  const url = new URL(request.url);
+  const dataType = url.searchParams.get('dataType');
+
   try {
-    const sensorId = (await props.params).sensorId;
     const basePath = path.join(process.cwd(), '..', 'data', sensorId);
-    const test = fs.readdirSync(basePath);
-    // console.log(test)
+    const sensorFile = path.join(basePath, `${sensorId}.json`);
+    if (!fs.existsSync(sensorFile)) {
+      return NextResponse.json({ error: `Sensor ${sensorId} not found` }, { status: 404 });
+    }
+    const sensorData = JSON.parse(fs.readFileSync(sensorFile, 'utf-8'));
 
-    // Rest of your existing code...
-    const sensorData = JSON.parse(
-      fs.readFileSync(path.join(basePath, `${sensorId}.json`), 'utf-8')
-    );
+    // If dataType is provided, return only messages for that dataType
+    if (dataType) {
+      const messagesFile = path.join(basePath, 'messages', `${dataType}-messages.json`);
+      let messages: any[] = [];
+      if (fs.existsSync(messagesFile)) {
+        messages = JSON.parse(fs.readFileSync(messagesFile, 'utf-8'));
+      }
+      return NextResponse.json({
+        sensor: sensorData,
+        messages: { [dataType]: messages }
+      });
+    }
 
-    // Read configurations and messages for each data type
+    // Otherwise, return all data as before
     const dataTypes = sensorData.sensorData;
     const result = {
       sensor: sensorData,
@@ -26,26 +39,19 @@ export async function GET(request: Request, props: { params: Promise<{ sensorId:
       messages: {} as Record<string, any>
     };
 
-    for (const dataType of dataTypes) {
+    for (const dt of dataTypes) {
       try {
-        result.configurations[dataType] = JSON.parse(
-          fs.readFileSync(
-            path.join(basePath, 'configurations', `${dataType}-config.json`),
-            'utf-8'
-          )
+        result.configurations[dt] = JSON.parse(
+          fs.readFileSync(path.join(basePath, 'configurations', `${dt}-config.json`), 'utf-8')
         );
-        result.messages[dataType] = JSON.parse(
-          fs.readFileSync(
-            path.join(basePath, 'messages', `${dataType}-messages.json`),
-            'utf-8'
-          )
+        result.messages[dt] = JSON.parse(
+          fs.readFileSync(path.join(basePath, 'messages', `${dt}-messages.json`), 'utf-8')
         );
       } catch (error) {
-        console.error(`Error loading data for ${dataType}:`, error);
+        // skip missing/broken files
       }
     }
 
-    // console.log(result)
     return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json(

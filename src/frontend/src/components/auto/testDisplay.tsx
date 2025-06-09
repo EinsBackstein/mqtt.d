@@ -140,13 +140,13 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
         alertType: threshold.alert?.critical ? 'critical' : 'non-critical',
       }),
     });
-    console.log('Sent alert:', { sensorId, dataType, value, threshold });
-    console.log('Alert POST response:', alert.status, await alert.text());
+    //*console.log('Sent alert:', { sensorId, dataType, value, threshold });
+    //*console.log('Alert POST response:', alert.status, await alert.text());
   };
 
   const ALERT_BEST_MATCH_ONLY = process.env.NEXT_PUBLIC_BEST_FIRST_MATCH_ONLY === 'true';
 
-console.log('ALERT_BEST_MATCH_ONLY:', ALERT_BEST_MATCH_ONLY);
+//console.log('ALERT_BEST_MATCH_ONLY:', ALERT_BEST_MATCH_ONLY);
 
   const calculateStatusColor = (
     config: SensorConfig | undefined,
