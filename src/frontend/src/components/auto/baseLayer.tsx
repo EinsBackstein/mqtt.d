@@ -8,7 +8,7 @@ type BaseLayerProps = {
   value: string | number,
   unit: string,
   lastValue?: string | number,
-  timeStamp?: React.ReactNode, // <-- allow ReactNode
+  timeStamp?: React.ReactNode,
   statusColor?: string,
 }
 

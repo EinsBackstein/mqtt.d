@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import BaseLayer from './baseLayer';
 import { SensorDataResponse, SensorConfig } from '../../lib/types'
-import { Thermometer, Sun, CloudRain, Gauge, Wind, InfoIcon, CloudAlert, Settings } from 'lucide-react';
+import { Thermometer, Sun, CloudRain, Gauge, Wind, InfoIcon, CloudAlert, Settings, RefreshCw, Pencil } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Skeleton } from "@/components/ui/skeleton";
 import { late } from 'zod';
@@ -12,8 +12,9 @@ import { useForm } from 'react-hook-form';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ChevronLeft, ChevronRight, Equal } from "lucide-react";
-import { configurationSchema } from '@/lib/schema'; // 1. Import schema
+import { configurationSchema, sensorDataOptions } from '@/lib/schema'; // 1. Import schema
 import { ZodError } from 'zod';
+import { MultiSelect } from '@/components/ui/mutliselect'; // If you have a MultiSelect component
 
 // Helper: Map dataType to allowed units from schema
 const unitOptionsByDataType: Record<string, string[]> = {
@@ -34,6 +35,7 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [editingConfig, setEditingConfig] = useState<any>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
+  const [basicSettingsOpen, setBasicSettingsOpen] = useState(false);
 
   useEffect(() => {
     // Only runs on client
@@ -324,16 +326,36 @@ console.log('ALERT_BEST_MATCH_ONLY:', ALERT_BEST_MATCH_ONLY);
     }
   };
 
+  // PATCH for basic sensor settings
+  const handleSaveBasicSettings = async () => {
+    if (!sensorData) return;
+    await fetch(`/api/sensors/${sensorId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sensor: {
+          sensorName: sensorData.sensor.sensorName,
+          sensorDescription: sensorData.sensor.sensorDescription,
+          sensorData: sensorData.sensor.sensorData,
+        },
+      }),
+    });
+    setBasicSettingsOpen(false);
+    fetchData();
+  };
+
   if (loading) {
     // Wait until skeletonCount is set on the client to avoid hydration mismatch
     if (skeletonCount === null) return null;
     return (
-      <div className="p-4">
+      <div className="p-4 w-full">
         <Skeleton className="h-8 w-1/2 mb-4" />
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4`}>
-          {Array.from({ length: skeletonCount }).map((_, idx) => (
-            <Skeleton key={idx} className="h-32 w-full min-w-[320px] md:min-w-[400px]" />
-          ))}
+        <div className="overflow-x-hidden">
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 min-w-[340px]`}>
+            {Array.from({ length: skeletonCount }).map((_, idx) => (
+              <Skeleton key={idx} className="h-32 w-full min-w-[320px] md:min-w-[400px]" />
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -359,19 +381,110 @@ console.log('ALERT_BEST_MATCH_ONLY:', ALERT_BEST_MATCH_ONLY);
     );
   }
 
+  const getDefaultConfig = (dataType: string) => ({
+    dataType,
+    name: dataType,
+    description: "",
+    unit: (unitOptionsByDataType[dataType] && unitOptionsByDataType[dataType][0]) || "",
+    maxAgeHours: 24,
+    grenzwerte: [],
+  });
+
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-2">
-        {sensorData?.sensor.sensorName + ` | Sensor #${sensorId}`}
-        <Button 
-          variant="outline" 
-          className="ml-2"
-          onClick={handleForceUpdate}
-          disabled={updating}
+      {/* Header with name, ID, and edit button inline */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2 gap-2">
+        <div className="flex items-center gap-2">
+          <h2 className="text-xl font-bold">
+            {sensorData?.sensor.sensorName + ` | Sensor #${sensorId}`}
+          </h2>
+          <Button
+            variant="outline"
+            size="icon"
+            className="ml-1"
+            onClick={() => setBasicSettingsOpen(true)}
+            title="Sensor-Basisdaten bearbeiten"
+          >
+            <Pencil className="w-5 h-5" />
+          </Button>
+        </div>
+        {/* You can add other controls here if needed */}
+      </div>
+
+      {/* Basic Settings Modal */}
+      <Dialog open={basicSettingsOpen} onOpenChange={setBasicSettingsOpen}>
+        <DialogContent
+          className="w-full max-w-md"
+          style={{ minWidth: '0', width: '100%' }}
         >
-          {updating ? 'Refreshing...' : 'Force-Update'}
-        </Button>
-      </h2>
+          <DialogHeader>
+            <DialogTitle>Sensor-Basisdaten bearbeiten</DialogTitle>
+          </DialogHeader>
+          <form
+            onSubmit={async e => {
+              e.preventDefault();
+              await handleSaveBasicSettings();
+            }}
+            className="space-y-4"
+          >
+            {/* Sensor Name */}
+            <label className="block">
+              <span className="flex items-center gap-1">
+                Sensor-Name
+                <div className="text-muted-foreground">*</div>
+              </span>
+              <Input
+                value={sensorData.sensor.sensorName}
+                onChange={e =>
+                  setSensorData({
+                    ...sensorData,
+                    sensor: { ...sensorData.sensor, sensorName: e.target.value }
+                  })
+                }
+              />
+            </label>
+            {/* Sensor Description */}
+            <label className="block">
+              <span>Sensor-Beschreibung</span>
+              <Input
+                value={sensorData.sensor.sensorDescription || ""}
+                onChange={e =>
+                  setSensorData({
+                    ...sensorData,
+                    sensor: { ...sensorData.sensor, sensorDescription: e.target.value }
+                  })
+                }
+              />
+            </label>
+            {/* SensorData Types */}
+            <label className="block">
+              <span className="flex items-center gap-1">
+                Sensor-Daten Typen
+                <div className="text-muted-foreground">*</div>
+              </span>
+              <MultiSelect
+                options={sensorDataOptions.map(String)}
+                selected={sensorData.sensor.sensorData.map(String)}
+                onChange={selected => {
+                  setSensorData({
+                    ...sensorData,
+                    sensor: {
+                      ...sensorData.sensor,
+                      sensorData: Array.from(new Set([...sensorData.sensor.sensorData, ...selected.map(String)]))
+                    }
+                  });
+                }}
+                placeholder="Welche Daten stellt der Sensor zur Verfügung?"
+              />
+            </label>
+            <DialogFooter>
+              <button type="submit" className="btn btn-primary">Speichern</button>
+              <button type="button" className="btn" onClick={() => setBasicSettingsOpen(false)}>Abbrechen</button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+
       <div 
         className={`grid grid-cols-1 md:grid-cols-2  ${
           htmlId ? 'lg:grid-cols-2' : ''
@@ -419,6 +532,35 @@ console.log('ALERT_BEST_MATCH_ONLY:', ALERT_BEST_MATCH_ONLY);
             );
           }
 
+          // --- ADD THIS: Card-level force update button ---
+          const handleCardForceUpdate = async () => {
+            setUpdating(true);
+            try {
+              const response = await fetch('/api/mqtt/force-update', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  sensorTyp: sensorData.sensor.sensorTyp,
+                  clientId: sensorId,
+                }),
+              });
+
+              if (!response.ok) {
+                throw new Error('Failed to send update command');
+              }
+
+              setTimeout(async () => {
+                await fetchData();
+                setUpdating(false);
+              }, 500);
+            } catch (error) {
+              setUpdating(false);
+            }
+          };
+          // --- END ADD ---
+
           return (
             <div key={dataType} className="relative">
               <BaseLayer
@@ -431,13 +573,25 @@ console.log('ALERT_BEST_MATCH_ONLY:', ALERT_BEST_MATCH_ONLY);
                 timeStamp={timeStampElem}
                 statusColor={statusColor}
               />
-              <button
-                className="absolute top-2 right-2 bg-white/80 rounded-full p-1 hover:bg-white"
-                onClick={() => handleOpenSettings(dataType)}
-                title="Einstellungen"
-              >
-                <Settings className="w-5 h-5 text-gray-700" />
-              </button>
+              <div className="absolute top-2 right-2 flex flex-col gap-2">
+                <button
+                  className="bg-white/80 rounded-full p-1 hover:bg-white"
+                  onClick={handleCardForceUpdate}
+                  title="Force-Update"
+                  disabled={updating}
+                  type="button"
+                >
+                  <RefreshCw className={`w-5 h-5 text-gray-700 ${updating ? 'animate-spin' : ''}`} />
+                </button>
+                <button
+                  className="bg-white/80 rounded-full p-1 hover:bg-white"
+                  onClick={() => handleOpenSettings(dataType)}
+                  title="Einstellungen"
+                  type="button"
+                >
+                  <Settings className="w-5 h-5 text-gray-700" />
+                </button>
+              </div>
             </div>
           );
         })}
