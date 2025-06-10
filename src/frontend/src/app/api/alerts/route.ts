@@ -4,7 +4,7 @@ let alerts: any[] = [];
 
 export async function POST(request: Request) {
   const alert = await request.json();
-  console.log('Received alert:', alert);
+  // console.log('Received alert:', alert);
   // Check for duplicate: same sensorId, dataType, threshold, and value
   const isDuplicate = alerts.some(existing =>
     existing.sensorId === alert.sensorId &&

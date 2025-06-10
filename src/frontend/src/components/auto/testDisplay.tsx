@@ -15,6 +15,7 @@ import { ChevronLeft, ChevronRight, Equal } from "lucide-react";
 import { configurationSchema, sensorDataOptions } from '@/lib/schema'; // 1. Import schema
 import { ZodError } from 'zod';
 import { MultiSelect } from '@/components/ui/mutliselect'; // If you have a MultiSelect component
+import React from 'react';
 
 // Helper: Map dataType to allowed units from schema
 const unitOptionsByDataType: Record<string, string[]> = {
@@ -36,6 +37,7 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
   const [editingConfig, setEditingConfig] = useState<any>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
   const [basicSettingsOpen, setBasicSettingsOpen] = useState(false);
+  const [basicSettingsDraft, setBasicSettingsDraft] = useState<any | null>(null);
 
   useEffect(() => {
     // Only runs on client
@@ -144,9 +146,10 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
     //*console.log('Alert POST response:', alert.status, await alert.text());
   };
 
-  const ALERT_BEST_MATCH_ONLY = process.env.NEXT_PUBLIC_BEST_FIRST_MATCH_ONLY === 'true';
+  // console.log(process.env.NEXT_PUBLIC_ALERT_BEST_MATCH_ONLY + "asdf")
+  const ALERT_BEST_MATCH_ONLY = process.env.NEXT_PUBLIC_ALERT_BEST_MATCH_ONLY === 'true';
 
-//console.log('ALERT_BEST_MATCH_ONLY:', ALERT_BEST_MATCH_ONLY);
+  // console.log('ALERT_BEST_MATCH_ONLY:', ALERT_BEST_MATCH_ONLY);
 
   const calculateStatusColor = (
     config: SensorConfig | undefined,
@@ -312,7 +315,12 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
       await fetch(`/api/sensors/${sensorId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ dataType: updatedConfig.dataType, config: updatedConfig }),
+        body: JSON.stringify({
+          sensor: {
+            dataType: updatedConfig.dataType,
+            config: updatedConfig,
+          }
+        }),
       });
       setSettingsOpen(false);
       fetchData(); // Refresh data
@@ -326,22 +334,47 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
     }
   };
 
-  // PATCH for basic sensor settings
+  // When opening the modal, copy the current sensor data
+  const openBasicSettings = () => {
+    console.log("openBasicSettings called. Current sensorData:", sensorData);
+    setBasicSettingsDraft({
+      sensorName: sensorData?.sensor.sensorName || "",
+      sensorDescription: sensorData?.sensor.sensorDescription || "",
+      sensorData: sensorData?.sensor.sensorData ? [...sensorData.sensor.sensorData] : [],
+    });
+    setBasicSettingsOpen(true);
+  };
+
+  // When closing, discard draft
+  const closeBasicSettings = () => {
+    console.log("closeBasicSettings called.");
+    setBasicSettingsOpen(false);
+    setBasicSettingsDraft(null);
+  };
+
+  // Save handler: update server, then close modal and refetch
   const handleSaveBasicSettings = async () => {
-    if (!sensorData) return;
+    if (!basicSettingsDraft) return;
     await fetch(`/api/sensors/${sensorId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         sensor: {
-          sensorName: sensorData.sensor.sensorName,
-          sensorDescription: sensorData.sensor.sensorDescription,
-          sensorData: sensorData.sensor.sensorData,
+          sensorName: basicSettingsDraft.sensorName,
+          sensorDescription: basicSettingsDraft.sensorDescription,
+          sensorData: basicSettingsDraft.sensorData,
         },
       }),
     });
-    setBasicSettingsOpen(false);
+    closeBasicSettings();
     fetchData();
+  };
+
+  const handleSensorDataChange = (selected: string[]) => {
+    setBasicSettingsDraft((prev: any) => ({
+      ...prev!,
+      sensorData: selected
+    }));
   };
 
   if (loading) {
@@ -402,7 +435,7 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
             variant="outline"
             size="icon"
             className="ml-1"
-            onClick={() => setBasicSettingsOpen(true)}
+            onClick={openBasicSettings}
             title="Sensor-Basisdaten bearbeiten"
           >
             <Pencil className="w-5 h-5" />
@@ -412,7 +445,14 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
       </div>
 
       {/* Basic Settings Modal */}
-      <Dialog open={basicSettingsOpen} onOpenChange={setBasicSettingsOpen}>
+      <Dialog
+        open={basicSettingsOpen}
+        onOpenChange={open => {
+          console.log("Dialog onOpenChange called. open:", open);
+          if (!open) closeBasicSettings();
+          // Do NOT call openBasicSettings here!
+        }}
+      >
         <DialogContent
           className="w-full max-w-md"
           style={{ minWidth: '0', width: '100%' }}
@@ -420,68 +460,61 @@ const SensorDataDisplay = ({ sensorId, htmlId, verticalId, notId }: { notId:bool
           <DialogHeader>
             <DialogTitle>Sensor-Basisdaten bearbeiten</DialogTitle>
           </DialogHeader>
-          <form
-            onSubmit={async e => {
-              e.preventDefault();
-              await handleSaveBasicSettings();
-            }}
-            className="space-y-4"
-          >
-            {/* Sensor Name */}
-            <label className="block">
-              <span className="flex items-center gap-1">
-                Sensor-Name
-                <div className="text-muted-foreground">*</div>
-              </span>
-              <Input
-                value={sensorData.sensor.sensorName}
-                onChange={e =>
-                  setSensorData({
-                    ...sensorData,
-                    sensor: { ...sensorData.sensor, sensorName: e.target.value }
-                  })
-                }
-              />
-            </label>
-            {/* Sensor Description */}
-            <label className="block">
-              <span>Sensor-Beschreibung</span>
-              <Input
-                value={sensorData.sensor.sensorDescription || ""}
-                onChange={e =>
-                  setSensorData({
-                    ...sensorData,
-                    sensor: { ...sensorData.sensor, sensorDescription: e.target.value }
-                  })
-                }
-              />
-            </label>
-            {/* SensorData Types */}
-            <label className="block">
-              <span className="flex items-center gap-1">
-                Sensor-Daten Typen
-                <div className="text-muted-foreground">*</div>
-              </span>
-              <MultiSelect
-                options={sensorDataOptions.map(String)}
-                selected={sensorData.sensor.sensorData.map(String)}
-                onChange={selected => {
-                  setSensorData({
-                    ...sensorData,
-                    sensor: {
-                      ...sensorData.sensor,
-                      sensorData: Array.from(new Set([...sensorData.sensor.sensorData, ...selected.map(String)]))
-                    }
-                  });
+          {basicSettingsDraft && (
+            <>
+              {console.log("Rendering modal. Current basicSettingsDraft:", basicSettingsDraft)}
+              <form
+                onSubmit={async e => {
+                  e.preventDefault();
+                  await handleSaveBasicSettings();
                 }}
-                placeholder="Welche Daten stellt der Sensor zur Verfügung?"
-              />
-            </label>
-            <DialogFooter>
-              <button type="submit" className="btn btn-primary">Speichern</button>
-              <button type="button" className="btn" onClick={() => setBasicSettingsOpen(false)}>Abbrechen</button>
-            </DialogFooter>
-          </form>
+                className="space-y-4"
+              >
+                {/* Sensor Name */}
+                <label className="block">
+                  <span className="flex items-center gap-1">
+                    Sensor-Name
+                    <div className="text-muted-foreground">*</div>
+                  </span>
+                  <Input
+                    value={basicSettingsDraft.sensorName}
+                    onChange={e =>
+                      setBasicSettingsDraft((draft: any) => ({ ...draft, sensorName: e.target.value }))
+                    }
+                  />
+                </label>
+                {/* Sensor Description */}
+                <label className="block">
+                  <span>Sensor-Beschreibung</span>
+                  <Input
+                    value={basicSettingsDraft.sensorDescription}
+                    onChange={e =>
+                      setBasicSettingsDraft((draft: any) => ({ ...draft, sensorDescription: e.target.value }))
+                    }
+                  />
+                </label>
+                {/* SensorData Types */}
+                <label className="block">
+                  <span className="flex items-center gap-1">
+                    Sensor-Daten Typen
+                    <div className="text-muted-foreground">*</div>
+                  </span>
+                  <MultiSelect
+                    options={sensorDataOptions.map(String)}
+                    selected={basicSettingsDraft.sensorData}
+                    onChange={selected =>
+                      setBasicSettingsDraft((draft: any) => ({ ...draft, sensorData: selected }))
+                    }
+                    placeholder="Welche Daten stellt der Sensor zur Verfügung?"
+                  />
+                </label>
+                <DialogFooter>
+                  <button type="submit" className="btn btn-primary">Speichern</button>
+                  <button type="button" className="btn" onClick={closeBasicSettings}>Abbrechen</button>
+                </DialogFooter>
+              </form>
+            </>
+          )}
         </DialogContent>
       </Dialog>
 

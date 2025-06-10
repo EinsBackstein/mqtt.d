@@ -73,8 +73,8 @@ const Alert = () => {
   // }, [alerts, loading]);
 
   const alertCount = alerts.length;
-  const criticalCount = alerts.filter(a => a.critical || a.threshold.color === "#CF2430").length;
-  const nonCriticalCount = alerts.filter(a => !a.critical && a.threshold.color !== "#CF2430").length;
+  const criticalCount = alerts.filter(a => a.critical).length;
+  const nonCriticalCount = alerts.filter(a => !a.critical).length;
   const newestAlert = alerts[alertCount - 1];
 
   const outlineColor = getOutlineColor(alerts);

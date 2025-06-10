@@ -203,6 +203,7 @@ export default function AlertOverviewModal({
               <div className="text-sm text-gray-400">Keine Alerts vorhanden.</div>
             ) : (
               displayAlerts.map((alert, idx) => (
+                // console.log(alert), // Debugging log
                 <div
                   key={idx}
                   className={`py-1 pr-2 pl-1 rounded-2xl flex flex-row gap-2 items-center border-l-4

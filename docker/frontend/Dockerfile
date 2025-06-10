@@ -7,6 +7,7 @@ COPY src/frontend/package*.json ./
 
 RUN npm install
 
+COPY .env ./
 # Jetzt den Rest des Codes kopieren
 COPY src/frontend/ ./
 
