@@ -1,8 +1,18 @@
-FROM node:22.9-alpine
-RUN mkdir /app
+FROM node:20
+
 WORKDIR /app
-COPY src/frontend /app
-RUN apk add --no-cache git
-RUN npm install 
+
+# Nur package.json und lockfile zuerst kopieren (besseres Caching)
+COPY src/frontend/package*.json ./
+
+RUN npm install
+
+# Jetzt den Rest des Codes kopieren
+COPY src/frontend/ ./
+
 EXPOSE 3000
-CMD [ "npm", "run", "dev" ]
+
+RUN npm run build
+
+CMD ["npm", "run", "start"]
+# CMD ["sh", "-c", "npm run dev; while true; do sleep 1000; done"]

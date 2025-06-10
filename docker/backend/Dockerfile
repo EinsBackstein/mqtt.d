@@ -5,7 +5,6 @@ WORKDIR /app
 # Only copy package files first for better caching
 COPY src/backend/package*.json ./
 
-RUN apk add --no-cache git
 RUN npm install
 
 # Copy the rest of your backend source

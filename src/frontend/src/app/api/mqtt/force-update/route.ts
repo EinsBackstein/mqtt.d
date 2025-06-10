@@ -8,7 +8,7 @@ const MQTT_OPTIONS = {
   clean: true
 };
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest):Promise<NextResponse> {
   try {
     const { sensorTyp, clientId } = await request.json();
     

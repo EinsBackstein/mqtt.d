@@ -12,10 +12,15 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.config({
     extends: ['next'],
+    plugins: ['@typescript-eslint'],
     rules: {
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-escaped-entities': 'off',
+      '@typescript-eslint/no-unescaped-entities': 'off',
+
+      'react/no-escaped-entities': 'off',
+      'react/no-unescaped-entities': 'off',
     },
   }),
 ];
