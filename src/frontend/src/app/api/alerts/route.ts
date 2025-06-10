@@ -4,21 +4,21 @@ let alerts: any[] = [];
 
 export async function POST(request: Request) {
   const alert = await request.json();
-  // console.log('Received alert:', alert);
-  // Check for duplicate: same sensorId, dataType, threshold, and value
-  const isDuplicate = alerts.some(existing =>
+  // Find index of existing alert with same sensorId, dataType, threshold
+  const idx = alerts.findIndex(existing =>
     existing.sensorId === alert.sensorId &&
     existing.dataType === alert.dataType &&
     existing.threshold?.condition === alert.threshold?.condition &&
-    existing.threshold?.value === alert.threshold?.value &&
-    existing.value === alert.value
+    existing.threshold?.value === alert.threshold?.value
   );
 
-  if (!isDuplicate) {
+  if (idx !== -1) {
+    // Replace the old alert with the new one
+    alerts[idx] = alert;
+    return new Response(JSON.stringify({ message: 'Alert updated' }), { status: 200 });
+  } else {
     alerts.push(alert);
     return new Response(JSON.stringify({ message: 'Alert received' }), { status: 200 });
-  } else {
-    return new Response(JSON.stringify({ message: 'Duplicate alert ignored' }), { status: 200 });
   }
 }
 
