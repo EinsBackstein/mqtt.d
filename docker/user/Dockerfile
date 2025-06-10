@@ -1,4 +1,4 @@
 FROM alpine:latest
-RUN mkdir /data
+RUN mkdir -p /data
 WORKDIR /data
 COPY src/user-data /data
