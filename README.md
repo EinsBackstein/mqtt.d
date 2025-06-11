@@ -29,6 +29,8 @@
    cd mqtt.d
    ```
 
+   *alternatively, if you don't want to use git, download the latest release from GitHub and unpack it to a folder of your liking.*
+
 2. **Configure environment variables**
 
    Copy the example file and adjust as needed:
