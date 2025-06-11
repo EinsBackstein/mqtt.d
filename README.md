@@ -103,7 +103,3 @@
 - Make sure ports `1883`, `3000`, `8080`, and `80`/`443` are not in use by other applications.
 
 ---
-
-## License
-
-MIT
